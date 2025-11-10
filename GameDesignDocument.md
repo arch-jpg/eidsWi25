@@ -18,142 +18,138 @@
 ## 2. Gameplay Overview
 
 ### 2.1 Core Gameplay Loop
-> [Beschreibe die wiederkehrende Spielerhandlung (z. B. "erkunden → kämpfen → looten → upgraden").]
+>  kämpfen → belohnt werden → upgraden → sterben
 
 ### 2.2 Steuerung
-> [Tastenbelegung oder Steuerungsprinzipien (Keyboard, Controller, Touch).]
+> Maus, Tastatur, Touch-Pad?
 
 ### 2.3 Kamera & Perspektive
-> [z. B. Third-Person, 2D-Side-Scroller, Top-Down.]
+> 2D Side-View
 
 ### 2.4 Fortschrittssystem
-> [Wie entwickelt sich der Spieler? Level, Fähigkeiten, Story-Fortschritt, Items.]
+> Karten freischalten durch Kämpfen, Elektrum sammeln für trading
 
 ### 2.5 Schwierigkeitsgrad & Balancing
-> [Wie wird Schwierigkeit reguliert? Gibt es Dynamik oder feste Modi?]
+> gibt nur einen
 
 ---
 
 ## 3. Welt & Story
 
 ### 3.1 Setting
-> [Ort, Zeit, Stimmung – was macht die Welt einzigartig?]
+> Mittelalter, Fantasy, Bedrückent, Ernst, Wahnsinnig 
 
 ### 3.2 Hauptcharakter(e)
-> - Name: [ ]  
-> - Rolle: [ ]  
-> - Motivation: [ ]  
-> - Fähigkeiten: [ ]
+> - Name: [Spieler legt fest]  
+> - Rolle: Anti-Hero 
+> - Motivation: gab keine Milch  
+> - Fähigkeiten: Karten
 
 ### 3.3 Nebencharaktere
-> [Kurze Übersicht der Nebenfiguren und ihrer Funktion.]
+> Händler, Spielergruppe?
 
 ### 3.4 Storystruktur
-> [Kurzer Überblick über Anfang, Mitte, Ende oder Hauptstorybeats.]
-
-### 3.5 Dialoge / Entscheidungen
-> [Gibt es verzweigte Dialoge, Konsequenzen, Beziehungen?]
-
----
+> 1. wird böse/wahnsinnig weil keine Milch 
+> 2. bekämpf alle bis zum Gutsherren 
+> 3. Evil Nummer Eins
 
 ## 4. Systeme & Regeln
 
 ### 4.1 Kampfsystem
-> [Art des Kampfs (z. B. rundenbasiert, Echtzeit), Hauptwaffen, Fähigkeiten, Energie.]
+> Rundenbasiert mit Karten
 
 ### 4.2 Inventar & Items
-> [Wie funktioniert das Inventar, Gewicht, Crafting, Ressourcen?]
+> Kartendeck, 5 auf Hand, 15 im Deck?, Card-Collection, Relikte
 
 ### 4.3 KI-System
-> [Wie verhalten sich Gegner, NPCs oder Tiere?]
+> scripted attack patterns
 
 ### 4.4 Wirtschaft / Handel
-> [Geld, Ressourcen, Shops, Tauschmechanismen.]
-
-### 4.5 Physik & Interaktionen
-> [Bewegung, Gravitation, zerstörbare Objekte, Rätselmechaniken.]
+> mit Elektrum Karten kaufen
 
 ---
 
 ## 5. Interface (UI / UX)
 
 ### 5.1 HUD
-> [Welche Informationen sieht der Spieler ständig? (z. B. HP, Karte, Ausdauer.)]
+> SpilerHP, GegnerHP, Karten, Leglimitierung, Relikte, Gegner move, Knopf für Deck, End-Turn
 
 ### 5.2 Menüs & Navigation
-> [Beschreibung der Hauptmenüs, Optionen, Karten, Inventare.]
+- Hauptmenü
+    - Spielen
+        - Start Round
+        - Change Deck
+        - Händler
+    - Exit
+    - Titel
+    - Lautstärke oder Mute ?
 
 ### 5.3 Nutzererlebnis
-> [Wie intuitiv ist die Bedienung? Accessibility, Controller-Support, Tutorials.]
+> sehrintuitiv 
 
 ---
 
 ## 6. Grafik & Audio
 
 ### 6.1 Grafikstil
-> [z. B. Pixelart, 3D Low-Poly, handgezeichnet.]
+> 2D Pixelart
 
 ### 6.2 Farbpalette & Atmosphäre
-> [Welche Farben und Lichtstimmungen dominieren?]
+> schwarz, braun, weiß, grau, rot, orange
 
 ### 6.3 Animationen
-> [Bewegungsstil, Übergänge, Reaktionen.]
+> idle, angriff, sterben
 
 ### 6.4 Sounddesign
-> [Musikrichtung, Soundeffekte, Voice Acting, Ambient-Geräusche.]
+> ?
 
 ---
 
 ## 7. Technische Details
 
 ### 7.1 Engine & Tools
-> [z. B. Unity, Unreal, Godot, Blender, FMOD.]
+> Godot 4.4, Aseprite
 
 ### 7.2 Plattformanforderungen
-> [Hardware-Ziele, Speicherbedarf, Auflösung, FPS-Ziel.]
+> soll laufen
 
-### 7.3 Netzwerkfunktionen
-> [Online-Modus, Multiplayer, Koop, Leaderboards.]
 
 ### 7.4 Speichersystem
-> [Wie werden Fortschritte, Einstellungen oder Profile gespeichert?]
+> lokal in json, sav?
 
 ---
 
 ## 8. Produktionsplan
 
 ### 8.1 Teamstruktur
-> [Wer macht was? Designer, Programmierer, Artist, Sound, QA.]
+> alles
 
 ### 8.2 Zeitplan / Milestones
-> - Prototyp: [Datum]  
-> - Vertical Slice: [Datum]  
-> - Alpha: [Datum]  
-> - Beta: [Datum]  
-> - Release: [Datum]
+> - Mainmenu
+> - Spielermenu
+> - Karten
+> - Deckbuilder
+> - Kampf-loop
+> - Map-Design
+> - Gegner und Spieler Design
+> - Balancing
 
-### 8.3 Budget (optional)
-> [Falls relevant: Zeit, Geld, Ressourcen, Förderungen.]
 
 ---
 
 ## 9. Testing & QA
 
 ### 9.1 Testmethoden
-> [Unit Tests, Playtests, Bugtracking-Tools.]
+> selber spielen
 
 ### 9.2 Feedback-Zyklus
-> [Wie wird Feedback gesammelt und integriert?]
+> Leute die wir zum testen zwingen
+> Übungleiter
+> wir
+
+> wenn Feedback dann wird geändert
 
 ### 9.3 Balancing-Prozess
-> [Wie werden Schwierigkeitsgrade getestet und angepasst?]
+> nach gefühl
 
 ---
-
-## 10. Anhang / Glossar
-
-### 10.1 Begriffe
-> [Kurze Definitionen technischer oder interner Begriffe.]
-
-### 10.2 Referenzen
-> [Links, Inspirationsquellen, Forschung, ähnliche Spiele.]
