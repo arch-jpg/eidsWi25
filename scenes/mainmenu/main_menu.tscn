@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccxy48ld0gno1"]
 
-[ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://dfqwpg7tv4to5" path="res://mainmenu/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://dfqwpg7tv4to5" path="res://scenes/mainmenu/main_menu.gd" id="1_7vrkn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.100514, 0.260884, 0.366038, 1)
