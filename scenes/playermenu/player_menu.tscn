@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1qjjfnlrgi5h"]
+
+[ext_resource type="Script" uid="uid://bn62f7qb3f7gm" path="res://playermenu/player_menu.gd" id="1_j7qx3"]
+
+[node name="PlayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j7qx3")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 177.0
+offset_right = 201.0
+offset_bottom = 244.0
+text = "TestTest"
+
+[connection signal="pressed" from="Button" to="." method="_on_TEST_pressed"]
