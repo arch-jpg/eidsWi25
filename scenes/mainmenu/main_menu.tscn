@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccxy48ld0gno1"]
+[gd_scene load_steps=9 format=3 uid="uid://ccxy48ld0gno1"]
 
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dfqwpg7tv4to5" path="res://scenes/mainmenu/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://cy6l4ofhi68v8" path="res://scenes/mainmenu/fadetrans.tscn" id="3_jl081"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.100514, 0.260884, 0.366038, 1)
@@ -112,6 +113,14 @@ text = "Game Project name here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="fadeout" parent="." instance=ExtResource("3_jl081")]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+
+[node name="fade_timer" type="Timer" parent="fadeout"]
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_PLAY_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_OPTIONS_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_EXIT_pressed"]
+[connection signal="timeout" from="fadeout/fade_timer" to="." method="_on_fade_timer_timeout"]

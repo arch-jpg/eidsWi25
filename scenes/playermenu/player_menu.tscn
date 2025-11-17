@@ -1,22 +1,192 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1qjjfnlrgi5h"]
+[gd_scene load_steps=17 format=3 uid="uid://c1qjjfnlrgi5h"]
 
-[ext_resource type="Script" uid="uid://bn62f7qb3f7gm" path="res://playermenu/player_menu.gd" id="1_j7qx3"]
+[ext_resource type="Script" uid="uid://bn62f7qb3f7gm" path="res://scenes/playermenu/player_menu.gd" id="1_j7qx3"]
+[ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="2_0pld1"]
+[ext_resource type="Texture2D" uid="uid://cy3ue3tni7ats" path="res://icon.svg" id="2_3u4t1"]
+[ext_resource type="PackedScene" uid="uid://cy6l4ofhi68v8" path="res://scenes/mainmenu/fadetrans.tscn" id="2_y7emd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg2sp"]
+bg_color = Color(0.101961, 0.262745, 0.364706, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45jli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5owh"]
+bg_color = Color(0.11689, 0.134855, 0.216135, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7r73"]
+bg_color = Color(0.0352319, 0.0445863, 0.0875517, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ha4cb"]
+bg_color = Color(0.152941, 0.172549, 0.270588, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.968627)
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3u4t1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52frx"]
+bg_color = Color(0.11689, 0.134855, 0.216135, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45jli"]
+bg_color = Color(0.0352319, 0.0445863, 0.0875517, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxyjn"]
+bg_color = Color(0.152941, 0.172549, 0.270588, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_durv1"]
+bg_color = Color(0.152941, 0.172549, 0.270588, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_52frx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tq5cb"]
+bg_color = Color(0.152941, 0.172549, 0.270588, 0.447059)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j7qx3")
 
-[node name="Button" type="Button" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 177.0
-offset_right = 201.0
-offset_bottom = 244.0
-text = "TestTest"
+offset_right = 1154.0
+offset_bottom = 651.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lg2sp")
 
-[connection signal="pressed" from="Button" to="." method="_on_TEST_pressed"]
+[node name="charshowcase" type="Sprite2D" parent="."]
+position = Vector2(937, 455)
+texture = ExtResource("2_3u4t1")
+
+[node name="b_deck" type="Button" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 202.0
+offset_bottom = 99.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0pld1")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_45jli")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a5owh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b7r73")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ha4cb")
+text = "View Deck"
+
+[node name="b_shop" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 114.0
+offset_right = 204.0
+offset_bottom = 191.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0pld1")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3u4t1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_52frx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_45jli")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxyjn")
+text = "View shop"
+
+[node name="b_start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 556.0
+offset_right = 196.0
+offset_bottom = 633.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0pld1")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3u4t1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_52frx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_45jli")
+theme_override_styles/normal = SubResource("StyleBoxFlat_durv1")
+text = "Start run"
+
+[node name="b_change_char" type="Button" parent="."]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 320.0
+offset_right = 1042.0
+offset_bottom = 378.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0pld1")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_52frx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_52frx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_45jli")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tq5cb")
+text = "change character"
+
+[node name="fadeout" parent="." instance=ExtResource("2_y7emd")]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+
+[connection signal="pressed" from="b_deck" to="." method="_on_b_deck_pressed"]
+[connection signal="pressed" from="b_shop" to="." method="_on_b_shop_pressed"]
+[connection signal="pressed" from="b_start" to="." method="_on_b_start_pressed"]
+[connection signal="pressed" from="b_change_char" to="." method="_on_b_start_pressed"]
