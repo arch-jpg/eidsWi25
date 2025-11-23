@@ -148,7 +148,7 @@ Cards can have multiple effects:
 - ~~`extra_turn`: Take additional turns~~
 
 ### Elements
-- Standart
+- Standard
 
 ### Target Types
 - `self`: Player character
