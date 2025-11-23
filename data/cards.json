@@ -188,24 +188,6 @@
       "keywords": ["fire", "burn", "aoe"],
       "card_art": "res://assets/cards/inferno.png",
       "upgrade_path": "inferno_plus"
-    },
-    {
-      "id": "time_warp",
-      "name": "Time Warp",
-      "description": "Take an extra turn after this one.",
-      "type": "cantrip",
-      "rarity": "legendary",
-      "energy_cost": 4,
-      "target": "self",
-      "effects": [
-        {
-          "type": "extra_turn",
-          "target": "self"
-        }
-      ],
-      "keywords": ["time", "turn"],
-      "card_art": "res://assets/cards/time_warp.png",
-      "upgrade_path": "time_warp_plus"
     }
   ],
   "card_types": [
