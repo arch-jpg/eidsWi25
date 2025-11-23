@@ -70,7 +70,7 @@
       "id": "heal_potion",
       "name": "Heal Potion",
       "description": "Restore 8 Health.",
-      "type": "skill",
+      "type": "cantrip",
       "rarity": "common",
       "energy_cost": 1,
       "target": "self",
