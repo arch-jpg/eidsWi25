@@ -28,6 +28,7 @@
 
 ### 2.4 Fortschrittssystem
 > Karten freischalten durch Kämpfen, Elektrum sammeln für trading
+> Player Stats upgraden ?
 
 ### 2.5 Schwierigkeitsgrad & Balancing
 > gibt nur einen
@@ -57,9 +58,19 @@
 
 ### 4.1 Kampfsystem
 > Rundenbasiert mit Karten
+> Energie System versteckt, 1xAtt 1xDef und Inf Cantrips pro Zug
+> Große Dmg etc. Zahlen!
+> ~~Elemental/Piercing/Slash/Blund Dmg Types?~~
+> crit Dmg als Card effect
+> Statuseffekte? Weak -> Macht weniger dmg, Vulnerable mache mehr Dmg, (Spikes?Werfe Dmg zurück), Dodge?Playerstat?
+> Strength?, Stun?, Blind?, Verwundbarkeit für bestimmte Cards?, Poison/Fire/TickDmg?, 
+> Block
+> Tokens als Zeit und Reaktion Counter der effekte
 
 ### 4.2 Inventar & Items
-> Kartendeck, 5 auf Hand, 15 im Deck?, Card-Collection, Relikte
+> Kartendeck, ~~5 auf Hand~~/Overdraw , 15 im Deck? 
+> Card-Collection
+> Relikte?
 
 ### 4.3 KI-System
 > scripted attack patterns
@@ -72,7 +83,7 @@
 ## 5. Interface (UI / UX)
 
 ### 5.1 HUD
-> SpilerHP, GegnerHP, Karten, Leglimitierung, Relikte, Gegner move, Knopf für Deck, End-Turn
+> SpielerHP, GegnerHP, Karten, Leglimitierung, Relikte, Gegner move, Knopf für Deck, End-Turn
 
 ### 5.2 Menüs & Navigation
 - Hauptmenü
@@ -85,7 +96,7 @@
 	- Lautstärke oder Mute ?
 
 ### 5.3 Nutzererlebnis
-> sehrintuitiv 
+> sehr intuitiv 
 
 ---
 
@@ -108,13 +119,14 @@
 ## 7. Technische Details
 
 ### 7.1 Engine & Tools
-> Godot 4.4, Aseprite
+> Godot 4.4, Aseprite, VSCode
 
 ### 7.2 Plattformanforderungen
 > soll laufen
 
 
 ### 7.4 Speichersystem
+> Carddatabase als Json
 > lokal in json, sav?
 
 ---

@@ -1,9 +1,9 @@
 {
   "cards": [
     {
-      "id": "fire_bolt",
-      "name": "Fire Bolt",
-      "description": "Deal 6 Fire damage to target enemy.",
+      "id": "weak_punch",
+      "name": "Weak Punch",
+      "description": "Deal 6 damage to target enemy.",
       "type": "attack",
       "rarity": "common",
       "energy_cost": 1,
@@ -11,19 +11,19 @@
       "effects": [
         {
           "type": "damage",
-          "element": "fire",
+          "element": "standard",
           "value": 6,
           "target": "selected_enemy"
         }
       ],
-      "keywords": ["fire"],
-      "card_art": "res://assets/cards/fire_bolt.png",
-      "upgrade_path": "fire_bolt_plus"
+      "keywords": ["punch"],
+      "card_art": "res://assets/cards/weak_punch.png",
+      "upgrade_path": "weak_punch_plus"
     },
     {
-      "id": "fire_bolt_plus",
-      "name": "Fire Bolt+",
-      "description": "Deal 9 Fire damage to target enemy.",
+      "id": "weak_punch_plus",
+      "name": "Weak Punch+",
+      "description": "Deal 9 damage to target enemy.",
       "type": "attack",
       "rarity": "common",
       "energy_cost": 1,
@@ -31,15 +31,15 @@
       "effects": [
         {
           "type": "damage",
-          "element": "fire",
+          "element": "standard",
           "value": 9,
           "target": "selected_enemy"
         }
       ],
-      "keywords": ["fire"],
-      "card_art": "res://assets/cards/fire_bolt_plus.png",
+      "keywords": ["punch"],
+      "card_art": "res://assets/cards/weak_punch_plus.png",
       "is_upgraded": true,
-      "base_card": "fire_bolt"
+      "base_card": "weak_punch"
     },
     {
       "id": "shield_bash",
@@ -52,7 +52,7 @@
       "effects": [
         {
           "type": "damage",
-          "element": "physical",
+          "element": "standard",
           "value": 4,
           "target": "selected_enemy"
         },
@@ -96,7 +96,7 @@
       "effects": [
         {
           "type": "damage",
-          "element": "ice",
+          "element": "standard",
           "value": 3,
           "target": "all_enemies"
         },
@@ -122,7 +122,7 @@
       "effects": [
         {
           "type": "damage",
-          "element": "lightning",
+          "element": "standard",
           "value": 8,
           "target": "selected_enemy",
           "conditional": {
@@ -140,7 +140,7 @@
       "id": "meditation",
       "name": "Meditation",
       "description": "Draw 2 cards. Gain 1 Energy next turn.",
-      "type": "skill",
+      "type": "cantrip",
       "rarity": "uncommon",
       "energy_cost": 1,
       "target": "self",
@@ -173,7 +173,7 @@
       "effects": [
         {
           "type": "damage",
-          "element": "fire",
+          "element": "standard",
           "value": 15,
           "target": "all_enemies"
         },
@@ -193,7 +193,7 @@
       "id": "time_warp",
       "name": "Time Warp",
       "description": "Take an extra turn after this one.",
-      "type": "skill",
+      "type": "cantrip",
       "rarity": "legendary",
       "energy_cost": 4,
       "target": "self",
@@ -210,9 +210,8 @@
   ],
   "card_types": [
     "attack",
-    "skill",
-    "power",
-    "curse"
+    "defend",
+    "cantrip"
   ],
   "rarities": [
     "common",
@@ -221,13 +220,7 @@
     "legendary"
   ],
   "elements": [
-    "physical",
-    "fire",
-    "ice",
-    "lightning",
-    "poison",
-    "holy",
-    "dark"
+    "standard"
   ],
   "target_types": [
     "self",
@@ -246,8 +239,7 @@
     "status_effect",
     "draw_cards",
     "discard_cards",
-    "energy",
-    "extra_turn"
+    "energy"
   ],
   "status_effects": [
     {
@@ -257,22 +249,16 @@
       "stackable": true
     },
     {
-      "name": "chill",
-      "description": "Reduces action speed",
+      "name": "weaken",
+      "description": "Reduces target dmg dealt",
       "type": "debuff",
       "stackable": false
     },
     {
-      "name": "shock",
-      "description": "Vulnerable to lightning damage",
+      "name": "vulnerable",
+      "description": "Vulnerable to damage",
       "type": "debuff",
       "stackable": false
-    },
-    {
-      "name": "energy_next_turn",
-      "description": "Gain extra energy next turn",
-      "type": "buff",
-      "stackable": true
     }
   ]
 }

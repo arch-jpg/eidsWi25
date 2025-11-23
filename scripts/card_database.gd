@@ -30,7 +30,7 @@ func load_cards_database():
 	var parse_result = json.parse(json_string)
 	
 	if parse_result != OK:
-		push_error("Error parsing cards database JSON: " + str(parse_result))
+		push_error("Error parsing cards.JSON: " + str(parse_result))
 		return
 	
 	var data = json.data
@@ -58,7 +58,7 @@ func load_cards_database():
 	
 	print("Loaded %d cards from database" % _cards.size())
 
-func get_card(card_id: String) -> Card:
+func get_card_by_id(card_id: String) -> Card:
 	if card_id in _cards:
 		return _cards[card_id].duplicate_card()
 	else:
@@ -104,7 +104,7 @@ func get_random_card() -> Card:
 		return null
 	var keys = _cards.keys()
 	var random_key = keys[randi() % keys.size()]
-	return get_card(random_key)
+	return get_card_by_id(random_key)
 
 func get_random_cards_by_rarity(rarity: String, count: int) -> Array:
 	var cards_of_rarity = get_cards_by_rarity(rarity)
@@ -142,13 +142,13 @@ func create_starter_deck() -> Array:
 	"""Create a basic starter deck for new players"""
 	var starter_cards = []
 	
-	# Add some basic cards (adjust based on your game balance)
-	for i in range(3):
-		starter_cards.append(get_card("fire_bolt"))
+	# Add some basic cards (adjust based on your game balance) TODO
+	"""for i in range(3):
+		starter_cards.append(get_card_by_id("fire_bolt"))
 	for i in range(2):
-		starter_cards.append(get_card("shield_bash"))
+		starter_cards.append(get_card_by_id("shield_bash"))
 	for i in range(2):
-		starter_cards.append(get_card("heal_potion"))
+		starter_cards.append(get_card_by_id("heal_potion"))"""
 	
 	return starter_cards
 

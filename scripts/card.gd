@@ -7,9 +7,9 @@ extends Resource
 @export var id: String
 @export var name: String
 @export var description: String
-@export var type: String  # attack, skill, power, curse
+@export var type: String  # attack, def, cantrip
 @export var rarity: String  # common, uncommon, rare, legendary
-@export var energy_cost: int
+@export var energy_cost: int #hidden in Game
 @export var target: String  # self, enemy_single, all_enemies, etc.
 @export var effects: Array
 @export var keywords: Array
@@ -63,24 +63,24 @@ func has_keyword(keyword: String) -> bool:
 func is_attack_card() -> bool:
 	return type == "attack"
 
-func is_skill_card() -> bool:
-	return type == "skill"
+func is_def_card() -> bool:
+	return type == "defense"
 
-func is_power_card() -> bool:
-	return type == "power"
+func is_cantrip_card() -> bool:
+	return type == "cantrip"
 
 func get_rarity_color() -> Color:
 	match rarity:
 		"common":
-			return Color.WHITE
-		"uncommon":
-			return Color.GREEN
-		"rare":
-			return Color.BLUE
-		"legendary":
-			return Color.ORANGE
-		_:
 			return Color.GRAY
+		"uncommon":
+			return Color.BLUE
+		"rare":
+			return Color.VIOLET
+		"legendary":
+			return Color.GOLD
+		_:
+			return Color.WHITE
 
 func duplicate_card() -> Card:
 	var new_card = Card.new()

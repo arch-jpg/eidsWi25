@@ -1,11 +1,13 @@
 class_name CardEffect
 extends Resource
 
-## Represents a single effect that a card can have
-## Used for damage, healing, status effects, etc.
+"""
+Represents a single effect that a card can have
+Used for damage, healing, status effects, etc.
+"""
 
 @export var type: String  # damage, heal, block, status_effect, etc.
-@export var element: String  # fire, ice, lightning, physical, etc.
+@export var element: String  # fire, ice, lightning, physical, etc. rn standard only!
 @export var value: int
 @export var target: String  # self, selected_enemy, all_enemies, etc.
 @export var effect_name: String  # for status effects
@@ -74,7 +76,7 @@ func duplicate_effect() -> CardEffect:
 func get_description() -> String:
 	match type:
 		"damage":
-			if element.is_empty() or element == "physical":
+			if element.is_empty() or element == "standard":
 				return "Deal %d damage" % value
 			else:
 				return "Deal %d %s damage" % [value, element.capitalize()]
