@@ -84,8 +84,8 @@ var starter_deck = CardDatabase.create_starter_deck()
 # Get a random card
 var random_card = CardDatabase.get_random_card()
 
-#Get a random card by rarity
-var random_card = CardDatabase.get_random_cards_by_rarity()
+# Get random cards by rarity
+var random_cards = CardDatabase.get_random_cards_by_rarity("common", 3)
 ```
 
 ~~### 3. Displaying Cards~~
