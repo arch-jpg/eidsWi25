@@ -7,7 +7,7 @@ A comprehensive card database system for creating cards
 - **JSON-based card database** for editing and management
 - **Modular card effects system** supporting damage, healing, status effects, and more
 - **Card rarity system** with indicators
-- **Element/damage type system** ~~(Fire, Ice, Lightning, etc.)~~ Momentan nur Standard
+- **Element/damage type system** ~~(Fire, Ice, Lightning, etc.)~~ Currently only Standard
 - **Targeting system** (single enemy, all enemies, self, etc.)
 - ~~**Card UI component** with animations and hover effects~~
 - **Database singleton** access throughout your game
