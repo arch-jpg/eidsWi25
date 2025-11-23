@@ -76,13 +76,13 @@
 
 ### 5.2 Menüs & Navigation
 - Hauptmenü
-    - Spielen
-        - Start Round
-        - Change Deck
-        - Händler
-    - Exit
-    - Titel
-    - Lautstärke oder Mute ?
+	- Spielen
+		- Start Round
+		- Change Deck
+		- Händler
+	- Exit
+	- Titel
+	- Lautstärke oder Mute ?
 
 ### 5.3 Nutzererlebnis
 > sehrintuitiv 

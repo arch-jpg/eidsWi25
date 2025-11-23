@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://cknqwjmxj7hxn"]
+
+[ext_resource type="Script" uid="uid://dhvu4cqskgb1d" path="res://scenes/cards/card_demo.gd" id="1_l5k6w"]
+
+[node name="CardDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l5k6w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Card Database Demo"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadCardsButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Load All Cards"
+
+[node name="LoadByTypeButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Load Attack Cards"
+
+[node name="LoadByRarityButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Load Common Cards"
+
+[node name="RandomCardButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Random Card"
+
+[node name="StarterDeckButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Starter Deck"
+
+[node name="ClearButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Clear"
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Click buttons to test the card database"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 6
