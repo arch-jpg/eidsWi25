@@ -76,7 +76,7 @@ var rare_cards = CardDatabase.get_cards_by_rarity("rare")
 var keyword_cards = CardDatabase.get_cards_by_keyword("damage")
 
 #Get cards by Cost
-var cost_cards = CardDatabase.get_cards_by_energy_cost("2")
+var cost_cards = CardDatabase.get_cards_by_energy_cost(2)
 
 # Create a starter deck
 var starter_deck = CardDatabase.create_starter_deck()
