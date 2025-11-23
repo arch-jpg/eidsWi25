@@ -107,4 +107,4 @@ func duplicate_card() -> Card:
 func get_upgrade() -> Card:
 	if upgrade_path.is_empty():
 		return null
-	return CardDatabase.get_card(upgrade_path)
+	return CardDatabase.get_card_by_id(upgrade_path)
