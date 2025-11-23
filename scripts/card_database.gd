@@ -30,7 +30,7 @@ func load_cards_database():
 	var parse_result = json.parse(json_string)
 	
 	if parse_result != OK:
-		push_error("Error parsing cards.JSON: " + str(parse_result))
+		push_error("Error parsing cards.json: " + str(parse_result))
 		return
 	
 	var data = json.data
