@@ -7,7 +7,7 @@ extends Resource
 @export var id: String
 @export var name: String
 @export var description: String
-@export var type: String  # attack, def, cantrip
+@export var type: String  # attack, defense, cantrip
 @export var rarity: String  # common, uncommon, rare, legendary
 @export var energy_cost: int #hidden in Game
 @export var target: String  # self, enemy_single, all_enemies, etc.
