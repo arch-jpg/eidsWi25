@@ -14,3 +14,7 @@ config/name="EidsWi25"
 run/main_scene="uid://ccxy48ld0gno1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CardDatabase="*res://scripts/card_database.gd"
