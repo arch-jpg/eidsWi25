@@ -199,7 +199,7 @@ Cards can have conditional effects:
   "value": 8,
   "conditional": {
     "condition": "target_has_status",
-    "status": "vunerable",
+    "status": "vulnerable",
     "effect_modifier": "double_damage"
   }
 }
