@@ -97,7 +97,7 @@ var card_ui = card_ui_scene.instantiate()
 add_child(card_ui)
 
 # Setup with card data
-var card = CardDatabase.get_card("fire_bolt")
+var card = CardDatabase.get_card_by_id("fire_bolt")
 card_ui.setup_card(card)
 
 # Connect to card interaction signals
