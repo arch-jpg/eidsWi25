@@ -44,12 +44,12 @@ Edit `data/cards.json` to add new cards:
   "energy_cost": 2,
   "target": "enemy_single",
   "effects": [
-    {
-      "type": "damage",
-      "element": "standard",
-      "value": 8,
-      "target": "selected_enemy"
-    }
+	{
+	  "type": "damage",
+	  "element": "standard",
+	  "value": 8,
+	  "target": "selected_enemy"
+	}
   ],
   "keywords": ["fire", "damage"],
   "card_art": "res://assets/cards/your_card.png",
@@ -124,16 +124,16 @@ Cards can have multiple effects:
 ```json
 "effects": [
   {
-    "type": "damage",
-    "element": "standard",
-    "value": 6,
-    "target": "selected_enemy"
+	"type": "damage",
+	"element": "standard",
+	"value": 6,
+	"target": "selected_enemy"
   },
   {
-    "type": "status_effect",
-    "effect_name": "burn",
-    "duration": 3,
-    "target": "selected_enemy"
+	"type": "status_effect",
+	"effect_name": "burn",
+	"duration": 3,
+	"target": "selected_enemy"
   }
 ]
 ```
@@ -198,9 +198,9 @@ Cards can have conditional effects:
   "type": "damage",
   "value": 8,
   "conditional": {
-    "condition": "target_has_status",
-    "status": "vunerable",
-    "effect_modifier": "double_damage"
+	"condition": "target_has_status",
+	"status": "vunerable",
+	"effect_modifier": "double_damage"
   }
 }
 ```
