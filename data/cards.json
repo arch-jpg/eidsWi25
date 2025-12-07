@@ -1,246 +1,246 @@
 {
   "cards": [
-    {
-      "id": "weak_punch",
-      "name": "Weak Punch",
-      "description": "Deal 6 damage to target enemy.",
-      "type": "attack",
-      "rarity": "common",
-      "energy_cost": 1,
-      "target": "enemy_single",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 6,
-          "target": "selected_enemy"
-        }
-      ],
-      "keywords": ["punch"],
-      "card_art": "res://assets/cards/weak_punch.png",
-      "upgrade_path": "weak_punch_plus"
-    },
-    {
-      "id": "weak_punch_plus",
-      "name": "Weak Punch+",
-      "description": "Deal 9 damage to target enemy.",
-      "type": "attack",
-      "rarity": "common",
-      "energy_cost": 1,
-      "target": "enemy_single",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 9,
-          "target": "selected_enemy"
-        }
-      ],
-      "keywords": ["punch"],
-      "card_art": "res://assets/cards/weak_punch_plus.png",
-      "is_upgraded": true,
-      "base_card": "weak_punch"
-    },
-    {
-      "id": "shield_bash",
-      "name": "Shield Bash",
-      "description": "Deal 4 damage. Gain 3 Block.",
-      "type": "attack",
-      "rarity": "common",
-      "energy_cost": 1,
-      "target": "enemy_single",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 4,
-          "target": "selected_enemy"
-        },
-        {
-          "type": "block",
-          "value": 3,
-          "target": "self"
-        }
-      ],
-      "keywords": ["block"],
-      "card_art": "res://assets/cards/shield_bash.png",
-      "upgrade_path": "shield_bash_plus"
-    },
-    {
-      "id": "heal_potion",
-      "name": "Heal Potion",
-      "description": "Restore 8 Health.",
-      "type": "cantrip",
-      "rarity": "common",
-      "energy_cost": 1,
-      "target": "self",
-      "effects": [
-        {
-          "type": "heal",
-          "value": 8,
-          "target": "self"
-        }
-      ],
-      "keywords": ["heal"],
-      "card_art": "res://assets/cards/heal_potion.png",
-      "upgrade_path": "heal_potion_plus"
-    },
-    {
-      "id": "frost_nova",
-      "name": "Frost Nova",
-      "description": "Deal 3 Ice damage to all enemies. Apply Chill for 2 turns.",
-      "type": "attack",
-      "rarity": "uncommon",
-      "energy_cost": 2,
-      "target": "all_enemies",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 3,
-          "target": "all_enemies"
-        },
-        {
-          "type": "status_effect",
-          "effect_name": "chill",
-          "duration": 2,
-          "target": "all_enemies"
-        }
-      ],
-      "keywords": ["ice", "chill", "aoe"],
-      "card_art": "res://assets/cards/frost_nova.png",
-      "upgrade_path": "frost_nova_plus"
-    },
-    {
-      "id": "lightning_strike",
-      "name": "Lightning Strike",
-      "description": "Deal 8 Lightning damage. If enemy has Shock, deal double damage.",
-      "type": "attack",
-      "rarity": "uncommon",
-      "energy_cost": 2,
-      "target": "enemy_single",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 8,
-          "target": "selected_enemy",
-          "conditional": {
-            "condition": "target_has_status",
-            "status": "shock",
-            "effect_modifier": "double_damage"
-          }
-        }
-      ],
-      "keywords": ["lightning", "conditional"],
-      "card_art": "res://assets/cards/lightning_strike.png",
-      "upgrade_path": "lightning_strike_plus"
-    },
-    {
-      "id": "meditation",
-      "name": "Meditation",
-      "description": "Draw 2 cards. Gain 1 Energy next turn.",
-      "type": "cantrip",
-      "rarity": "uncommon",
-      "energy_cost": 1,
-      "target": "self",
-      "effects": [
-        {
-          "type": "draw_cards",
-          "value": 2,
-          "target": "self"
-        },
-        {
-          "type": "status_effect",
-          "effect_name": "energy_next_turn",
-          "value": 1,
-          "duration": 1,
-          "target": "self"
-        }
-      ],
-      "keywords": ["draw", "energy"],
-      "card_art": "res://assets/cards/meditation.png",
-      "upgrade_path": "meditation_plus"
-    },
-    {
-      "id": "inferno",
-      "name": "Inferno",
-      "description": "Deal 15 Fire damage to all enemies. Apply Burn for 3 turns.",
-      "type": "attack",
-      "rarity": "rare",
-      "energy_cost": 3,
-      "target": "all_enemies",
-      "effects": [
-        {
-          "type": "damage",
-          "element": "standard",
-          "value": 15,
-          "target": "all_enemies"
-        },
-        {
-          "type": "status_effect",
-          "effect_name": "burn",
-          "value": 3,
-          "duration": 3,
-          "target": "all_enemies"
-        }
-      ],
-      "keywords": ["fire", "burn", "aoe"],
-      "card_art": "res://assets/cards/inferno.png",
-      "upgrade_path": "inferno_plus"
-    }
+	{
+	  "id": "weak_punch",
+	  "name": "Weak Punch",
+	  "description": "Deal 6 damage to target enemy.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 6,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["punch"],
+	  "card_art": "res://data/assets/cards/weak_punch.png",
+	  "upgrade_path": "weak_punch_plus"
+	},
+	{
+	  "id": "weak_punch_plus",
+	  "name": "Weak Punch+",
+	  "description": "Deal 9 damage to target enemy.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 9,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["punch"],
+	  "card_art": "res://data/assets/cards/weak_punch_plus.png",
+	  "is_upgraded": true,
+	  "base_card": "weak_punch"
+	},
+	{
+	  "id": "shield_bash",
+	  "name": "Shield Bash",
+	  "description": "Deal 4 damage. Gain 3 Block.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 4,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "block",
+		  "value": 3,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"],
+	  "card_art": "res://data/assets/cards/shield_bash.png",
+	  "upgrade_path": "shield_bash_plus"
+	},
+	{
+	  "id": "heal_potion",
+	  "name": "Heal Potion",
+	  "description": "Restore 8 Health.",
+	  "type": "cantrip",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "heal",
+		  "value": 8,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["heal"],
+	  "card_art": "res://data/assets/cards/heal_potion.png",
+	  "upgrade_path": "heal_potion_plus"
+	},
+	{
+	  "id": "frost_nova",
+	  "name": "Frost Nova",
+	  "description": "Deal 3 Ice damage to all enemies. Apply Chill for 2 turns.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 3,
+		  "target": "all_enemies"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "chill",
+		  "duration": 2,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["ice", "chill", "aoe"],
+	  "card_art": "res://data/assets/cards/frost_nova.png",
+	  "upgrade_path": "frost_nova_plus"
+	},
+	{
+	  "id": "lightning_strike",
+	  "name": "Lightning Strike",
+	  "description": "Deal 8 Lightning damage. If enemy has Shock, deal double damage.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 8,
+		  "target": "selected_enemy",
+		  "conditional": {
+			"condition": "target_has_status",
+			"status": "shock",
+			"effect_modifier": "double_damage"
+		  }
+		}
+	  ],
+	  "keywords": ["lightning", "conditional"],
+	  "card_art": "res://data/assets/cards/lightning_strike.png",
+	  "upgrade_path": "lightning_strike_plus"
+	},
+	{
+	  "id": "meditation",
+	  "name": "Meditation",
+	  "description": "Draw 2 cards. Gain 1 Energy next turn.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "draw_cards",
+		  "value": 2,
+		  "target": "self"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "energy_next_turn",
+		  "value": 1,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["draw", "energy"],
+	  "card_art": "res://data/assets/cards/meditation.png",
+	  "upgrade_path": "meditation_plus"
+	},
+	{
+	  "id": "inferno",
+	  "name": "Inferno",
+	  "description": "Deal 15 Fire damage to all enemies. Apply Burn for 3 turns.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 3,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 15,
+		  "target": "all_enemies"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "burn",
+		  "value": 3,
+		  "duration": 3,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["fire", "burn", "aoe"],
+	  "card_art": "res://data/assets/cards/inferno.png",
+	  "upgrade_path": "inferno_plus"
+	}
   ],
   "card_types": [
-    "attack",
-    "defense",
-    "cantrip"
+	"attack",
+	"defense",
+	"cantrip"
   ],
   "rarities": [
-    "common",
-    "uncommon", 
-    "rare",
-    "legendary"
+	"common",
+	"uncommon", 
+	"rare",
+	"legendary"
   ],
   "elements": [
-    "standard"
+	"standard"
   ],
   "target_types": [
-    "self",
-    "enemy_single",
-    "all_enemies",
-    "all_allies",
-    "all_characters",
-    "random_enemy",
-    "weakest_enemy",
-    "strongest_enemy"
+	"self",
+	"enemy_single",
+	"all_enemies",
+	"all_allies",
+	"all_characters",
+	"random_enemy",
+	"weakest_enemy",
+	"strongest_enemy"
   ],
   "effect_types": [
-    "damage",
-    "heal",
-    "block",
-    "status_effect",
-    "draw_cards",
-    "discard_cards",
-    "energy"
+	"damage",
+	"heal",
+	"block",
+	"status_effect",
+	"draw_cards",
+	"discard_cards",
+	"energy"
   ],
   "status_effects": [
-    {
-      "name": "burn",
-      "description": "Take fire damage at end of turn",
-      "type": "debuff",
-      "stackable": true
-    },
-    {
-      "name": "weaken",
-      "description": "Reduces target dmg dealt",
-      "type": "debuff",
-      "stackable": false
-    },
-    {
-      "name": "vulnerable",
-      "description": "Vulnerable to damage",
-      "type": "debuff",
-      "stackable": false
-    }
+	{
+	  "name": "burn",
+	  "description": "Take fire damage at end of turn",
+	  "type": "debuff",
+	  "stackable": true
+	},
+	{
+	  "name": "weaken",
+	  "description": "Reduces target dmg dealt",
+	  "type": "debuff",
+	  "stackable": false
+	},
+	{
+	  "name": "vulnerable",
+	  "description": "Vulnerable to damage",
+	  "type": "debuff",
+	  "stackable": false
+	}
   ]
 }
