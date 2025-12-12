@@ -137,6 +137,21 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Options (?)"
 
+[node name="Debug Card Database" type="Button" parent="CenterContainer/VBoxContainer/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sq05c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jl081")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ukhca")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yn0lx")
+text = "Debug Card Database"
+
 [node name="Exit" type="Button" parent="CenterContainer/VBoxContainer/ButtonsVBox"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -151,25 +166,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Exit"
 
-[node name="Debug Card Database" type="Button" parent="."]
-layout_mode = 2
-offset_left = 1609.0
-offset_top = 999.0
-offset_right = 1902.0
-offset_bottom = 1068.0
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
-theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_06t4h")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/focus = SubResource("StyleBoxEmpty_sq05c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jl081")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ukhca")
-theme_override_styles/normal = SubResource("StyleBoxFlat_yn0lx")
-text = "Debug Card Database"
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Play" to="." method="_on_PLAY_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Options" to="." method="_on_OPTIONS_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Debug Card Database" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Exit" to="." method="_on_EXIT_pressed"]
-[connection signal="pressed" from="Debug Card Database" to="." method="_on_button_4_pressed"]
