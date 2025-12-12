@@ -29,6 +29,9 @@ func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	gui_input.connect(_on_gui_input)
+	
+	# Set pivot to center for uniform scaling
+	pivot_offset = size / 2.0
 
 func setup_card(card):
 	card_data = card
@@ -56,9 +59,11 @@ func update_display():
 		if texture1:
 			card_art1.texture = texture1
 			card_art1.visible = true
+			card_art1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		else:
 			card_art1.texture = null
 			card_art1.visible = false
+			card_art1.size_flags_horizontal = 0
 		
 		# Load second card art if it exists
 		if card_data.card_arts.size() > 1:
@@ -66,14 +71,19 @@ func update_display():
 			if texture2:
 				card_art2.texture = texture2
 				card_art2.visible = true
+				card_art2.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			else:
 				card_art2.visible = false
+				card_art2.size_flags_horizontal = 0
 		else:
 			card_art2.visible = false
+			card_art2.size_flags_horizontal = 0
 	else:
 		card_art1.texture = null
 		card_art1.visible = false
+		card_art1.size_flags_horizontal = 0
 		card_art2.visible = false
+		card_art2.size_flags_horizontal = 0
 	
 	# Update border color based on rarity
 	update_rarity_display()

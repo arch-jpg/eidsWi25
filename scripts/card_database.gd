@@ -99,6 +99,16 @@ func get_cards_by_energy_cost(cost: int) -> Array:
 			result.append(card.duplicate_card())
 	return result
 
+func get_cards_by_effect_type(effect_type: String) -> Array:
+	"""Get all cards that have at least one effect of the specified type"""
+	var result = []
+	for card in _cards.values():
+		for effect in card.effects:
+			if effect.type == effect_type:
+				result.append(card.duplicate_card())
+				break
+	return result
+
 func get_random_card() -> Card:
 	if _cards.is_empty():
 		return null

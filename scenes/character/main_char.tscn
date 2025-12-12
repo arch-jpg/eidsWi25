@@ -227,7 +227,8 @@ animations = [{
 [node name="main_char" type="Sprite2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(5, -72)
+position = Vector2(12, -144)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_urhpq")
 animation = &"idle"
 autoplay = "idle"
