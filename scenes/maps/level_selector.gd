@@ -47,7 +47,7 @@ func update_clickable_state():
     else:
         is_clickable = false
 
-    if save_data["last_completed_level"].ends_with("XX"):
+    if save_data.has("last_completed_level") and save_data["last_completed_level"].ends_with("XX"):
         is_clickable = false  # Bereits abgeschlossen
         print("MAP ABGESCHLOSSEN: " + level_id)
 
