@@ -11,7 +11,7 @@ var is_clickable: bool = false
 var level_id: String = ""
 
 func _ready():
-    level_id = name  # z.B. "Lvl100", "Lvl111", etc.
+    level_id = name  # e.g. "Lvl100", "Lvl111", etc.
     update_clickable_state()
     update_visual_state()
     
