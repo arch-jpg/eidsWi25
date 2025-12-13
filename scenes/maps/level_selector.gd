@@ -67,7 +67,7 @@ func update_visual_state():
     #         child.modulate = Color.WHITE if is_clickable else Color(0.3, 0.3, 0.3, 1.0)
     
 func save_completed_level():
-    #Maybe woanders hin not sure rn
+    # TODO: Consider moving this function to a more appropriate location
     """Speichert dieses Level als zuletzt abgeschlossen"""
     var save_data = load_save_data()
     save_data["last_completed_level"] = level_id
