@@ -39,7 +39,7 @@ func update_clickable_state():
         is_clickable = true
         return
 	
-	# Prüfen ob das vorherige Level abgeschlossen wurde
+	# Check if the previous level was completed
     if save_data.has("last_completed_level"):
         var last_level_name = save_data["last_completed_level"]
         if required_levels.has(last_level_name):
