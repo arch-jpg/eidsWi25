@@ -17,6 +17,8 @@ texture = ExtResource("1_hsmnc")
 position = Vector2(-240.736, 21.3715)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl100"]
 scale = Vector2(1, 0.819048)
@@ -27,6 +29,9 @@ position = Vector2(-157.5, -72.6631)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl100"])
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Mc_Milky_Man"
+enemy_3_id = "Mc_Milky_Man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl111"]
 scale = Vector2(1, 0.819048)
@@ -37,6 +42,7 @@ position = Vector2(-159.992, 69.61)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl100"])
+enemy_1_id = "Mc_Milky_Man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl112"]
 scale = Vector2(1, 0.819048)
@@ -47,6 +53,7 @@ position = Vector2(-58.3148, -139.831)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl111"])
+enemy_1_id = "Mc_Milky_Man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl121"]
 scale = Vector2(1, 0.819048)
@@ -57,6 +64,8 @@ position = Vector2(-52.8322, 62.8933)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl112"])
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Mc_Milky_Man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl122"]
 scale = Vector2(1, 0.819048)
@@ -67,6 +76,7 @@ position = Vector2(-73.7658, 161.813)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl112"])
+enemy_1_id = "Mc_Milky_Man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl123"]
 scale = Vector2(1, 0.819048)
@@ -77,6 +87,7 @@ position = Vector2(72.2708, -144.716)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl121"])
+enemy_1_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl131"]
 scale = Vector2(1, 0.819048)
@@ -87,6 +98,8 @@ position = Vector2(52.334, -14.0441)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl122", "Lvl131"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl132"]
 scale = Vector2(1, 0.819048)
@@ -97,6 +110,8 @@ position = Vector2(87.2232, 147.158)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl123"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl133"]
 scale = Vector2(1, 0.819048)
@@ -107,6 +122,7 @@ position = Vector2(146.535, 74.4949)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl133"])
+enemy_1_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl141"]
 scale = Vector2(1, 0.819048)
@@ -117,6 +133,9 @@ position = Vector2(207.84, -19.5396)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
 required_levels = Array[String](["Lvl131", "Lvl132", "Lvl141"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
+enemy_3_id = "Bernd_Brotmann"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl1XX"]
 scale = Vector2(1, 0.819048)

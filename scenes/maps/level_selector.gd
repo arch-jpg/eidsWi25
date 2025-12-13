@@ -1,6 +1,9 @@
 extends Area2D
 
 @export var required_levels : Array[String] = []
+@export var enemy_1_id : String = ""
+@export var enemy_2_id : String = ""
+@export var enemy_3_id : String = ""
 
 const SAVE_PATH = "user://player.save"
 
