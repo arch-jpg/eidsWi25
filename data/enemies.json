@@ -1,0 +1,68 @@
+{
+    "Mc_Milky_Man": {
+        "health": 150,
+        "attacks": [
+            {
+                "id": "milk_splash",
+                "value": 25,
+                "probability": 0.6
+            },
+            {
+                "id": "cream_strike",
+                "value": 35,
+                "probability": 0.3
+            },
+            {
+                "id": "ultra_milk",
+                "value": 50,
+                "probability": 0.1
+            }
+        ],
+        "defenses": [
+            {
+                "id": "cream_shield",
+                "value": 10,
+                "probability": 0.5
+            },
+            {
+                "id": "milk_wall",
+                "value": 20,
+                "probability": 0.5
+            }
+        ],
+        "aggro": 0.5
+    },
+    "Bernd_Brotmann": {
+        "health": 250,
+        "attacks": [
+            {
+                "id": "bread_slash",
+                "value": 25,
+                "probability": 0.6
+            },
+            {
+                "id": "wheat_strike",
+                "value": 35,
+                "probability": 0.3
+            },
+            {
+                "id": "ultra_bread",
+                "value": 50,
+                "probability": 0.1
+            }
+        ],
+        "defenses": [
+            {
+                "id": "bread_shield",
+                "value": 10,
+                "probability": 0.5
+            },
+            {
+                "id": "milk_wall",
+                "value": 20,
+                "probability": 0.5
+            }
+        ],
+        "aggro": 0.6
+    }
+}

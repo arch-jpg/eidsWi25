@@ -8,7 +8,7 @@ const MIN_DECK_SIZE = 10
 const MAX_DECK_SIZE = 999
 
 var current_deck: Array = []
-var deck_save_path = "user://player_deck.save"
+var deck_save_path = "user://player.save"
 
 signal deck_changed()
 signal deck_size_changed(size: int)
