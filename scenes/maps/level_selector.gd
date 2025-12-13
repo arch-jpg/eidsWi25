@@ -31,7 +31,7 @@ func on_level_clicked():
     get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
 
 func update_clickable_state():
-    """Prüft ob dieses Level klickbar sein soll"""
+    """Checks if this level should be clickable"""
     var save_data = load_save_data()
 	
 	# Start-Level 
