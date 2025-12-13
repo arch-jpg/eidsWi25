@@ -22,7 +22,7 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
             on_level_clicked()
 
 func on_level_clicked():
-    """Level wurde angeklickt - speichern und laden"""
+    """Level was clicked - save and load"""
     print("Level selected: " + level_id)
 	
     save_completed_level()
