@@ -26,7 +26,7 @@ func on_level_clicked():
     print("Level selected: " + level_id)
 	
     save_completed_level()
-	# Hier die Kampfszene oder das Level laden
+    # Load combat scene or level here
     GameState.setup_combat(level_id, [enemy_1_id, enemy_2_id, enemy_3_id])
     get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
 
