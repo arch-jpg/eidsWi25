@@ -27,8 +27,8 @@ func on_level_clicked():
 	
     save_completed_level()
 	# Hier die Kampfszene oder das Level laden
-
-	# get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
+    GameState.setup_combat(level_id, [enemy_1_id, enemy_2_id, enemy_3_id])
+    get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
 
 func update_clickable_state():
     """Prüft ob dieses Level klickbar sein soll"""
