@@ -82,7 +82,7 @@ func save_completed_level():
         push_error("Could not save to " + SAVE_PATH)
 
 func load_save_data() -> Dictionary:
-    """Lädt die Speicherdaten"""
+    """Loads the save data"""
     if not FileAccess.file_exists(SAVE_PATH):
         return {}
 	
