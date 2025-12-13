@@ -68,7 +68,7 @@ func update_visual_state():
     
 func save_completed_level():
     # TODO: Consider moving this function to a more appropriate location
-    """Speichert dieses Level als zuletzt abgeschlossen"""
+    """Saves this level as last completed"""
     var save_data = load_save_data()
     save_data["last_completed_level"] = level_id
 
