@@ -61,7 +61,7 @@ func update_visual_state():
             # Debug-Farbe (nur in Editor/Debug sichtbar)
             child.debug_color = Color.GREEN if is_clickable else Color.RED
     
-    # Wenn du später Sprites hinzufügst, nutze dies:
+    # If you add Sprites later, use this:
     # for child in get_children():
     #     if child is Sprite2D:
     #         child.modulate = Color.WHITE if is_clickable else Color(0.3, 0.3, 0.3, 1.0)
