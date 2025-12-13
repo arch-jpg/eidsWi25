@@ -53,7 +53,7 @@
         ],
         "defenses": [
             {
-                "id": "bread_slash",
+                "id": "bread_shield",
                 "value": 10,
                 "probability": 0.5
             },
