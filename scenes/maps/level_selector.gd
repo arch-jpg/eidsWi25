@@ -55,7 +55,7 @@ func update_visual_state():
     #ACHTUNG TOTE FUNKTION IDK MAN
     """Updates the visual representation based on clickability"""
     # CollisionShape2D haben keine modulate-Eigenschaft die sichtbar ist
-    # Du musst entweder Sprites als Kinder hinzufügen oder die Visualisierung anders lösen
+    # You must either add Sprites as children or solve the visualization differently
     for child in get_children():
         if child is CollisionShape2D:
             # Debug-Farbe (nur in Editor/Debug sichtbar)
