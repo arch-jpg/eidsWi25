@@ -30,6 +30,7 @@ func _process(delta):
 		position = position.lerp(home_position, delta * 10.0)
 
 func play_card_on_enemy(enemy):
+	
 	for effect in card_data["effects"]:
 		if effect["type"] == "damage":
 			var amount = effect["value"]

@@ -20,5 +20,8 @@ func apply_panel_value(value: int):
 	output_label.text = str(value)
 	
 func apply_damage(amount):
+	var sprite = get_parent() as AnimatedSprite2D
+	sprite.play("damage")
 	hp -= amount
 	output_label.text = str(hp)
+	
