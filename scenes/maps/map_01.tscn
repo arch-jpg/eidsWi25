@@ -9,7 +9,7 @@ radius = 13.1724
 [node name="Map01" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1049, 533)
+position = Vector2(1049, 580)
 scale = Vector2(2.00635, 1.6377)
 texture = ExtResource("1_hsmnc")
 
@@ -26,6 +26,7 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(-157.5, -72.6631)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl100"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl111"]
 scale = Vector2(1, 0.819048)
@@ -35,6 +36,7 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(-159.992, 69.61)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl100"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl112"]
 scale = Vector2(1, 0.819048)
@@ -44,6 +46,7 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(-58.3148, -139.831)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl111"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl121"]
 scale = Vector2(1, 0.819048)
@@ -53,6 +56,7 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(-52.8322, 62.8933)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl112"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl122"]
 scale = Vector2(1, 0.819048)
@@ -62,15 +66,17 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(-73.7658, 161.813)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl112"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl123"]
 scale = Vector2(1, 0.819048)
 shape = SubResource("CircleShape2D_bepxa")
 
 [node name="Lvl131" type="Area2D" parent="Sprite2D"]
-position = Vector2(72.2707, -144.716)
+position = Vector2(72.2708, -144.716)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl121"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl131"]
 scale = Vector2(1, 0.819048)
@@ -80,15 +86,17 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(52.334, -14.0441)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl122", "Lvl131"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl132"]
 scale = Vector2(1, 0.819048)
 shape = SubResource("CircleShape2D_bepxa")
 
 [node name="Lvl133" type="Area2D" parent="Sprite2D"]
-position = Vector2(87.2233, 147.158)
+position = Vector2(87.2232, 147.158)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl123"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl133"]
 scale = Vector2(1, 0.819048)
@@ -98,15 +106,17 @@ shape = SubResource("CircleShape2D_bepxa")
 position = Vector2(146.535, 74.4949)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl133"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl141"]
 scale = Vector2(1, 0.819048)
 shape = SubResource("CircleShape2D_bepxa")
 
 [node name="Lvl1XX" type="Area2D" parent="Sprite2D"]
-position = Vector2(207.84, -19.5397)
+position = Vector2(207.84, -19.5396)
 scale = Vector2(1.25, -2)
 script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl131", "Lvl132", "Lvl141"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl1XX"]
 scale = Vector2(1, 0.819048)
