@@ -13,7 +13,7 @@ extends Resource
 @export var target: String  # self, enemy_single, all_enemies, etc.
 @export var effects: Array
 @export var keywords: Array
-@export var card_art: String
+@export var card_arts: Array  # Array of card art paths
 @export var upgrade_path: String
 @export var is_upgraded: bool = false
 @export var base_card: String
@@ -30,7 +30,6 @@ func _init(card_data: Dictionary = {}):
 	energy_cost = card_data.get("energy_cost", 0)
 	target = card_data.get("target", "")
 	keywords = card_data.get("keywords", [])
-	card_art = card_data.get("card_art", "")
 	upgrade_path = card_data.get("upgrade_path", "")
 	is_upgraded = card_data.get("is_upgraded", false)
 	base_card = card_data.get("base_card", "")
@@ -41,6 +40,20 @@ func _init(card_data: Dictionary = {}):
 	for effect_data in effects_data:
 		var effect = CardEffect.new(effect_data)
 		effects.append(effect)
+	
+	# Generate card_arts array based on effect types
+	card_arts = []
+	if card_data.has("card_arts") and card_data.card_arts is Array:
+		# Use provided card_arts if specified
+		card_arts = card_data.card_arts
+	elif effects.size() > 0:
+		# Auto-generate card_arts from effect types (max 2)
+		var seen_types = {}
+		for effect in effects:
+			if not seen_types.has(effect.type) and card_arts.size() < 2:
+				seen_types[effect.type] = true
+				var art_path = "res://data/assets/cards/effect_type_" + effect.type + ".png"
+				card_arts.append(art_path)
 
 func get_display_name() -> String:
 	return name
@@ -92,7 +105,7 @@ func duplicate_card() -> Card:
 	new_card.energy_cost = energy_cost
 	new_card.target = target
 	new_card.keywords = keywords.duplicate()
-	new_card.card_art = card_art
+	new_card.card_arts = card_arts.duplicate()
 	new_card.upgrade_path = upgrade_path
 	new_card.is_upgraded = is_upgraded
 	new_card.base_card = base_card
