@@ -1,5 +1,5 @@
 extends Area2D
-
+@onready var animated_sprite = get_parent() as AnimatedSprite2D
 @onready var output_label: Label = get_parent().get_node("Label")
 @export var hp := 20
 func _ready() -> void:
@@ -20,5 +20,6 @@ func apply_panel_value(value: int):
 	output_label.text = str(value)
 	
 func apply_damage(amount):
+	animated_sprite.play("damage")
 	hp -= amount
 	output_label.text = str(hp)
