@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cewos6aa314s" path="res://data/assets/main_char/main_char_death.png" id="3_4umod"]
 [ext_resource type="Texture2D" uid="uid://bq5jplesrqxb0" path="res://data/assets/main_char/main_char_attack_block.png" id="3_cb0vc"]
 [ext_resource type="Texture2D" uid="uid://nh40nbehbkc6" path="res://data/assets/main_char/main_char_attack_wait.png" id="4_cb0vc"]
-[ext_resource type="Script" uid="uid://dy51g0owxx216" path="res://scenes/character/playeranimation.gd" id="8_tnkco"]
+[ext_resource type="Script" uid="uid://dy51g0owxx216" path="res://scenes/character/main_char_animation.gd" id="8_tnkco"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb0vc"]
 atlas = ExtResource("1_hu413")

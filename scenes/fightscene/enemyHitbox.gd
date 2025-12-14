@@ -26,8 +26,11 @@ func resolve_effects(effects: Array):
 			"damage":
 				_apply_damage(effect)
 func take_damage(amount):
+	get_parent().get_child(0).play("damage")
 	hp -= amount
 	if hp<=0:
+		get_parent().get_child(0).play("death")
+		await get_tree().create_timer(3.0).timeout
 		get_tree().change_scene_to_file("res://scenes/maps/map_01.tscn")
 	var hpbar = get_parent().get_node_or_null("enemyhp")
 	if hpbar:

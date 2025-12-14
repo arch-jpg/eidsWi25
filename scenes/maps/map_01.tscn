@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3g4um632negx"]
 
-[ext_resource type="Texture2D" uid="uid://dvldctg0tisb" path="res://assets/maps/map_01.png" id="1_hsmnc"]
+[ext_resource type="Texture2D" uid="uid://dvldctg0tisb" path="res://data/assets/maps/map_01.png" id="1_bepxa"]
 [ext_resource type="Script" uid="uid://d1iy62j446sxg" path="res://scenes/maps/level_selector.gd" id="2_bepxa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bepxa"]
@@ -11,7 +11,7 @@ radius = 13.1724
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1049, 580)
 scale = Vector2(2.00635, 1.6377)
-texture = ExtResource("1_hsmnc")
+texture = ExtResource("1_bepxa")
 
 [node name="Lvl100" type="Area2D" parent="Sprite2D"]
 position = Vector2(-240.736, 21.3715)

@@ -35,7 +35,8 @@ func update_clickable_state():
 	var save_data = load_save_data()
 	
 	# Start-Level 
-	if required_levels.size() == 0 and (save_data.has("last_completed_level") == null or save_data["last_completed_level"] == ""):
+	#  if required_levels.size() == 0 and (save_data.has("last_completed_level") == null or save_data["last_completed_level"] == ""):
+	if required_levels.size() == 0 and (not save_data.has("last_completed_level") or save_data.get("last_completed_level", "") == ""):
 		is_clickable = true
 		return
 	
@@ -47,7 +48,9 @@ func update_clickable_state():
 	else:
 		is_clickable = false
 
-	if save_data.has("last_completed_level") and save_data["last_completed_level"].ends_with("XX"):
+	#  if save_data.has("last_completed_level") and save_data["last_completed_level"].ends_with("XX"):
+	var last_level = save_data.get("last_completed_level", "")
+	if last_level is String and last_level.ends_with("XX"):
 		is_clickable = false  # Bereits abgeschlossen
 		print("MAP ABGESCHLOSSEN: " + level_id)
 
