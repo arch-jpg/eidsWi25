@@ -20,6 +20,9 @@ var is_selected: bool = false
 var original_position: Vector2
 var original_scale: Vector2
 
+var dragging = false
+var drag_offset := Vector2.ZERO
+
 signal card_clicked(card_ui: CardUI)
 signal card_hovered(card_ui: CardUI)
 signal card_unhovered(card_ui: CardUI)
@@ -127,9 +130,10 @@ func _on_mouse_exited():
 		tween.tween_property(self, "scale", original_scale, 0.2)
 		tween.tween_property(self, "z_index", 0, 0.0)
 
-func _on_gui_input(event: InputEvent):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
 			card_clicked.emit(self)
 
 func set_selected(selected: bool):

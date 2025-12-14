@@ -1,27 +1,34 @@
 extends Area2D
 # Reference to the label you want to update
 @onready var output_label: Label = get_parent().get_node("enemyhp")
-@export var hp := 20
+@export var hp = 20
+signal sg_dropped_attack(bool)
+
 func _ready() -> void:
 	output_label.text = str(hp)
 
-func _on_area_entered(area):
-	print("entered")
-	var panel = area.get_parent()	# the Panel node
-	if panel.has_method("try_drop"):
-		panel.drop_target = self
+func _apply_damage(effect):
+	var damage = effect.value
+	if effect.conditional != null:
+		pass
+	take_damage(damage)
 
-func _on_area_exited(area):
-	var panel = area.get_parent()
-	if panel.drop_target == self:
-		panel.drop_target = null
-
-func apply_panel_value(value: int):
-	output_label.text = str(value)
+func dropped_on(card_data) -> bool:
+	if card_data["type"]!= "attack":
+		return false
+	emit_signal("sg_dropped_attack", true)
+	resolve_effects(card_data.effects)
+	return true
 	
-func apply_damage(amount):
-	var sprite = get_parent() as AnimatedSprite2D
-	sprite.play("damage")
+func resolve_effects(effects: Array):
+	for effect in effects:
+		match effect.type:
+			"damage":
+				_apply_damage(effect)
+func take_damage(amount):
 	hp -= amount
-	output_label.text = str(hp)
-	
+	if hp<=0:
+		get_tree().change_scene_to_file("res://scenes/maps/map_01.tscn")
+	var hpbar = get_parent().get_node_or_null("enemyhp")
+	if hpbar:
+		hpbar.text = str(hp)
