@@ -22,7 +22,18 @@ func add_to_discard(card):
 	discard_pile.append(card)
 
 func draw_hand(start):
+	# Start deck animation for all cards at once
+
+	$DeckAnimations.draw_cards(HAND_SIZE)
+	var draw_delay = $DeckAnimations.card_delay_between_draws + 0.1
+	await get_tree().create_timer(draw_delay).timeout
+
 	for i in HAND_SIZE:
+
+		# Wait for the delay between card draws to sync with animation
+		if i > 0:
+			await get_tree().create_timer(draw_delay).timeout
+		
 		var card = CardDatabase.get_card_by_id(deck[i])
 		var ca = Area2D.new()
 		var colCa = CollisionShape2D.new()
