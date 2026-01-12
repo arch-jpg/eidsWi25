@@ -138,7 +138,13 @@ func save_deck():
 	if file:
 		var save_data = {
 			"deck": current_deck,
-			"card_collection": GameState.get_card_collection()
+			"card_collection": GameState.get_card_collection(),
+			"map_data": GameState.saved_map_data,
+			"current_map_node_id": GameState.current_map_node_id,
+			"map_scroll_position": {
+				"x": GameState.map_scroll_position.x,
+				"y": GameState.map_scroll_position.y
+			}
 		}
 		file.store_line(JSON.stringify(save_data))
 		file.close()
@@ -184,10 +190,24 @@ func load_deck():
 				
 				# Add any missing starter cards (for updates)
 				GameState.add_missing_starter_cards()
+			
+			# Load map data
+			if save_data.has("map_data"):
+				GameState.saved_map_data = save_data.map_data
+				print("Map data loaded: %d nodes" % GameState.saved_map_data.size())
+			
+			if save_data.has("current_map_node_id"):
+				GameState.current_map_node_id = save_data.current_map_node_id
+				print("Current map node: %s" % GameState.current_map_node_id)
+			
+			if save_data.has("map_scroll_position"):
+				var scroll_pos = save_data.map_scroll_position
+				GameState.map_scroll_position = Vector2(scroll_pos.x, scroll_pos.y)
+				print("Map scroll position: %s" % GameState.map_scroll_position)
 				
-				# Initialization complete, enable auto-save
-				GameState._is_initializing = false
-				print("Auto-save enabled (after loading)")
+			# Initialization complete, enable auto-save
+			GameState._is_initializing = false
+			print("Auto-save enabled (after loading)")
 		else:
 			push_error("Error parsing deck save file")
 	else:

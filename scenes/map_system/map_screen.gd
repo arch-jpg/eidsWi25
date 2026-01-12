@@ -69,6 +69,9 @@ func generate_and_display_map() -> void:
 	
 	# Save the generated map with initial scroll position (0,0)
 	GameState.save_map_state(all_nodes, current_node, Vector2.ZERO)
+	# Persist to disk immediately
+	DeckManager.save_deck()
+	print("New map generated and saved to disk")
 
 
 func _clear_map() -> void:
@@ -288,6 +291,7 @@ func get_current_node() -> MapNode:
 
 func reset_map() -> void:
 	generate_and_display_map()
+	# Map is already saved by generate_and_display_map()
 
 
 func _on_back_button_pressed() -> void:
