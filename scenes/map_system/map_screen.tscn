@@ -72,7 +72,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 25
 theme_override_font_sizes/font_size = 40
-text = "Map Selection"
+text = "Level Selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
