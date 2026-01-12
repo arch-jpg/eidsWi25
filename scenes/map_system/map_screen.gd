@@ -275,7 +275,7 @@ func _handle_node_type(node: MapNode) -> void:
 			# TODO: Load shop scene
 		MapNode.NodeType.TREASURE:
 			print("Opening treasure...")
-			# TODO: Show treasure/reward
+			get_tree().change_scene_to_file("res://scenes/treasure/treasure_screen.tscn")
 		MapNode.NodeType.BOSS:
 			print("Boss battle!")
 			GameState.is_boss_fight = true

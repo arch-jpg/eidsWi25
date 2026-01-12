@@ -213,6 +213,15 @@ func _on_save_pressed():
 		# Could add a visual confirmation here
 
 func _on_back_pressed():
+	# Check if deck is valid before leaving
+	if not DeckManager.is_deck_valid():
+		print("Cannot leave: Deck must have at least %d cards!" % DeckManager.MIN_DECK_SIZE)
+		# Show warning to user
+		deck_info_label.text = "⚠️ Deck must have at least %d cards!" % DeckManager.MIN_DECK_SIZE
+		return
+	
+	# Save deck before leaving if valid
+	DeckManager.save_deck()
 	get_tree().change_scene_to_file("res://scenes/playermenu/player_menu.tscn")
 
 func _on_clear_pressed():

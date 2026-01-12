@@ -93,7 +93,7 @@ func _generate_boss_layer(layer_idx: int) -> Array[MapNode]:
 	return [boss_node]
 
 
-func _get_random_node_type(layer_idx: int) -> MapNode.NodeType:
+func _get_random_node_type(_layer_idx: int) -> MapNode.NodeType:
 	# Never generate boss nodes in regular layers
 	var rand: float = randf()
 	

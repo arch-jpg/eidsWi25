@@ -52,8 +52,6 @@ func update_visual() -> void:
 			print("Warning: Icon not found at path: " + icon_path)
 	
 	# Update colors based on state
-	var base_color: Color = map_node.get_type_color()
-	
 	if map_node.is_visited:
 		modulate = Color(0.5, 0.5, 0.5, 1.0)  # Grayed out
 		disabled = true
