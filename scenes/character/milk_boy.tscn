@@ -1,9 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://chw4fnjtesy7r"]
+[gd_scene load_steps=36 format=3 uid="uid://chw4fnjtesy7r"]
 
+[ext_resource type="Script" uid="uid://qf5wy44mikny" path="res://scenes/character/milk_boy_animation.gd" id="1_bt15b"]
 [ext_resource type="Texture2D" uid="uid://biolom87lmf7f" path="res://data/assets/milk_boy/milk_boy_attack.png" id="1_ebgtv"]
 [ext_resource type="Texture2D" uid="uid://duie8if37lfxa" path="res://data/assets/milk_boy/milk_boy_death.png" id="2_a6vxr"]
 [ext_resource type="Texture2D" uid="uid://c11k32qlc7qyh" path="res://data/assets/milk_boy/milk_boy_damage.png" id="2_bt15b"]
 [ext_resource type="Texture2D" uid="uid://bcpik738a5pn7" path="res://data/assets/milk_boy/milk_boy_idle.png" id="2_uulxx"]
+
+[sub_resource type="GDScript" id="GDScript_a6vxr"]
+script/source = "extends Sprite2D
+
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6vxr"]
 atlas = ExtResource("1_ebgtv")
@@ -147,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5eura")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 4.0
 }, {
@@ -164,7 +170,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bofoe")
 }],
-"loop": true,
+"loop": false,
 "name": &"damage",
 "speed": 4.0
 }, {
@@ -187,7 +193,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gqn3w")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -225,9 +231,13 @@ animations = [{
 }]
 
 [node name="Sprite2D" type="Sprite2D"]
+script = SubResource("GDScript_a6vxr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -72)
 sprite_frames = SubResource("SpriteFrames_yis3l")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+script = ExtResource("1_bt15b")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]

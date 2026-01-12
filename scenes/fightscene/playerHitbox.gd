@@ -1,25 +1,50 @@
 extends Area2D
-@onready var animated_sprite = get_parent() as AnimatedSprite2D
+# Reference to the label you want to update
 @onready var output_label: Label = get_parent().get_node("Label")
-@export var hp := 20
+@export var hp = 20
+var basehp = GameState.player_health
 func _ready() -> void:
 	output_label.text = str(hp)
 
-func _on_area_entered(area):
-	print("entered")
-	var panel = area.get_parent()	# the Panel node
-	if panel.has_method("try_drop"):
-		panel.drop_target = self
+func _apply_damage(effect):
+	var damage = effect.value
+	if effect.conditional != null:
+		pass
+	take_damage(damage)
 
-func _on_area_exited(area):
-	var panel = area.get_parent()
-	if panel.drop_target == self:
-		panel.drop_target = null
+func _apply_block(effect):
+	var block = effect.value
+	if effect.conditional != null:
+		pass
+	get_block(block)
 
-func apply_panel_value(value: int):
-	output_label.text = str(value)
+func dropped_on(card_data) -> bool:
+	if card_data["type"] != "defense" :
+		return false
+	get_parent().get_child(0).play("attack_block")
 	
-func apply_damage(amount):
-	animated_sprite.play("damage")
+	resolve_effects(card_data.effects)
+	return true
+	
+func resolve_effects(effects: Array):
+	for effect in effects:
+		match effect.type:
+			"block":
+				_apply_block(effect)
+func take_damage(amount):
 	hp -= amount
-	output_label.text = str(hp)
+	if hp <= 0:
+		# Player died - clear map and reset game
+		GameState.clear_map_state()
+		print("Player died - map cleared")
+		# TODO: Show game over screen
+		get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
+	var hpbar = get_parent().get_node_or_null("Label")
+	if hpbar:
+		hpbar.text = str(hp)
+
+func get_block(amount):
+	hp += amount
+	var hpbar = get_parent().get_node_or_null("Label")
+	if hpbar:
+		hpbar.text = str(hp)

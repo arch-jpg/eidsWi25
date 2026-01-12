@@ -14,6 +14,10 @@ signal deck_changed()
 signal deck_size_changed(size: int)
 
 func _ready():
+	# Ensure GameState is initialized first
+	if not GameState.is_node_ready():
+		await GameState.ready
+	
 	load_deck()
 	
 	# If no deck exists, create a default starter deck
@@ -21,31 +25,43 @@ func _ready():
 		create_default_deck()
 
 func create_default_deck():
-	"""Create a default starter deck with 10 cards"""
+	"""Create a default starter deck from player's card collection"""
 	current_deck.clear()
 	
-	# Get all available cards
-	var all_cards = CardDatabase.get_all_cards()
+	# Get player's card collection
+	var collection = GameState.get_card_collection()
 	
-	# If we have cards, create a basic deck
-	if all_cards.size() > 0:
-		# Add some common cards to reach minimum deck size
-		for i in range(MIN_DECK_SIZE):
-			var card = all_cards[i % all_cards.size()]
-			current_deck.append(card.id)
+	if collection.is_empty():
+		print("No cards in collection. Cannot create deck.")
+		return
 	
+	# Add all cards from collection to deck
+	for card_id in collection.keys():
+		var quantity = collection[card_id]
+		for i in range(quantity):
+			current_deck.append(card_id)
+	
+	print("Created default deck with %d cards from collection" % current_deck.size())
 	save_deck()
 	deck_changed.emit()
 	deck_size_changed.emit(current_deck.size())
 
 func add_card_to_deck(card_id: String) -> bool:
-	"""Add a card to the deck if there's space"""
+	"""Add a card to the deck if there's space and player owns it"""
 	if current_deck.size() >= MAX_DECK_SIZE:
 		push_warning("Deck is full! Maximum size is %d cards." % MAX_DECK_SIZE)
 		return false
 	
 	if not CardDatabase.card_exists(card_id):
 		push_error("Card does not exist: " + card_id)
+		return false
+	
+	# Check if player owns enough copies of this card
+	var cards_in_deck = current_deck.count(card_id)
+	var cards_owned = GameState.get_card_quantity(card_id)
+	
+	if cards_in_deck >= cards_owned:
+		push_warning("You don't own enough copies of this card! (Owned: %d, In deck: %d)" % [cards_owned, cards_in_deck])
 		return false
 	
 	current_deck.append(card_id)
@@ -117,22 +133,26 @@ func set_deck(card_ids: Array):
 	deck_size_changed.emit(current_deck.size())
 
 func save_deck():
-	"""Save the current deck to disk"""
+	"""Save the current deck and card collection to disk"""
 	var file = FileAccess.open(deck_save_path, FileAccess.WRITE)
 	if file:
 		var save_data = {
-			"deck": current_deck
+			"deck": current_deck,
+			"card_collection": GameState.get_card_collection()
 		}
 		file.store_line(JSON.stringify(save_data))
 		file.close()
-		print("Deck saved: %d cards" % current_deck.size())
+		print("Deck and collection saved: %d cards in deck, %d unique cards owned" % [current_deck.size(), GameState.get_card_collection().size()])
 	else:
 		push_error("Could not save deck to " + deck_save_path)
 
 func load_deck():
-	"""Load the deck from disk"""
+	"""Load the deck and card collection from disk"""
 	if not FileAccess.file_exists(deck_save_path):
 		print("No saved deck found")
+		# Enable auto-save even if no save file exists
+		GameState._is_initializing = false
+		print("Auto-save enabled (no save file)")
 		return
 	
 	var file = FileAccess.open(deck_save_path, FileAccess.READ)
@@ -145,11 +165,29 @@ func load_deck():
 		
 		if parse_result == OK:
 			var save_data = json.data
+			
+			# Load deck
 			if save_data.has("deck"):
 				current_deck = save_data.deck
 				print("Deck loaded: %d cards" % current_deck.size())
 				deck_changed.emit()
 				deck_size_changed.emit(current_deck.size())
+			
+			# Load card collection
+			if save_data.has("card_collection"):
+				var collection = save_data.card_collection
+				# Clear current collection and load saved one
+				GameState.card_collection.clear()
+				for card_id in collection.keys():
+					GameState.card_collection[card_id] = collection[card_id]
+				print("Card collection loaded: %d unique cards" % GameState.card_collection.size())
+				
+				# Add any missing starter cards (for updates)
+				GameState.add_missing_starter_cards()
+				
+				# Initialization complete, enable auto-save
+				GameState._is_initializing = false
+				print("Auto-save enabled (after loading)")
 		else:
 			push_error("Error parsing deck save file")
 	else:

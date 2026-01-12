@@ -1,5 +1,6 @@
 extends Control
 
+
 ## Deck Editor Scene
 ## Allows the player to build a deck with 10-15 cards
 
@@ -51,19 +52,29 @@ func _ready():
 	populate_deck_cards()
 	update_deck_info()
 
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		# Drücke T für Test-Belohnung (zufällige Karte)
+		if event.keycode == KEY_T:
+			print(" Testing reward_random_card()...")
+			var card = GameState.reward_random_card()
+			populate_available_cards(current_filter)
+			print(" Received: " + card)
+		
+
 func populate_available_cards(filter: String = "all"):
 	# Clear existing cards - remove AND queue_free to ensure immediate cleanup
 	for child in available_cards_container.get_children():
 		available_cards_container.remove_child(child)
 		child.queue_free()
 	
-	# Get all cards based on filter
+	# Get only unlocked cards based on filter
 	var cards = []
 	if filter == "all":
-		cards = CardDatabase.get_all_cards()
+		cards = CardDatabase.get_unlocked_cards()
 	else:
-		# Filter by effect type
-		cards = CardDatabase.get_cards_by_effect_type(filter)
+		# Filter by effect type (unlocked only)
+		cards = CardDatabase.get_cards_by_effect_type(filter, true)
 	
 	# Filter by search query
 	if search_query != "":
@@ -83,12 +94,25 @@ func populate_available_cards(filter: String = "all"):
 		return a.name < b.name
 	)
 	
+	# Get card collection quantities
+	var collection = GameState.get_card_collection()
+	var current_deck_ids = DeckManager.get_deck_card_ids()
+	
 	# Create UI for each card
 	for card in cards:
 		var card_ui = CARD_UI_SCENE.instantiate()
 		available_cards_container.add_child(card_ui)
 		card_ui.setup_card(card)
 		card_ui.card_clicked.connect(_on_available_card_clicked.bind(card))
+		
+		# Calculate available quantity (owned - in deck)
+		var owned = collection.get(card.id, 0)
+		var in_deck = current_deck_ids.count(card.id)
+		var available = owned - in_deck
+		
+		# Set quantity display and availability
+		card_ui.set_quantity(available, owned)
+		card_ui.set_available(available > 0)
 		
 		# Scale down cards in the browser
 		card_ui.scale = Vector2(0.8, 0.8)
@@ -117,23 +141,37 @@ func populate_deck_cards():
 		
 		deck_card_uis.append(card_ui)
 
-func _on_available_card_clicked(card_ui: CardUI, card: Card):
+func _on_available_card_clicked(_card_ui: CardUI, card: Card):
+	# Check if player owns this card
+	var owned = GameState.get_card_quantity(card.id)
+	var in_deck = DeckManager.get_deck_card_ids().count(card.id)
+	
+	if owned <= 0:
+		print("You don't own this card!")
+		return
+	
+	if in_deck >= owned:
+		print("No more copies available! (%d/%d in deck)" % [in_deck, owned])
+		return
+	
 	# Try to add card to deck
 	if DeckManager.can_add_card():
-		DeckManager.add_card_to_deck(card.id)
-		print("Added card to deck: " + card.name)
+		if DeckManager.add_card_to_deck(card.id):
+			print("Added card to deck: %s (%d/%d)" % [card.name, in_deck + 1, owned])
 	else:
 		print("Deck is full!")
 
-func _on_deck_card_clicked(card_ui: CardUI, index: int):
+func _on_deck_card_clicked(_card_ui: CardUI, index: int):
 	# Remove card from deck
 	DeckManager.remove_card_from_deck(index)
 	print("Removed card from deck at index: " + str(index))
 
 func _on_deck_changed():
 	populate_deck_cards()
+	# Also refresh available cards to update quantities
+	populate_available_cards(current_filter)
 
-func _on_deck_size_changed(size: int):
+func _on_deck_size_changed(_deck_size: int):
 	update_deck_info()
 
 func update_deck_info():
