@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://pwo5v4x2c6tc"]
 
 [ext_resource type="Script" uid="uid://iv756j53l0no" path="res://scenes/fightscene/combat_scene.gd" id="1_3a06o"]
-[ext_resource type="Texture2D" uid="uid://cknrqgpkm3v2v" path="res://data/assets/locations/marketplace.png" id="2_3a06o"]
+[ext_resource type="Texture2D" uid="uid://beqbcubnycaq" path="res://data/assets/locations/blank_2560_1440.png" id="2_merom"]
 [ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="2_nngcu"]
 [ext_resource type="PackedScene" uid="uid://chw4fnjtesy7r" path="res://scenes/character/milk_boy.tscn" id="4_merom"]
 [ext_resource type="Script" uid="uid://dopolwqy74i8i" path="res://scenes/fightscene/playerHitbox.gd" id="5_merom"]
+[ext_resource type="Texture2D" uid="uid://bd8reieevuvk1" path="res://data/assets/cards/card_deck.png" id="6_nngcu"]
 [ext_resource type="Script" uid="uid://b23wgl6hk5f5e" path="res://scenes/fightscene/enemyHitbox.gd" id="7_3a06o"]
 [ext_resource type="Script" uid="uid://d0b1dn1w4vm2n" path="res://scenes/fightscene/handcontainer.gd" id="7_ul0wa"]
-[ext_resource type="PackedScene" uid="uid://b88n4s5yw0eow" path="res://scenes/cards/deck_animations.tscn" id="8_3a06o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ul0wa"]
 size = Vector2(38, 152)
@@ -19,19 +19,20 @@ size = Vector2(40, 139.75)
 script = ExtResource("1_3a06o")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 offset_right = 1922.0
 offset_bottom = 1080.0
-texture = ExtResource("2_3a06o")
+texture = ExtResource("2_merom")
 
 [node name="main_char" parent="." instance=ExtResource("2_nngcu")]
-position = Vector2(630, 470)
+position = Vector2(432, 448)
 scale = Vector2(2, 2)
 
 [node name="Area2D" type="Area2D" parent="main_char" groups=["player"]]
 script = ExtResource("5_merom")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main_char/Area2D"]
-position = Vector2(2, -72)
+position = Vector2(3.5, -74)
 shape = SubResource("RectangleShape2D_ul0wa")
 
 [node name="Label" type="Label" parent="main_char"]
@@ -42,14 +43,14 @@ offset_bottom = 26.0
 metadata/_edit_use_anchors_ = true
 
 [node name="enemy_char" parent="." instance=ExtResource("4_merom")]
-position = Vector2(1351, 470)
+position = Vector2(1376, 448)
 scale = Vector2(2, 2)
 
 [node name="Area2D" type="Area2D" parent="enemy_char" groups=["enemy"]]
 script = ExtResource("7_3a06o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_char/Area2D"]
-position = Vector2(1, -71.5)
+position = Vector2(0, -70.125)
 shape = SubResource("RectangleShape2D_ewa0t")
 
 [node name="enemyhp" type="Label" parent="enemy_char"]
@@ -63,14 +64,18 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(743, 767)
 script = ExtResource("7_ul0wa")
 
+[node name="deck" type="TextureRect" parent="."]
+offset_left = 1576.0
+offset_top = 611.0
+offset_right = 1832.0
+offset_bottom = 995.0
+texture = ExtResource("6_nngcu")
+
 [node name="endTurnBtn" type="Button" parent="."]
 offset_left = 1578.0
 offset_top = 531.0
 offset_right = 1742.0
 offset_bottom = 595.0
 text = "End Turn"
-
-[node name="DeckAnimations" parent="." instance=ExtResource("8_3a06o")]
-position = Vector2(1576, 611)
 
 [connection signal="pressed" from="endTurnBtn" to="." method="_on_end_turn_btn_pressed"]

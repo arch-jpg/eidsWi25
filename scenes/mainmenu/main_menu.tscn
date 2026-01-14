@@ -138,6 +138,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Options (?)"
 
 [node name="Debug Card Database" type="Button" parent="CenterContainer/VBoxContainer/ButtonsVBox"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 3

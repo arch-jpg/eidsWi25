@@ -141,6 +141,13 @@ enemy_3_id = "Bernd_Brotmann"
 scale = Vector2(1, 0.819048)
 shape = SubResource("CircleShape2D_bepxa")
 
+[node name="Back" type="Button" parent="Sprite2D"]
+offset_left = -425.649
+offset_top = -170.971
+offset_right = -364.649
+offset_bottom = -125.971
+text = "Back"
+
 [connection signal="input_event" from="Sprite2D/Lvl100" to="Sprite2D/Lvl100" method="_on_input_event"]
 [connection signal="input_event" from="Sprite2D/Lvl111" to="Sprite2D/Lvl111" method="_on_input_event"]
 [connection signal="input_event" from="Sprite2D/Lvl112" to="Sprite2D/Lvl112" method="_on_input_event"]
@@ -152,3 +159,4 @@ shape = SubResource("CircleShape2D_bepxa")
 [connection signal="input_event" from="Sprite2D/Lvl133" to="Sprite2D/Lvl133" method="_on_input_event"]
 [connection signal="input_event" from="Sprite2D/Lvl141" to="Sprite2D/Lvl141" method="_on_input_event"]
 [connection signal="input_event" from="Sprite2D/Lvl1XX" to="Sprite2D/Lvl1XX" method="_on_input_event"]
+[connection signal="pressed" from="Sprite2D/Back" to="Sprite2D/Lvl100" method="_on_back_pressed"]

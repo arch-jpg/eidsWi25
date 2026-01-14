@@ -33,6 +33,12 @@ func resolve_effects(effects: Array):
 				_apply_block(effect)
 func take_damage(amount):
 	hp -= amount
+	if hp <= 0:
+		# Player died - clear map and reset game
+		GameState.clear_map_state()
+		print("Player died - map cleared")
+		# TODO: Show game over screen
+		get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
 	var hpbar = get_parent().get_node_or_null("Label")
 	if hpbar:
 		hpbar.text = str(hp)

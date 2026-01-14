@@ -125,3 +125,11 @@ func _dropped_attack(b):
 		$main_char/AnimatedSprite2D.play("attack_attack")
 	else:
 		$main_char/AnimatedSprite2D.play("idle")
+
+# Call this function when the player wins the battle
+func _on_battle_won():
+	pass
+
+# Call this function when the player loses
+func _on_battle_lost():
+	pass

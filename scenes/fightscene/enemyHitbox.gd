@@ -31,7 +31,14 @@ func take_damage(amount):
 	if hp<=0:
 		get_parent().get_child(0).play("death")
 		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://scenes/maps/map_01.tscn")
+		
+		# Check if this was a boss fight
+		if GameState.is_boss_fight:
+			print("Boss defeated! Clearing map for new one...")
+			GameState.clear_map_state()
+			GameState.is_boss_fight = false
+		
+		get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
 	var hpbar = get_parent().get_node_or_null("enemyhp")
 	if hpbar:
 		hpbar.text = str(hp)

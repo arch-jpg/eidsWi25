@@ -101,3 +101,6 @@ func load_save_data() -> Dictionary:
 			return json.data
 	
 	return {}
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://scenes/playermenu/player_menu.tscn")

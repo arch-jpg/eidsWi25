@@ -4,7 +4,7 @@ extends Control
 func _on_kampf_pressed() -> void:
 	print("Kampf button pressed - Map for Path Figth")
 	# TODO: get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
-	get_tree().change_scene_to_file("res://scenes/maps/map_01.tscn")
+	get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
 
 
 func _on_deck_editor_pressed() -> void:

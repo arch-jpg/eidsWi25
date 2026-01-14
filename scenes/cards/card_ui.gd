@@ -19,6 +19,11 @@ var is_hovered: bool = false
 var is_selected: bool = false
 var original_position: Vector2
 var original_scale: Vector2
+var quantity_label: Label = null  # Dynamically created label for card quantity
+var is_available: bool = true
+
+var dragging = false
+var drag_offset := Vector2.ZERO
 
 var dragging = false
 var drag_offset := Vector2.ZERO
@@ -35,6 +40,20 @@ func _ready():
 	
 	# Set pivot to center for uniform scaling
 	pivot_offset = size / 2.0
+	
+	# Create quantity label dynamically
+	quantity_label = Label.new()
+	quantity_label.name = "QuantityLabel"
+	quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	quantity_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	quantity_label.position = Vector2(size.x - 45, size.y - 30)
+	quantity_label.size = Vector2(40, 25)
+	quantity_label.add_theme_font_size_override("font_size", 14)
+	quantity_label.add_theme_color_override("font_color", Color.WHITE)
+	quantity_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	quantity_label.add_theme_constant_override("outline_size", 4)
+	quantity_label.visible = false
+	add_child(quantity_label)
 
 func setup_card(card):
 	card_data = card
@@ -90,6 +109,20 @@ func update_display():
 	
 	# Update border color based on rarity
 	update_rarity_display()
+
+func set_quantity(available: int, total: int):
+	"""Set the quantity display (available/total)"""
+	if quantity_label:
+		quantity_label.text = "%d/%d" % [available, total]
+		quantity_label.visible = true
+
+func set_available(available: bool):
+	"""Set whether the card is available (grays out if not)"""
+	is_available = available
+	if not available:
+		modulate = Color(0.5, 0.5, 0.5, 0.7)  # Gray out
+	else:
+		modulate = Color(1, 1, 1, 1)  # Normal color
 
 func update_rarity_display():
 	if not card_data:
