@@ -25,6 +25,9 @@ var is_available: bool = true
 var dragging = false
 var drag_offset := Vector2.ZERO
 
+var dragging = false
+var drag_offset := Vector2.ZERO
+
 signal card_clicked(card_ui: CardUI)
 signal card_hovered(card_ui: CardUI)
 signal card_unhovered(card_ui: CardUI)
