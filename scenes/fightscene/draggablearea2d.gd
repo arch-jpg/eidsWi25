@@ -35,7 +35,6 @@ func try_drop():
 				card_used.emit(self)
 				hide()
 				global_position= Vector2(0,0)
-				
 				return
 				
 		if target.is_in_group("player"):
@@ -43,7 +42,6 @@ func try_drop():
 				card_used.emit(self)
 				hide()
 				global_position = Vector2(0,0)
-				
 				return
 	
 	snap_back()

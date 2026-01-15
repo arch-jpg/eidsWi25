@@ -109,7 +109,9 @@ func clear_map_state() -> void:
 func set_player_health(health: int):
 	"""Set player health, clamped to max."""
 	player_health = clampi(health, 0, player_max_health)
-
+func get_player_health():
+	var i = player_health
+	return i
 func heal_player(amount: int):
 	"""Heal player by amount."""
 	set_player_health(player_health + amount)

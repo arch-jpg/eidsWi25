@@ -1,13 +1,13 @@
 extends Area2D
 # Reference to the label you want to update
 @onready var output_label: Label = get_parent().get_node("Label")
-@export var hp = 20
+@export var hp: int = GameState.get_player_health()
 var basehp = GameState.player_health
 func _ready() -> void:
 	output_label.text = str(hp)
 
 func _apply_damage(effect):
-	var damage = effect.value
+	var damage = effect
 	if effect.conditional != null:
 		pass
 	take_damage(damage)
@@ -32,16 +32,17 @@ func resolve_effects(effects: Array):
 			"block":
 				_apply_block(effect)
 func take_damage(amount):
-	hp -= amount
+	GameState.damage_player(amount)
+	hp=GameState.get_player_health()
+	var hpbar = get_parent().get_node_or_null("Label")
+	if hpbar:
+		hpbar.text = str(hp)
 	if hp <= 0:
 		# Player died - clear map and reset game
 		GameState.clear_map_state()
 		print("Player died - map cleared")
 		# TODO: Show game over screen
 		get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
-	var hpbar = get_parent().get_node_or_null("Label")
-	if hpbar:
-		hpbar.text = str(hp)
 
 func get_block(amount):
 	hp += amount

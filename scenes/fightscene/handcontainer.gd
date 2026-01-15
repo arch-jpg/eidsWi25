@@ -7,6 +7,7 @@ var base_lift := -20
 var fan_lift := 10
 var max_rotation := deg_to_rad(6)
 var stagger_delay := 0.03
+var dragging
 
 func _on_card_played(card: Node2D):
 	if hand_cards.has(card):

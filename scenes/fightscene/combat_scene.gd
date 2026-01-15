@@ -4,15 +4,22 @@ var deck: Array = []
 var discard_pile: Array = []
 const HAND_SIZE := 5
 var frontpointer = 0
+
+var enemies: Array = []
+
 const CARD_UI_SCENE := preload("res://scenes/cards/card_ui.tscn")
 const drag_script = preload("res://scenes/fightscene/draggablearea2d.gd")
 
 func _ready() -> void:
 	build_deck()
 	draw_hand(frontpointer)
+	get_enemies()
 	$enemy_char.get_child(1).sg_dropped_attack.connect(_dropped_attack)
 	pass
-
+func get_enemies():
+	enemies = GameState.current_encounter.duplicate()
+	print(GameState.current_encounter)
+	print(enemies)
 func build_deck():
 	deck.clear()
 	deck=DeckManager.current_deck.duplicate()
@@ -26,6 +33,7 @@ func draw_hand(start):
 
 	$DeckAnimations.draw_cards(HAND_SIZE)
 	var draw_delay = $DeckAnimations.card_delay_between_draws + 0.1
+	
 	await get_tree().create_timer(draw_delay).timeout
 
 	for i in HAND_SIZE:
@@ -111,12 +119,35 @@ func _on_dragging(b):
 		$main_char/AnimatedSprite2D.play("idle")
 	
 func _take_enemy_turn():
+	var enemy = EnemiesDatabase.get_enemy_by_id("Mc_Milky_Man")
+	var attacks = EnemiesDatabase.get_enemy_attacks("Mc_Milky_Man")
+	var randf = randf()
+	if enemy["aggro"] >= 0.1:
+		var attackrandf = randf()
+		var cumulative = 0
+		for i in enemy["attacks"]:
+			cumulative += i["probability"]
+			if attackrandf <= cumulative:
+				animate_enemy_attack()
+				$main_char/Area2D.take_damage(i["value"])
+				print(i)
+				return
+	else:
+		var defenserandf = randf()
+		var cumulative = 0
+		for i in enemy["defenses"]:
+			cumulative += i["probability"]
+			if defenserandf <= cumulative:
+				print(i)
+				return
+		print("defended")
 	pass
 
 func _on_end_turn_btn_pressed() -> void:
-	_take_enemy_turn()
 	$handcontainer.end_turn()
 	draw_hand(frontpointer)
+	_take_enemy_turn()
+
 	pass # Replace with function body.
 	
 func _dropped_attack(b):
@@ -132,4 +163,7 @@ func _on_battle_won():
 
 # Call this function when the player loses
 func _on_battle_lost():
+	pass
+func animate_enemy_attack():
+	$enemy_char/AnimatedSprite2D.play("attack")
 	pass
