@@ -44,12 +44,12 @@ Edit `data/cards.json` to add new cards:
   "energy_cost": 2,
   "target": "enemy_single",
   "effects": [
-    {
-      "type": "damage",
-      "element": "standard",
-      "value": 8,
-      "target": "selected_enemy"
-    }
+	{
+	  "type": "damage",
+	  "element": "standard",
+	  "value": 8,
+	  "target": "selected_enemy"
+	}
   ],
   "keywords": ["fire", "damage"],
   "card_art": "res://assets/cards/your_card.png",
@@ -124,16 +124,16 @@ Cards can have multiple effects:
 ```json
 "effects": [
   {
-    "type": "damage",
-    "element": "standard",
-    "value": 6,
-    "target": "selected_enemy"
+	"type": "damage",
+	"element": "standard",
+	"value": 6,
+	"target": "selected_enemy"
   },
   {
-    "type": "status_effect",
-    "effect_name": "burn",
-    "duration": 3,
-    "target": "selected_enemy"
+	"type": "status_effect",
+	"effect_name": "burn",
+	"duration": 3,
+	"target": "selected_enemy"
   }
 ]
 ```
@@ -198,12 +198,120 @@ Cards can have conditional effects:
   "type": "damage",
   "value": 8,
   "conditional": {
-    "condition": "target_has_status",
-    "status": "vunerable",
-    "effect_modifier": "double_damage"
+	"condition": "target_has_status",
+	"status": "vunerable",
+	"effect_modifier": "double_damage"
   }
 }
 ```
+
+## Card Collection & Unlock System
+
+The game uses a card collection system where players must unlock cards before they can use them in their deck.
+
+### Card Collection Management
+
+```gdscript
+# Add cards to player's collection (e.g., as rewards)
+GameState.add_card_to_collection("weak_punch", 3)  # Add 3 copies
+
+# Remove cards from collection
+GameState.remove_card_from_collection("weak_punch", 1)  # Remove 1 copy
+
+# Check how many copies the player owns
+var quantity = GameState.get_card_quantity("weak_punch")
+
+# Check if player owns at least one copy
+if GameState.has_card_in_collection("fire_bolt"):
+    print("Player owns Fire Bolt!")
+
+# Get all owned card IDs
+var owned_cards = GameState.get_unlocked_cards()
+
+# Get full collection with quantities
+var collection = GameState.get_card_collection()  # Returns: {"weak_punch": 5, "heal_potion": 2}
+```
+
+### Starter Cards
+
+When a new game starts, these cards are automatically unlocked:
+- **5x** Weak Punch
+- **2x** Heal Potion
+- **1x** Meditation
+- **2x** Iron Wall
+
+To customize starter cards, edit `unlock_starter_cards()` in `scripts/game_state.gd`:
+
+```gdscript
+func unlock_starter_cards():
+    add_card_to_collection("weak_punch", 5)
+    add_card_to_collection("heal_potion", 2)
+    add_card_to_collection("meditation", 1)
+    add_card_to_collection("iron_wall", 2)
+```
+
+### Unlocking Cards During Gameplay
+
+```gdscript
+# After winning a battle - reward the player with new cards
+func _on_battle_won():
+    # Give player 1 copy of a new card
+    GameState.add_card_to_collection("fire_bolt", 1)
+    
+    # Or give multiple copies
+    GameState.add_card_to_collection("shield_bash", 2)
+
+# Shop system - let player buy cards
+func buy_card(card_id: String, cost: int):
+    if GameState.spend_gold(cost):
+        GameState.add_card_to_collection(card_id, 1)
+        print("Card purchased!")
+    else:
+        print("Not enough gold!")
+```
+
+### Deck Editor Integration
+
+The deck editor automatically:
+- Shows only cards from the player's collection
+- Displays quantity as "available/total" (e.g., "3/5")
+- Grays out cards when all copies are in the deck
+- Prevents adding more copies than owned
+
+```gdscript
+# The deck manager validates card ownership
+DeckManager.add_card_to_deck("weak_punch")  # Only works if player owns it
+```
+
+### CardDatabase with Unlocks
+
+```gdscript
+# Get only unlocked cards
+var unlocked_cards = CardDatabase.get_unlocked_cards()
+
+# Get unlocked cards by effect type
+var unlocked_damage_cards = CardDatabase.get_cards_by_effect_type("damage", true)
+```
+
+### Save/Load System
+
+Card collection is automatically saved/loaded with game state:
+
+```gdscript
+# Collection is included in save data
+var save_data = GameState.get_save_data()
+# save_data["card_collection"] = {"weak_punch": 5, "heal_potion": 2, ...}
+
+# Load from save
+GameState.load_save_data(save_data)
+```
+
+### Important Notes
+
+- **Quantity Limits**: The system tracks exact quantities - you can't add a card to your deck more times than you own it
+- **Persistent**: Card collection persists across game sessions via save system
+- **Starter Deck**: Default deck is automatically created from starter cards on first launch
+- **Validation**: DeckManager validates ownership before allowing cards in deck
 
 ## Best Practices
 
@@ -211,3 +319,5 @@ Cards can have conditional effects:
 2. **Test new cards** in the demo scene before using in game
 3. **Use keywords** to help players understand card mechanics
 4. **Plan upgrade paths** for card progression
+5. **Reward generously**: Give players multiple copies of common cards as rewards
+6. **Balance collection**: Consider giving 1-2 rare cards, 2-3 uncommon, 3-5 common per reward

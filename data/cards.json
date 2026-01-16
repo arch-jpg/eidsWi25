@@ -17,7 +17,6 @@
 		}
 	  ],
 	  "keywords": ["punch"],
-	  "card_art": "res://data/assets/cards/weak_punch.png",
 	  "upgrade_path": "weak_punch_plus"
 	},
 	{
@@ -37,7 +36,6 @@
 		}
 	  ],
 	  "keywords": ["punch"],
-	  "card_art": "res://data/assets/cards/weak_punch_plus.png",
 	  "is_upgraded": true,
 	  "base_card": "weak_punch"
 	},
@@ -63,7 +61,6 @@
 		}
 	  ],
 	  "keywords": ["block"],
-	  "card_art": "res://data/assets/cards/shield_bash.png",
 	  "upgrade_path": "shield_bash_plus"
 	},
 	{
@@ -82,7 +79,6 @@
 		}
 	  ],
 	  "keywords": ["heal"],
-	  "card_art": "res://data/assets/cards/heal_potion.png",
 	  "upgrade_path": "heal_potion_plus"
 	},
 	{
@@ -108,7 +104,6 @@
 		}
 	  ],
 	  "keywords": ["ice", "chill", "aoe"],
-	  "card_art": "res://data/assets/cards/frost_nova.png",
 	  "upgrade_path": "frost_nova_plus"
 	},
 	{
@@ -133,7 +128,6 @@
 		}
 	  ],
 	  "keywords": ["lightning", "conditional"],
-	  "card_art": "res://data/assets/cards/lightning_strike.png",
 	  "upgrade_path": "lightning_strike_plus"
 	},
 	{
@@ -151,7 +145,7 @@
 		  "target": "self"
 		},
 		{
-		  "type": "status_effect",
+		  "type": "energy",
 		  "effect_name": "energy_next_turn",
 		  "value": 1,
 		  "duration": 1,
@@ -159,7 +153,6 @@
 		}
 	  ],
 	  "keywords": ["draw", "energy"],
-	  "card_art": "res://data/assets/cards/meditation.png",
 	  "upgrade_path": "meditation_plus"
 	},
 	{
@@ -186,8 +179,1089 @@
 		}
 	  ],
 	  "keywords": ["fire", "burn", "aoe"],
-	  "card_art": "res://data/assets/cards/inferno.png",
 	  "upgrade_path": "inferno_plus"
+	},
+	{
+	  "id": "iron_wall",
+	  "name": "Iron Wall",
+	  "description": "Gain 12 Block.",
+	  "type": "defense",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 12,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"],
+	  "upgrade_path": "iron_wall_plus"
+	},
+	{
+	  "id": "power_strike",
+	  "name": "Power Strike",
+	  "description": "Deal 12 damage to target enemy.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 12,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["strike"],
+	  "upgrade_path": "power_strike_plus"
+	},
+	{
+	  "id": "vampiric_touch",
+	  "name": "Vampiric Touch",
+	  "description": "Deal 8 damage. Heal for half the damage dealt.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 8,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "heal",
+		  "value": 4,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["lifesteal", "vampiric"],
+	  "upgrade_path": "vampiric_touch_plus"
+	},
+	{
+	  "id": "defensive_stance",
+	  "name": "Defensive Stance",
+	  "description": "Gain 8 Block. Draw 1 card.",
+	  "type": "defense",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 8,
+		  "target": "self"
+		},
+		{
+		  "type": "draw_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "draw"],
+	  "upgrade_path": "defensive_stance_plus"
+	},
+	{
+	  "id": "quick_slash",
+	  "name": "Quick Slash",
+	  "description": "Deal 4 damage twice to target enemy.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 4,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 4,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["slash", "multi-hit"],
+	  "upgrade_path": "quick_slash_plus"
+	},
+	{
+	  "id": "arcane_barrier",
+	  "name": "Arcane Barrier",
+	  "description": "Gain 15 Block. Gain 1 Energy next turn.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 15,
+		  "target": "self"
+		},
+		{
+		  "type": "energy",
+		  "effect_name": "energy_next_turn",
+		  "value": 1,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "energy", "arcane"],
+	  "upgrade_path": "arcane_barrier_plus"
+	},
+	{
+	  "id": "poison_dagger",
+	  "name": "Poison Dagger",
+	  "description": "Deal 5 damage. Apply Weaken for 2 turns.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 5,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "weaken",
+		  "duration": 2,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["poison", "weaken"],
+	  "upgrade_path": "poison_dagger_plus"
+	},
+	{
+	  "id": "cleave",
+	  "name": "Cleave",
+	  "description": "Deal 7 damage to all enemies.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 7,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["aoe", "cleave"],
+	  "upgrade_path": "cleave_plus"
+	},
+	{
+	  "id": "fortify",
+	  "name": "Fortify",
+	  "description": "Gain 20 Block.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 20,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"],
+	  "upgrade_path": "fortify_plus"
+	},
+	{
+	  "id": "berserker_rage",
+	  "name": "Berserker Rage",
+	  "description": "Deal 20 damage. Discard 1 card.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 20,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "discard_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["berserker", "discard"],
+	  "upgrade_path": "berserker_rage_plus"
+	},
+	{
+	  "id": "divine_light",
+	  "name": "Divine Light",
+	  "description": "Restore 15 Health. Gain 5 Block.",
+	  "type": "defense",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "heal",
+		  "value": 15,
+		  "target": "self"
+		},
+		{
+		  "type": "block",
+		  "value": 5,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["heal", "block", "divine"],
+	  "upgrade_path": "divine_light_plus"
+	},
+	{
+	  "id": "whirlwind",
+	  "name": "Whirlwind",
+	  "description": "Deal 3 damage to all enemies for each Energy you have.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 0,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 3,
+		  "target": "all_enemies",
+		  "conditional": {
+			"condition": "multiply_by_energy",
+			"effect_modifier": "scale_with_energy"
+		  }
+		}
+	  ],
+	  "keywords": ["aoe", "energy", "whirlwind"],
+	  "upgrade_path": "whirlwind_plus"
+	},
+	{
+	  "id": "counter_strike",
+	  "name": "Counter Strike",
+	  "description": "Gain 10 Block. Deal 8 damage to attacking enemy.",
+	  "type":  "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 10,
+		  "target": "self"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 8,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["block", "counter"],
+	  "upgrade_path": "counter_strike_plus"
+	},
+	{
+	  "id": "flame_barrier",
+	  "name": "Flame Barrier",
+	  "description": "Gain 12 Block. Apply Burn to all enemies for 1 turn.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 12,
+		  "target": "self"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "burn",
+		  "value": 1,
+		  "duration": 1,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["block", "fire", "burn"],
+	  "upgrade_path": "flame_barrier_plus"
+	},
+	{
+	  "id": "tactical_retreat",
+	  "name": "Tactical Retreat",
+	  "description": "Gain 6 Block. Draw 2 cards.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 6,
+		  "target": "self"
+		},
+		{
+		  "type": "draw_cards",
+		  "value": 2,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "draw"],
+	  "upgrade_path": "tactical_retreat_plus"
+	},
+	{
+	  "id": "blood_sacrifice",
+	  "name": "Blood Sacrifice",
+	  "description": "Deal 25 damage. Lose 5 Health.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 25,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 5,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["sacrifice", "recoil"],
+	  "upgrade_path": "blood_sacrifice_plus"
+	},
+	{
+	  "id": "meteor_strike",
+	  "name": "Meteor Strike",
+	  "description": "Deal 18 damage to random enemy. Apply Vulnerable for 2 turns.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 3,
+	  "target": "random_enemy",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 18,
+		  "target": "random_enemy"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "vulnerable",
+		  "duration": 2,
+		  "target": "random_enemy"
+		}
+	  ],
+	  "keywords": ["meteor", "vulnerable", "random"],
+	  "upgrade_path": "meteor_strike_plus"
+	},
+	{
+	  "id": "rejuvenation",
+	  "name": "Rejuvenation",
+	  "description": "Restore 12 Health. Draw 1 card.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "heal",
+		  "value": 12,
+		  "target": "self"
+		},
+		{
+		  "type": "draw_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["heal", "draw"],
+	  "upgrade_path": "rejuvenation_plus"
+	},
+	{
+	  "id": "soul_reaper",
+	  "name": "Soul Reaper",
+	  "description": "Deal 30 damage to weakest enemy.",
+	  "type": "attack",
+	  "rarity": "legendary",
+	  "energy_cost": 4,
+	  "target": "weakest_enemy",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 30,
+		  "target": "weakest_enemy"
+		}
+	  ],
+	  "keywords": ["execute", "reaper"],
+	  "upgrade_path": "soul_reaper_plus"
+	},
+	{
+	  "id": "aegis_shield",
+	  "name": "Aegis Shield",
+	  "description": "Gain 30 Block. Gain 1 Energy.",
+	  "type": "defense",
+	  "rarity": "legendary",
+	  "energy_cost": 3,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 30,
+		  "target": "self"
+		},
+		{
+		  "type": "energy",
+		  "effect_name": "energy_next_turn",
+		  "value": 1,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "energy", "aegis"],
+	  "upgrade_path": "aegis_shield_plus"
+	},
+	{
+	  "id": "shadow_strike",
+	  "name": "Shadow Strike",
+	  "description": "Deal 10 damage. Draw 1 card.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 10,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "draw_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["shadow", "draw"]
+	},
+	{
+	  "id": "stone_skin",
+	  "name": "Stone Skin",
+	  "description": "Gain 8 Block.",
+	  "type": "defense",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 8,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "rage",
+	  "name": "Rage",
+	  "description": "Deal 8 damage. Discard 1 card.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 8,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "discard_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["rage", "discard"]
+	},
+	{
+	  "id": "focus",
+	  "name": "Focus",
+	  "description": "Draw 3 cards.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "draw_cards",
+		  "value": 3,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["draw"]
+	},
+	{
+	  "id": "double_tap",
+	  "name": "Double Tap",
+	  "description": "Deal 7 damage twice.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 7,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 7,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["multi-hit"]
+	},
+	{
+	  "id": "iron_hide",
+	  "name": "Iron Hide",
+	  "description": "Gain 15 Block.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 15,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "chaos_bolt",
+	  "name": "Chaos Bolt",
+	  "description": "Deal random damage between 5-15 to random enemy.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "random_enemy",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 10,
+		  "target": "random_enemy"
+		}
+	  ],
+	  "keywords": ["chaos", "random"]
+	},
+	{
+	  "id": "tranquility",
+	  "name": "Tranquility",
+	  "description": "Restore 6 Health. Gain 6 Block.",
+	  "type": "cantrip",
+	  "rarity": "common",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "heal",
+		  "value": 6,
+		  "target": "self"
+		},
+		{
+		  "type": "block",
+		  "value": 6,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["heal", "block"]
+	},
+	{
+	  "id": "backstab",
+	  "name": "Backstab",
+	  "description": "Deal 15 damage.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 15,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["backstab"]
+	},
+	{
+	  "id": "last_stand",
+	  "name": "Last Stand",
+	  "description": "Gain 25 Block.",
+	  "type": "defense",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 25,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "execute",
+	  "name": "Execute",
+	  "description": "Deal 20 damage to weakest enemy.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "weakest_enemy",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 20,
+		  "target": "weakest_enemy"
+		}
+	  ],
+	  "keywords": ["execute"]
+	},
+	{
+	  "id": "pierce",
+	  "name": "Pierce",
+	  "description": "Deal 8 damage.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 8,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["pierce"]
+	},
+	{
+	  "id": "brace",
+	  "name": "Brace",
+	  "description": "Gain 10 Block. Draw 1 card.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 10,
+		  "target": "self"
+		},
+		{
+		  "type": "draw_cards",
+		  "value": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "draw"]
+	},
+	{
+	  "id": "shockwave",
+	  "name": "Shockwave",
+	  "description": "Deal 5 damage to all enemies. Apply Weaken for 1 turn.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 5,
+		  "target": "all_enemies"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "weaken",
+		  "duration": 1,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["aoe", "weaken"]
+	},
+	{
+	  "id": "rally",
+	  "name": "Rally",
+	  "description": "Draw 2 cards. Gain 5 Block.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "draw_cards",
+		  "value": 2,
+		  "target": "self"
+		},
+		{
+		  "type": "block",
+		  "value": 5,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["draw", "block"]
+	},
+	{
+	  "id": "rampage",
+	  "name": "Rampage",
+	  "description": "Deal 10 damage to all enemies.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "all_enemies",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 10,
+		  "target": "all_enemies"
+		}
+	  ],
+	  "keywords": ["aoe", "rampage"]
+	},
+	{
+	  "id": "slice",
+	  "name": "Slice",
+	  "description": "Deal 7 damage.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 7,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["slice"]
+	},
+	{
+	  "id": "barricade",
+	  "name": "Barricade",
+	  "description": "Gain 18 Block.",
+	  "type": "defense",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 18,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "fireball",
+	  "name": "Fireball",
+	  "description": "Deal 12 damage. Apply Burn for 2 turns.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 12,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "burn",
+		  "value": 2,
+		  "duration": 2,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["fire", "burn"]
+	},
+	{
+	  "id": "refresh",
+	  "name": "Refresh",
+	  "description": "Restore 10 Health.",
+	  "type": "cantrip",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "heal",
+		  "value": 10,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["heal"]
+	},
+	{
+	  "id": "shield_wall",
+	  "name": "Shield Wall",
+	  "description": "Gain 14 Block.",
+	  "type": "defense",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 14,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "burst",
+	  "name": "Burst",
+	  "description": "Deal 6 damage three times.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 6,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 6,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 6,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["multi-hit", "burst"]
+	},
+	{
+	  "id": "recharge",
+	  "name": "Recharge",
+	  "description": "Gain 2 Energy next turn.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 0,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "energy",
+		  "effect_name": "energy_next_turn",
+		  "value": 2,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["energy"]
+	},
+	{
+	  "id": "smite",
+	  "name": "Smite",
+	  "description": "Deal 14 damage.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 14,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["smite"]
+	},
+	{
+	  "id": "inspiration",
+	  "name": "Inspiration",
+	  "description": "Draw 1 card. Gain 1 Energy next turn.",
+	  "type": "cantrip",
+	  "rarity": "uncommon",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "draw_cards",
+		  "value": 1,
+		  "target": "self"
+		},
+		{
+		  "type": "energy",
+		  "effect_name": "energy_next_turn",
+		  "value": 1,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["draw", "energy"]
+	},
+	{
+	  "id": "venom_strike",
+	  "name": "Venom Strike",
+	  "description": "Deal 7 damage. Apply Weaken for 2 turns.",
+	  "type": "attack",
+	  "rarity": "uncommon",
+	  "energy_cost": 2,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 7,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "status_effect",
+		  "effect_name": "weaken",
+		  "duration": 2,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["poison", "weaken"]
+	},
+	{
+	  "id": "shield_charge",
+	  "name": "Shield Charge",
+	  "description": "Deal 6 damage. Gain 6 Block.",
+	  "type": "attack",
+	  "rarity": "common",
+	  "energy_cost": 1,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 6,
+		  "target": "selected_enemy"
+		},
+		{
+		  "type": "block",
+		  "value": 6,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block"]
+	},
+	{
+	  "id": "doom_blade",
+	  "name": "Doom Blade",
+	  "description": "Deal 22 damage.",
+	  "type": "attack",
+	  "rarity": "rare",
+	  "energy_cost": 3,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 22,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["doom"]
+	},
+	{
+	  "id": "second_wind",
+	  "name": "Second Wind",
+	  "description": "Discard all cards. Gain 5 Block for each card discarded.",
+	  "type": "defense",
+	  "rarity": "rare",
+	  "energy_cost": 1,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "block",
+		  "value": 5,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["block", "discard"]
+	},
+	{
+	  "id": "infinity_blade",
+	  "name": "Infinity Blade",
+	  "description": "Deal 40 damage.",
+	  "type": "attack",
+	  "rarity": "legendary",
+	  "energy_cost": 5,
+	  "target": "enemy_single",
+	  "effects": [
+		{
+		  "type": "damage",
+		  "element": "standard",
+		  "value": 40,
+		  "target": "selected_enemy"
+		}
+	  ],
+	  "keywords": ["legendary"]
+	},
+	{
+	  "id": "time_warp",
+	  "name": "Time Warp",
+	  "description": "Draw 3 cards. Gain 2 Energy next turn.",
+	  "type": "cantrip",
+	  "rarity": "legendary",
+	  "energy_cost": 2,
+	  "target": "self",
+	  "effects": [
+		{
+		  "type": "draw_cards",
+		  "value": 3,
+		  "target": "self"
+		},
+		{
+		  "type": "energy",
+		  "effect_name": "energy_next_turn",
+		  "value": 2,
+		  "duration": 1,
+		  "target": "self"
+		}
+	  ],
+	  "keywords": ["draw", "energy", "time"]
 	}
   ],
   "card_types": [
