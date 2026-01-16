@@ -101,7 +101,7 @@ theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 6
 theme_override_fonts/font = ExtResource("1_06t4h")
 theme_override_font_sizes/font_size = 44
-text = "Game Project name here"
+text = "Milk and Sword"
 horizontal_alignment = 1
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
