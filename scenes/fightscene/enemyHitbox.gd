@@ -1,11 +1,11 @@
 extends Area2D
-# Reference to the label you want to update
-@onready var output_label: Label = get_parent().get_node("enemyhp")
+
+
 @export var hp = 20
 signal sg_dropped_attack(bool)
 
 func _ready() -> void:
-	output_label.text = str(hp)
+	get_parent().get_child(2).text = str(hp)
 
 func _apply_damage(effect):
 	var damage = effect.value
@@ -29,6 +29,9 @@ func take_damage(amount):
 	get_parent().get_child(0).play("damage")
 	hp -= amount
 	if hp<=0:
+		var hpbar = get_parent().get_child(2)
+		if hpbar:
+			hpbar.text = "0"
 		get_parent().get_child(0).play("death")
 		await get_tree().create_timer(3.0).timeout
 		
@@ -39,6 +42,7 @@ func take_damage(amount):
 			GameState.is_boss_fight = false
 		
 		get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
-	var hpbar = get_parent().get_node_or_null("enemyhp")
+	var hpbar = get_parent().get_child(2)
+	print(hpbar)
 	if hpbar:
 		hpbar.text = str(hp)

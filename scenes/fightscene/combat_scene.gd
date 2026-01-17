@@ -6,20 +6,75 @@ const HAND_SIZE := 5
 var frontpointer = 0
 
 var enemies: Array = []
+var double_combat: bool=false
+var enemy
 
 const CARD_UI_SCENE := preload("res://scenes/cards/card_ui.tscn")
 const drag_script = preload("res://scenes/fightscene/draggablearea2d.gd")
+var enemyHitbox = preload("res://scenes/fightscene/enemyHitbox.gd")
+const enemyscene = preload("res://scenes/character/milk_boy.tscn")
 
 func _ready() -> void:
 	build_deck()
 	draw_hand(frontpointer)
 	get_enemies()
-	$enemy_char.get_child(1).sg_dropped_attack.connect(_dropped_attack)
+	draw_enemies(enemy)
 	pass
 func get_enemies():
-	enemies = GameState.current_encounter.duplicate()
-	print(GameState.current_encounter)
-	print(enemies)
+	enemies=EnemiesDatabase.get_all_enemies()
+	var randfenemies = randf()
+	if randfenemies<=0.4:
+		enemy=enemies[0]
+		return
+	elif randfenemies <=0.9:
+		enemy=enemies[1]
+		return
+	else:
+		double_combat=true
+		enemy=enemies[1]
+		print("double combat")
+
+func draw_enemies(id: String):
+	#enemyscene
+	enemy= enemyscene.instantiate()	
+	add_child(enemy)
+	enemy.apply_scale(Vector2(2,2))
+	
+	#hitbox
+	var enemyhitbox = Area2D.new()
+	enemy.add_child(enemyhitbox)
+	var shapebox = CollisionShape2D.new()
+	shapebox.shape = RectangleShape2D.new()
+	shapebox.shape.size = Vector2(40,140)
+	enemyhitbox.global_position+=Vector2(0,-140)
+	enemyhitbox.add_child(shapebox)
+	enemyhitbox.set_script(enemyHitbox)
+	
+	#hpbar
+	var enemyhp = Label.new()
+	enemy.add_child(enemyhp)
+	enemyhp.text="20"
+	enemyhp.global_position+=Vector2(-20,0)
+	
+	#enemyname (for test reasons)
+	var enemyname = Label.new()
+	enemy.add_child(enemyname)
+	if id=="Mc_Milky_Man":
+		enemyname.text="Milk Boy"
+		enemyname.global_position+=Vector2(-40,-300)
+	elif id=="Bernd_Brotmann":
+		enemyname.text="Bernd Brotman"
+		enemyname.global_position+=Vector2(-70,-300)
+	enemyname.scale=Vector2(0.6,0.6)
+	
+	#skin
+	#if id=="Bernd_Brotmann":
+		#var animatedsprite = enemy.get_child(1) as AnimatedSprite2D
+	
+	enemy.global_position=Vector2(1351,470)
+	enemyhitbox.add_to_group("enemies")
+	enemy.get_child(1).sg_dropped_attack.connect(_dropped_attack)
+	
 func build_deck():
 	deck.clear()
 	deck=DeckManager.current_deck.duplicate()
@@ -165,5 +220,5 @@ func _on_battle_won():
 func _on_battle_lost():
 	pass
 func animate_enemy_attack():
-	$enemy_char/AnimatedSprite2D.play("attack")
+	enemy.get_child(0).play("attack")
 	pass

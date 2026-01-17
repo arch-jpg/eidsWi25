@@ -30,7 +30,7 @@ func _process(_delta):
 		
 func try_drop():
 	for target in get_overlapping_areas():
-		if target.is_in_group("enemy"):
+		if target.is_in_group("enemies"):
 			if target.dropped_on(card_data):
 				card_used.emit(self)
 				hide()
