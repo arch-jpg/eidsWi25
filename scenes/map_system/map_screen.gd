@@ -19,10 +19,11 @@ var all_nodes: Array[MapNode] = []
 var node_ui_map: Dictionary = {}  # MapNode -> MapNodeUI
 var current_node: MapNode = null
 
-# Line drawing settings
-var active_line_color: Color = Color.GREEN
-var inactive_line_color: Color = Color.GRAY
-var line_width: float = 3.0
+# Line drawing settings - improved colors
+var active_line_color: Color = Color(0.9, 0.7, 0.3, 0.9)  # Golden active path
+var inactive_line_color: Color = Color(0.3, 0.3, 0.35, 0.5)  # Darker inactive
+var visited_line_color: Color = Color(0.2, 0.6, 0.8, 0.7)  # Blue for completed paths
+var line_width: float = 4.0
 
 
 func _ready() -> void:
@@ -182,12 +183,22 @@ func _draw_connection(from_node: MapNode, to_node: MapNode) -> void:
 	line.add_point(from_pos)
 	line.add_point(to_pos)
 	
-	# Set line appearance
+	# Set line appearance with rounded ends
 	line.width = line_width
+	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line.end_cap_mode = Line2D.LINE_CAP_ROUND
+	line.antialiased = true
 	
-	# Determine if this path is available
-	var is_available: bool = from_node.is_reachable and not from_node.is_visited
-	line.default_color = active_line_color if is_available else inactive_line_color
+	# Determine line color based on state
+	var line_color: Color
+	if from_node.is_visited:
+		line_color = visited_line_color  # Blue for completed paths
+	elif from_node.is_reachable and not from_node.is_visited:
+		line_color = active_line_color  # Golden for active paths
+	else:
+		line_color = inactive_line_color  # Gray for locked paths
+	
+	line.default_color = line_color
 	
 	# Store reference for later updates
 	line.set_meta("from_node", from_node)
@@ -248,8 +259,17 @@ func _update_line_colors() -> void:
 	for line in lines_layer.get_children():
 		if line is Line2D:
 			var from_node: MapNode = line.get_meta("from_node")
-			var is_available: bool = from_node.is_reachable and not from_node.is_visited
-			line.default_color = active_line_color if is_available else inactive_line_color
+			
+			# Determine line color based on state
+			var line_color: Color
+			if from_node.is_visited:
+				line_color = visited_line_color  # Blue for completed paths
+			elif from_node.is_reachable and not from_node.is_visited:
+				line_color = active_line_color  # Golden for active paths
+			else:
+				line_color = inactive_line_color  # Gray for locked paths
+			
+			line.default_color = line_color
 
 
 func _lock_alternative_paths(selected_node: MapNode) -> void:

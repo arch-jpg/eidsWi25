@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr10cjateg6l"]
+[gd_scene load_steps=7 format=3 uid="uid://dr10cjateg6l"]
 
 [ext_resource type="Script" uid="uid://bawfyp8h0fsk2" path="res://scenes/treasure/treasure_screen.gd" id="1_treasure"]
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="2_font"]
@@ -48,17 +48,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.1, 0.2, 1)
+color = Color(0.08, 0.06, 0.12, 1)
+
+[node name="GradientOverlay" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.25, 0.05, 0.15)
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 100.0
+offset_top = 30.0
+offset_bottom = 110.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0.4, 0.25, 0.05, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 56
 text = "Opening Treasure..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -78,6 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CardScrollArea" type="ScrollContainer" parent="CenterContainer"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,13 +124,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.0
+offset_left = -3.0
 offset_top = -250.0
-offset_right = 2.0
+offset_right = 3.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.85, 0.4, 0.7)
+color = Color(1, 0.85, 0.1, 0.9)
+
+[node name="LeftLineShadow" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -252.0
+offset_right = 5.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.2)
 
 [node name="RightLine" type="ColorRect" parent="CenterContainer/CenterMarker"]
 layout_mode = 1
@@ -123,13 +154,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.0
+offset_left = -3.0
 offset_top = 50.0
-offset_right = 2.0
+offset_right = 3.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.85, 0.4, 0.7)
+color = Color(1, 0.85, 0.1, 0.9)
+
+[node name="RightLineShadow" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = 48.0
+offset_right = 5.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.2)
 
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 1
