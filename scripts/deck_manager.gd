@@ -139,6 +139,7 @@ func save_deck():
 		var save_data = {
 			"deck": current_deck,
 			"card_collection": GameState.get_card_collection(),
+			"player_gold": GameState.player_gold,
 			"map_data": GameState.saved_map_data,
 			"current_map_node_id": GameState.current_map_node_id,
 			"map_scroll_position": {
@@ -190,6 +191,11 @@ func load_deck():
 				
 				# Add any missing starter cards (for updates)
 				GameState.add_missing_starter_cards()
+			
+			# Load player gold
+			if save_data.has("player_gold"):
+				GameState.player_gold = save_data.player_gold
+				print("Player gold loaded: %d" % GameState.player_gold)
 			
 			# Load map data
 			if save_data.has("map_data"):
