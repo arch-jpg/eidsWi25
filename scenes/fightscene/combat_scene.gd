@@ -59,16 +59,26 @@ func draw_enemies(id: String):
 	var shapebox = CollisionShape2D.new()
 	shapebox.shape = RectangleShape2D.new()
 	shapebox.shape.size = Vector2(40,140)
+	
 	enemyhitbox.global_position+=Vector2(0,-140)
 	enemyhitbox.add_child(shapebox)
 	enemyhitbox.set_script(enemyHitbox)
 	enemyhitbox.enemyid=id
 	enemyhitbox.hp = EnemiesDatabase.get_enemy_health(id)
+	
 	print(enemyhitbox.hp)
+	
 	var enemyhp = Label.new()
+	var enemyblock= Label.new()
+	
+	enemy.add_child(enemyblock)
 	enemy.add_child(enemyhp)
+	
+	enemyblock.text="5"
 	enemyhp.text=str(int(EnemiesDatabase.get_enemy_by_id(id)["health"]))
+	
 	enemyhp.global_position+=Vector2(-20,0)
+	enemyblock.global_position+=Vector2(-20,30)
 	
 	#enemyname (for test reasons)
 	var enemyname = Label.new()
@@ -207,8 +217,8 @@ func _take_enemy_turn(id: String):
 		for i in currenemy["defenses"]:
 			cumulative += i["probability"]
 			if defenserandf <= cumulative:
-				print(i)
-				return
+				enemy.get_child(2).text = str(int(enemy.get_child(2).text) + int(i["value"]))
+			enemy.get_child(1).block = int(enemy.get_child(2).text)
 		print("defended")
 	pass
 
@@ -237,6 +247,7 @@ func _on_battle_won():
 # Call this function when the player loses
 func _on_battle_lost():
 	pass
+	
 func animate_enemy_attack():
 	enemy.get_child(0).play("attack")
 	pass
