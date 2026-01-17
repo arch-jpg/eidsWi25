@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr10cjateg6l"]
+[gd_scene load_steps=7 format=3 uid="uid://c4w0xuq7n5ylf"]
 
-[ext_resource type="Script" uid="uid://bawfyp8h0fsk2" path="res://scenes/treasure/treasure_screen.gd" id="1_treasure"]
+[ext_resource type="Script" uid="uid://clid3fveutw1" path="res://scenes/shop/shop_screen.gd" id="1_shop"]
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="2_font"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01"]
@@ -32,14 +32,14 @@ corner_radius_bottom_left = 16
 shadow_size = 1
 shadow_offset = Vector2(1, 3)
 
-[node name="TreasureScreen" type="Control"]
+[node name="ShopScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_treasure")
+script = ExtResource("1_shop")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -48,133 +48,116 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.1, 0.2, 1)
+color = Color(0.15, 0.12, 0.18, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TopPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 100.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="TopPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-theme_override_font_sizes/font_size = 48
-text = "Opening Treasure..."
+theme_override_font_sizes/font_size = 36
+text = "SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="Control" parent="."]
+[node name="GoldLabel" type="Label" parent="TopPanel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -200.0
-offset_right = 640.0
-offset_bottom = 200.0
-grow_horizontal = 2
+offset_left = -200.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Gold: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="CardScrollArea" type="ScrollContainer" parent="CenterContainer"]
+[node name="BackButton" type="Button" parent="TopPanel"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 120.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_03")
+text = "Back"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
 
-[node name="CardContainer" type="HBoxContainer" parent="CenterContainer/CardScrollArea"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 20
 
-[node name="CenterMarker" type="Control" parent="CenterContainer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="InfoLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "You can purchase one card"
+horizontal_alignment = 1
 
-[node name="LeftLine" type="ColorRect" parent="CenterContainer/CenterMarker"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -250.0
-offset_right = 2.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.85, 0.4, 0.7)
+[node name="CardsContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
 
-[node name="RightLine" type="ColorRect" parent="CenterContainer/CenterMarker"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = 50.0
-offset_right = 2.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.85, 0.4, 0.7)
+[node name="Card1Container" type="Control" parent="CenterContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(254, 400)
+layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -120.0
-offset_right = 150.0
-offset_bottom = -60.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Card2Container" type="Control" parent="CenterContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(254, 400)
+layout_mode = 2
+
+[node name="Card3Container" type="Control" parent="CenterContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(254, 400)
+layout_mode = 2
+
+[node name="BottomBackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
 theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
 theme_override_styles/hover = SubResource("StyleBoxFlat_01")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
 theme_override_styles/normal = SubResource("StyleBoxFlat_03")
-text = "Continue"
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -30.0
-offset_right = 150.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
-theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
-theme_override_styles/hover = SubResource("StyleBoxFlat_01")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
-theme_override_styles/normal = SubResource("StyleBoxFlat_03")
-text = "Open Treasure"
+text = "Back to Map"

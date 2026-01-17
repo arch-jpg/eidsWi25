@@ -10,6 +10,7 @@ signal node_selected(node: MapNode)
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var lines_layer: Node2D = $ScrollContainer/MapContainer/LinesLayer
 @onready var nodes_layer: Control = $ScrollContainer/MapContainer/NodesLayer
+@onready var gold_label: Label = $UILayer/HBoxContainer/GoldLabel
 
 @export var node_ui_scene: PackedScene = preload("res://scenes/map_system/map_node_ui.tscn")
 
@@ -45,6 +46,18 @@ func _ready() -> void:
 	else:
 		print("No saved map found, generating new one")
 		generate_and_display_map()
+	
+	# Update gold display
+	_update_gold_display()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Cheat key: Press G to add 1000 gold
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_G:
+			GameState.add_gold(10000)
+			print("Cheat activated: +10000 gold (Total: %d)" % GameState.player_gold)
+			get_viewport().set_input_as_handled()
 
 
 func generate_and_display_map() -> void:
@@ -275,7 +288,7 @@ func _handle_node_type(node: MapNode) -> void:
 			get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
 		MapNode.NodeType.SHOP:
 			print("Entering shop...")
-			# TODO: Load shop scene
+			get_tree().change_scene_to_file("res://scenes/shop/shop_screen.tscn")
 		MapNode.NodeType.TREASURE:
 			print("Opening treasure...")
 			get_tree().change_scene_to_file("res://scenes/treasure/treasure_screen.tscn")
@@ -301,7 +314,28 @@ func _on_back_button_pressed() -> void:
 		scroll_container.scroll_vertical
 	)
 	GameState.save_map_state(all_nodes, current_node, scroll_pos)
-	get_tree().change_scene_to_file("res://scenes/playermenu/player_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
+
+
+func _on_deck_editor_button_pressed() -> void:
+	"""Open the deck editor"""
+	# Save current scroll position before leaving
+	var scroll_pos: Vector2 = Vector2(
+		scroll_container.scroll_horizontal,
+		scroll_container.scroll_vertical
+	)
+	GameState.save_map_state(all_nodes, current_node, scroll_pos)
+	
+	# Set return scene so deck editor knows where to go back
+	GameState.return_scene = "res://scenes/map_system/map_screen.tscn"
+	
+	get_tree().change_scene_to_file("res://scenes/deck_editor/deck_editor.tscn")
+
+
+func _update_gold_display() -> void:
+	"""Update the gold label"""
+	if gold_label:
+		gold_label.text = "Gold: %d" % GameState.player_gold
 
 
 func load_saved_map() -> void:

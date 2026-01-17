@@ -1,6 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4w0xuq7n5ylf"]
+[gd_scene load_steps=12 format=3 uid="uid://c4w0xuq7n5ylf"]
 
 [ext_resource type="Script" uid="uid://dwepu5uqaodx1" path="res://scenes/map_system/map_screen.gd" id="1_jw8dy"]
+[ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="2_font"]
+[ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="3_ncvyo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04"]
+bg_color = Color(0.11689, 0.134855, 0.216135, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05"]
+bg_color = Color(0.0352319, 0.0445863, 0.0875517, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06"]
+bg_color = Color(0.15182, 0.173343, 0.270545, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01"]
+bg_color = Color(0.11689, 0.134855, 0.216135, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02"]
+bg_color = Color(0.0352319, 0.0445863, 0.0875517, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03"]
+bg_color = Color(0.15182, 0.173343, 0.270545, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
 
 [node name="MapScreen" type="Control"]
 layout_mode = 3
@@ -31,6 +91,8 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
 [node name="MapContainer" type="Control" parent="ScrollContainer"]
 custom_minimum_size = Vector2(2000, 1000)
@@ -61,26 +123,89 @@ offset_right = 1919.0
 offset_bottom = 45.0
 
 [node name="BackButton" type="Button" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+size_flags_horizontal = 2
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02")
+theme_override_styles/hover = SubResource("StyleBoxFlat_04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_05")
+theme_override_styles/normal = SubResource("StyleBoxFlat_06")
 text = "Back to Menu"
 
 [node name="Title" type="Label" parent="UILayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 25
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 40
 text = "Level Selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetButton" type="Button" parent="UILayer/HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="UILayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+text = "Gold: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="main_char" parent="UILayer" instance=ExtResource("3_ncvyo")]
+position = Vector2(850, 1042)
+scale = Vector2(2, 2)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1027.0
+offset_right = 1922.0
+offset_bottom = 1077.0
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="DeckEditorButton" type="Button" parent="UILayer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_03")
+text = "Deck Editor"
+
+[node name="ResetButton" type="Button" parent="UILayer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_03")
 text = "Generate New Map"
 
 [connection signal="pressed" from="UILayer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="UILayer/HBoxContainer/ResetButton" to="." method="reset_map"]
+[connection signal="pressed" from="UILayer/HBoxContainer2/DeckEditorButton" to="." method="_on_deck_editor_button_pressed"]
+[connection signal="pressed" from="UILayer/HBoxContainer2/ResetButton" to="." method="reset_map"]
