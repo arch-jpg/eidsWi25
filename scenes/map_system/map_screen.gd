@@ -51,6 +51,13 @@ func _ready() -> void:
 	# Update gold display
 	_update_gold_display()
 
+func _process(_delta):
+	
+	if Input.is_key_pressed(KEY_M):
+		reset_map()
+
+	_update_gold_display()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Cheat key: Press G to add 1000 gold

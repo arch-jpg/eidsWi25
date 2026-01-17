@@ -128,8 +128,10 @@ mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer"]
 layout_mode = 0
-offset_right = 1919.0
-offset_bottom = 45.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1901.0
+offset_bottom = 66.0
 
 [node name="BackButton" type="Button" parent="UILayer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
@@ -164,7 +166,8 @@ vertical_alignment = 1
 
 [node name="GoldLabel" type="Label" parent="UILayer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -181,17 +184,17 @@ scale = Vector2(2, 2)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UILayer"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1027.0
-offset_right = 1922.0
-offset_bottom = 1077.0
+offset_left = 16.0
+offset_top = 999.0
+offset_right = 1901.0
+offset_bottom = 1049.0
 theme_override_constants/separation = 15
 alignment = 2
 
 [node name="DeckEditorButton" type="Button" parent="UILayer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
 theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -204,6 +207,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_03")
 text = "Deck Editor"
 
 [node name="ResetButton" type="Button" parent="UILayer/HBoxContainer2"]
+visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 10
