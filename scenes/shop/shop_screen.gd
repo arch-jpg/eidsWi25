@@ -39,6 +39,9 @@ func _ready() -> void:
 	_update_gold_display()
 	
 	info_label.text = "You can purchase one card"
+	
+	# Animate entrance
+	_animate_entrance()
 
 
 func _generate_shop_inventory() -> void:
@@ -120,8 +123,32 @@ func _display_shop_cards() -> void:
 		# Position buy button below price
 		buy_button.position = Vector2((card_ui.size.x - 100) / 2, card_ui.size.y + 50)
 		
+		# Add hover effect to card container
+		_setup_card_hover_effect(container, card_ui)
+		
 		# Connect buy button
 		buy_button.pressed.connect(_on_buy_card.bind(i))
+
+
+func _setup_card_hover_effect(container: Control, card_ui: CardUI) -> void:
+	"""Setup hover effect for shop cards"""
+	container.mouse_entered.connect(func():
+		if not card_purchased:
+			var tween: Tween = create_tween()
+			tween.set_trans(Tween.TRANS_BACK)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(container, "scale", Vector2(1.1, 1.1), 0.2)
+			tween.parallel().tween_property(container, "position:y", container.position.y - 10, 0.2)
+	)
+	
+	container.mouse_exited.connect(func():
+		if not card_purchased:
+			var tween: Tween = create_tween()
+			tween.set_trans(Tween.TRANS_QUAD)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(container, "scale", Vector2(1.0, 1.0), 0.2)
+			tween.parallel().tween_property(container, "position:y", container.position.y + 10, 0.2)
+	)
 
 
 func _on_card_clicked(card_ui: CardUI, card_index: int) -> void:
@@ -153,7 +180,17 @@ func _on_buy_card(card_index: int) -> void:
 		DeckManager.add_card_to_deck(card.id)
 		
 		card_purchased = true
+		
+		# Animate success message
+		var tween: Tween = create_tween()
+		tween.set_trans(Tween.TRANS_BOUNCE)
+		tween.set_ease(Tween.EASE_OUT)
+		info_label.scale = Vector2(0.5, 0.5)
+		tween.tween_property(info_label, "scale", Vector2(1.2, 1.2), 0.3)
+		tween.tween_property(info_label, "scale", Vector2(1.0, 1.0), 0.2)
+		
 		info_label.text = "Purchased: %s for %d gold!" % [card.name, price]
+		info_label.modulate = Color(0.3, 1.0, 0.5, 1.0)
 		
 		# Update gold display
 		_update_gold_display()
@@ -210,3 +247,23 @@ func _update_gold_display() -> void:
 func _on_back_pressed() -> void:
 	"""Return to map screen"""
 	get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
+
+
+func _animate_entrance() -> void:
+	"""Animate the cards appearing"""
+	var containers: Array = [card1_container, card2_container, card3_container]
+	
+	for i in range(containers.size()):
+		var container: Control = containers[i]
+		container.modulate.a = 0.0
+		container.scale = Vector2(0.3, 0.3)
+		
+		# Stagger the animations
+		await get_tree().create_timer(0.15 * i).timeout
+		
+		var tween: Tween = create_tween()
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_parallel(true)
+		tween.tween_property(container, "modulate:a", 1.0, 0.4)
+		tween.tween_property(container, "scale", Vector2(1.0, 1.0), 0.5)
