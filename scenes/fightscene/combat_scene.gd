@@ -4,44 +4,57 @@ var deck: Array = []
 var discard_pile: Array = []
 const HAND_SIZE := 5
 var frontpointer = 0
+@export var energy_count: int = 4
 
-var enemies: Array = []
+var allEnemies: Array = []
 var double_combat: bool=false
 var enemy
+var fightEnemies: Array =[]
 
 const CARD_UI_SCENE := preload("res://scenes/cards/card_ui.tscn")
 const drag_script = preload("res://scenes/fightscene/draggablearea2d.gd")
 var enemyHitbox = preload("res://scenes/fightscene/enemyHitbox.gd")
 const enemyscene = preload("res://scenes/character/milk_boy.tscn")
+const enemyv2scene = preload("res://scenes/character/Bernd_Brotmann.tscn")
 
 func _ready() -> void:
+	$Label.text=str(energy_count)
 	build_deck()
 	draw_hand(frontpointer)
 	get_enemies()
 	draw_enemies(enemy)
 	pass
+
 func get_enemies():
-	enemies=EnemiesDatabase.get_all_enemies()
+	allEnemies=EnemiesDatabase.get_all_enemies()
 	var randfenemies = randf()
 	if randfenemies<=0.4:
-		enemy=enemies[0]
+		enemy=allEnemies[0]
+		fightEnemies.append(enemy)
 		return
 	elif randfenemies <=0.9:
-		enemy=enemies[1]
+		enemy=allEnemies[1]
+		fightEnemies.append(enemy)
 		return
 	else:
 		double_combat=true
-		enemy=enemies[1]
+		enemy=allEnemies[0]
+		fightEnemies.append(enemy)
 		print("double combat")
+
 
 func draw_enemies(id: String):
 	#enemyscene
-	enemy= enemyscene.instantiate()	
+	if id=="Bernd_Brotmann":
+		enemy= enemyv2scene.instantiate()
+	else:
+		enemy= enemyscene.instantiate()	
 	add_child(enemy)
 	enemy.apply_scale(Vector2(2,2))
 	
 	#hitbox
 	var enemyhitbox = Area2D.new()
+	
 	enemy.add_child(enemyhitbox)
 	var shapebox = CollisionShape2D.new()
 	shapebox.shape = RectangleShape2D.new()
@@ -49,11 +62,12 @@ func draw_enemies(id: String):
 	enemyhitbox.global_position+=Vector2(0,-140)
 	enemyhitbox.add_child(shapebox)
 	enemyhitbox.set_script(enemyHitbox)
-	
-	#hpbar
+	enemyhitbox.enemyid=id
+	enemyhitbox.hp = EnemiesDatabase.get_enemy_health(id)
+	print(enemyhitbox.hp)
 	var enemyhp = Label.new()
 	enemy.add_child(enemyhp)
-	enemyhp.text="20"
+	enemyhp.text=str(int(EnemiesDatabase.get_enemy_by_id(id)["health"]))
 	enemyhp.global_position+=Vector2(-20,0)
 	
 	#enemyname (for test reasons)
@@ -173,14 +187,14 @@ func _on_dragging(b):
 	else:
 		$main_char/AnimatedSprite2D.play("idle")
 	
-func _take_enemy_turn():
-	var enemy = EnemiesDatabase.get_enemy_by_id("Mc_Milky_Man")
-	var attacks = EnemiesDatabase.get_enemy_attacks("Mc_Milky_Man")
+func _take_enemy_turn(id: String):
+	var currenemy = EnemiesDatabase.get_enemy_by_id(id)
+	var attacks = EnemiesDatabase.get_enemy_attacks(id)
 	var randf = randf()
-	if enemy["aggro"] >= 0.1:
+	if currenemy["aggro"] >= randf:
 		var attackrandf = randf()
 		var cumulative = 0
-		for i in enemy["attacks"]:
+		for i in currenemy["attacks"]:
 			cumulative += i["probability"]
 			if attackrandf <= cumulative:
 				animate_enemy_attack()
@@ -190,7 +204,7 @@ func _take_enemy_turn():
 	else:
 		var defenserandf = randf()
 		var cumulative = 0
-		for i in enemy["defenses"]:
+		for i in currenemy["defenses"]:
 			cumulative += i["probability"]
 			if defenserandf <= cumulative:
 				print(i)
@@ -199,9 +213,13 @@ func _take_enemy_turn():
 	pass
 
 func _on_end_turn_btn_pressed() -> void:
+	energy_count=4
+	$Label.text=str(energy_count)
 	$handcontainer.end_turn()
 	draw_hand(frontpointer)
-	_take_enemy_turn()
+	for i in fightEnemies:
+		print(i)
+		_take_enemy_turn(i)
 
 	pass # Replace with function body.
 	

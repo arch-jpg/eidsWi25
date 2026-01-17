@@ -39,6 +39,7 @@ func take_damage(amount):
 		hpbar.text = str(hp)
 	if hp <= 0:
 		# Player died - clear map and reset game
+		get_parent().get_child(0).play("death")
 		GameState.clear_map_state()
 		print("Player died - map cleared")
 		# TODO: Show game over screen

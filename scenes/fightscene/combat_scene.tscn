@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://pwo5v4x2c6tc"]
+[gd_scene load_steps=9 format=3 uid="uid://pwo5v4x2c6tc"]
 
 [ext_resource type="Script" uid="uid://iv756j53l0no" path="res://scenes/fightscene/combat_scene.gd" id="1_3a06o"]
 [ext_resource type="Texture2D" uid="uid://cknrqgpkm3v2v" path="res://data/assets/locations/marketplace.png" id="2_3a06o"]
 [ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="2_nngcu"]
 [ext_resource type="Script" uid="uid://dopolwqy74i8i" path="res://scenes/fightscene/playerHitbox.gd" id="5_merom"]
+[ext_resource type="Texture2D" uid="uid://d3t8cvk36l14s" path="res://data/assets/icon/energy_icon.png" id="7_merom"]
 [ext_resource type="Script" uid="uid://d0b1dn1w4vm2n" path="res://scenes/fightscene/handcontainer.gd" id="7_ul0wa"]
 [ext_resource type="PackedScene" uid="uid://b88n4s5yw0eow" path="res://scenes/cards/deck_animations.tscn" id="8_3a06o"]
 
@@ -17,6 +18,19 @@ script = ExtResource("1_3a06o")
 offset_right = 1922.0
 offset_bottom = 1080.0
 texture = ExtResource("2_3a06o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(140, 439)
+texture = ExtResource("7_merom")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 113.0
+offset_top = 445.0
+offset_right = 160.0
+offset_bottom = 516.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "4"
 
 [node name="main_char" parent="." instance=ExtResource("2_nngcu")]
 position = Vector2(630, 470)

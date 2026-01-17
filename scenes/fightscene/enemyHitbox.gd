@@ -1,12 +1,14 @@
 extends Area2D
 
-
-@export var hp = 20
+@export var enemyid: String
+var hp = EnemiesDatabase.get_enemy_health(enemyid)
 signal sg_dropped_attack(bool)
 
 func _ready() -> void:
 	get_parent().get_child(2).text = str(hp)
-
+	hp=EnemiesDatabase.get_enemy_health(enemyid)
+	print(hp)
+	
 func _apply_damage(effect):
 	var damage = effect.value
 	if effect.conditional != null:
