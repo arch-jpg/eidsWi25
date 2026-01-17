@@ -42,6 +42,15 @@ func _on_start_button_pressed() -> void:
 	start_button.disabled = true
 
 	center_marker.visible = true
+	
+	# Animate title with bounce effect
+	var title_tween: Tween = create_tween()
+	title_tween.set_trans(Tween.TRANS_ELASTIC)
+	title_tween.set_ease(Tween.EASE_OUT)
+	title_label.scale = Vector2(0.5, 0.5)
+	title_label.modulate.a = 0.0
+	title_tween.tween_property(title_label, "scale", Vector2(1.0, 1.0), 0.8)
+	title_tween.parallel().tween_property(title_label, "modulate:a", 1.0, 0.6)
 
 	title_label.text = "Opening Treasure..."
 	start_card_draw()
@@ -138,10 +147,86 @@ func _on_card_revealed() -> void:
 	GameState.add_card_to_collection(drawn_card_id)
 	DeckManager.add_card_to_deck(drawn_card_id)
 	
-	# Update UI
+	center_marker.visible = false
+
+	# Hide dummy cards and highlight the drawn card
+	await _highlight_drawn_card()
+	
+	
+
+	# Update UI with celebration animation
+	var title_tween: Tween = create_tween()
+	title_tween.set_trans(Tween.TRANS_BOUNCE)
+	title_tween.set_ease(Tween.EASE_OUT)
+	title_tween.tween_property(title_label, "scale", Vector2(1.2, 1.2), 0.3)
+	title_tween.tween_property(title_label, "scale", Vector2(1.0, 1.0), 0.2)
+	
 	title_label.text = "Card Obtained!"
+	title_label.modulate = Color(0.3, 1.0, 0.5, 1.0)
+	
 	continue_button.disabled = false
 	continue_button.visible = true
+
+
+func _highlight_drawn_card() -> void:
+	"""Hide dummy cards and highlight the drawn card"""
+	var all_cards: Array = card_container.get_children()
+	var drawn_card_index: int = NUM_DUMMY_CARDS
+	
+	# Get the drawn card before fading
+	var drawn_card: Control = all_cards[drawn_card_index]
+	
+	# Fade out and shrink all dummy cards
+	var fade_tween: Tween = create_tween()
+	fade_tween.set_parallel(true)
+	fade_tween.set_trans(Tween.TRANS_CUBIC)
+	fade_tween.set_ease(Tween.EASE_IN)
+	
+	for i in range(all_cards.size()):
+		if i != drawn_card_index:
+			var card: Control = all_cards[i]
+			fade_tween.tween_property(card, "modulate:a", 0.0, 0.5)
+			fade_tween.tween_property(card, "scale", Vector2(0.3, 0.3), 0.5)
+	
+	await fade_tween.finished
+	
+	# Disable scrolling
+	scroll_area.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	
+	# Calculate center position of the screen
+	var viewport_center: Vector2 = get_viewport_rect().size / 2.0
+	
+	# Get the current global position of the drawn card
+	var card_global_pos: Vector2 = drawn_card.global_position
+	var card_size: Vector2 = drawn_card.size * drawn_card.scale
+	var card_center: Vector2 = card_global_pos + card_size / 2.0
+	
+	# Calculate offset needed to center the card
+	var offset_needed: Vector2 = viewport_center - card_center
+	
+	# Reparent card to main control for absolute positioning
+	var original_scale: Vector2 = drawn_card.scale
+	var original_global_pos: Vector2 = drawn_card.global_position
+	
+	drawn_card.reparent(self)
+	drawn_card.global_position = original_global_pos
+	drawn_card.scale = original_scale
+	
+	# Animate the drawn card to center and enlarge
+	var highlight_tween: Tween = create_tween()
+	highlight_tween.set_trans(Tween.TRANS_BACK)
+	highlight_tween.set_ease(Tween.EASE_OUT)
+	highlight_tween.set_parallel(true)
+	
+	# Move to center and scale up
+	highlight_tween.tween_property(drawn_card, "global_position", viewport_center - (drawn_card.size * 1.5 / 2.0), 0.6)
+	highlight_tween.tween_property(drawn_card, "scale", Vector2(1.5, 1.5), 0.6)
+	
+	# Add a glow effect by modulating
+	highlight_tween.tween_property(drawn_card, "modulate", Color(1.2, 1.2, 1.0, 1.0), 0.3)
+	highlight_tween.tween_property(drawn_card, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3).set_delay(0.3)
+	
+	await highlight_tween.finished
 	
 	print("Treasure: Drew card %s and added to deck" % drawn_card_id)
 

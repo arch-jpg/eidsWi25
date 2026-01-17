@@ -18,6 +18,7 @@ var player_gold: int = 0
 var current_map: String = "map_system"
 #var completed_levels: Array[String] = []
 var card_collection: Dictionary = {}  # {card_id: quantity} - player's card collection with quantities
+var return_scene: String = "res://scenes/playermenu/player_menu.tscn"  # Scene to return to from deck editor
 
 # Map system state
 var saved_map_data: Dictionary = {}  # Stores serialized map nodes
@@ -130,7 +131,7 @@ func add_card_to_collection(card_id: String, quantity: int = 1):
 		card_collection[card_id] += quantity
 	else:
 		card_collection[card_id] = quantity
-	print("✅ Added %d x %s to collection. Total: %d" % [quantity, card_id, card_collection[card_id]])
+	print("Added %d x %s to collection. Total: %d" % [quantity, card_id, card_collection[card_id]])
 	
 	# Auto-save to persist changes (only after initialization)
 	if _is_initializing:
@@ -249,11 +250,20 @@ func add_gold(amount: int):
 	"""Add gold to player."""
 	player_gold += amount
 	print("Gold added: %d (Total: %d)" % [amount, player_gold])
+	
+	# Auto-save to persist changes
+	if not _is_initializing and DeckManager:
+		DeckManager.save_deck()
 
 func spend_gold(amount: int) -> bool:
 	"""Try to spend gold. Returns true if successful."""
 	if player_gold >= amount:
 		player_gold -= amount
+		
+		# Auto-save to persist changes
+		if not _is_initializing and DeckManager:
+			DeckManager.save_deck()
+		
 		return true
 	return false
 

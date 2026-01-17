@@ -25,6 +25,7 @@ const CARD_UI_SCENE = preload("res://scenes/cards/card_ui.tscn")
 var current_filter: String = "all"
 var search_query: String = ""
 var deck_card_uis: Array = []
+var backup_deck: Array = []  # Backup of the original deck
 
 func _ready():
 	# Connect buttons
@@ -47,6 +48,10 @@ func _ready():
 	DeckManager.deck_changed.connect(_on_deck_changed)
 	DeckManager.deck_size_changed.connect(_on_deck_size_changed)
 	
+	# Create backup of current deck before making any changes
+	backup_deck = DeckManager.get_deck_card_ids().duplicate()
+	print("Backup created with %d cards" % backup_deck.size())
+	
 	# Load cards
 	populate_available_cards()
 	populate_deck_cards()
@@ -56,10 +61,10 @@ func _input(event):
 	if event is InputEventKey and event.pressed:
 		# Drücke T für Test-Belohnung (zufällige Karte)
 		if event.keycode == KEY_T:
-			print(" Testing reward_random_card()...")
+			print("Testing reward_random_card()...")
 			var card = GameState.reward_random_card()
 			populate_available_cards(current_filter)
-			print(" Received: " + card)
+			print("Received: " + card)
 		
 
 func populate_available_cards(filter: String = "all"):
@@ -180,7 +185,7 @@ func update_deck_info():
 	# Update save button state
 	if DeckManager.is_deck_valid():
 		save_button.disabled = false
-		save_button.text = "Save Deck ✓"
+		save_button.text = "Save Deck"
 	else:
 		save_button.disabled = true
 		if DeckManager.get_deck_size() < DeckManager.MIN_DECK_SIZE:
@@ -209,20 +214,22 @@ func _on_search_changed(new_text: String):
 func _on_save_pressed():
 	if DeckManager.is_deck_valid():
 		DeckManager.save_deck()
+		# Update backup to current state after saving
+		backup_deck = DeckManager.get_deck_card_ids().duplicate()
 		print("Deck saved successfully!")
-		# Could add a visual confirmation here
+		save_button.text = "Saved!"
+		# Reset button text after a short delay
+		await get_tree().create_timer(1.0).timeout
+		if DeckManager.is_deck_valid():
+			save_button.text = "Save Deck"
 
 func _on_back_pressed():
-	# Check if deck is valid before leaving
-	if not DeckManager.is_deck_valid():
-		print("Cannot leave: Deck must have at least %d cards!" % DeckManager.MIN_DECK_SIZE)
-		# Show warning to user
-		deck_info_label.text = "⚠️ Deck must have at least %d cards!" % DeckManager.MIN_DECK_SIZE
-		return
+	# Restore original deck (discard all changes)
+	DeckManager.set_deck(backup_deck)
+	print("Changes discarded, original deck restored with %d cards" % backup_deck.size())
 	
-	# Save deck before leaving if valid
-	DeckManager.save_deck()
-	get_tree().change_scene_to_file("res://scenes/playermenu/player_menu.tscn")
+	# Go back to the scene that opened the deck editor
+	get_tree().change_scene_to_file(GameState.return_scene)
 
 func _on_clear_pressed():
 	DeckManager.clear_deck()

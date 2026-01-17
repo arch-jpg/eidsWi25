@@ -1,7 +1,7 @@
 # 🎮 Game Design Overview (GDO)
 
 ## 1. Spielname
-> [Titel des Spiels]
+> Milk and Sword
 
 ## 2. Elevator Pitch
 > Roguelike wie Slay the Spire etc.

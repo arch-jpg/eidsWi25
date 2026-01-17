@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccxy48ld0gno1"]
+[gd_scene load_steps=14 format=3 uid="uid://ccxy48ld0gno1"]
 
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dfqwpg7tv4to5" path="res://scenes/mainmenu/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://cknrqgpkm3v2v" path="res://data/assets/locations/marketplace.png" id="2_jl081"]
+[ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="4_ukhca"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.100514, 0.260884, 0.366038, 1)
@@ -73,7 +75,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vrkn")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_jl081")
+
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +96,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 622.0
+offset_top = 314.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -99,9 +110,10 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_06t4h")
-theme_override_font_sizes/font_size = 44
-text = "Game Project name here"
+theme_override_font_sizes/font_size = 50
+text = "Milk and Sword"
 horizontal_alignment = 1
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
@@ -123,7 +135,22 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Play"
 
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+text = "Credits"
+
 [node name="Options" type="Button" parent="CenterContainer/VBoxContainer/ButtonsVBox"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
@@ -167,7 +194,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Exit"
 
+[node name="main_char" parent="." instance=ExtResource("4_ukhca")]
+position = Vector2(550, 900)
+scale = Vector2(3.5, 3.5)
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Play" to="." method="_on_PLAY_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Options" to="." method="_on_OPTIONS_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Debug Card Database" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Exit" to="." method="_on_EXIT_pressed"]

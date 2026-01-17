@@ -10,6 +10,7 @@ signal node_selected(node: MapNode)
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var lines_layer: Node2D = $ScrollContainer/MapContainer/LinesLayer
 @onready var nodes_layer: Control = $ScrollContainer/MapContainer/NodesLayer
+@onready var gold_label: Label = $UILayer/HBoxContainer/GoldLabel
 
 @export var node_ui_scene: PackedScene = preload("res://scenes/map_system/map_node_ui.tscn")
 
@@ -18,10 +19,11 @@ var all_nodes: Array[MapNode] = []
 var node_ui_map: Dictionary = {}  # MapNode -> MapNodeUI
 var current_node: MapNode = null
 
-# Line drawing settings
-var active_line_color: Color = Color.GREEN
-var inactive_line_color: Color = Color.GRAY
-var line_width: float = 3.0
+# Line drawing settings - improved colors
+var active_line_color: Color = Color(0.9, 0.7, 0.3, 0.9)  # Golden active path
+var inactive_line_color: Color = Color(0.3, 0.3, 0.35, 0.5)  # Darker inactive
+var visited_line_color: Color = Color(0.2, 0.6, 0.8, 0.7)  # Blue for completed paths
+var line_width: float = 4.0
 
 
 func _ready() -> void:
@@ -45,6 +47,18 @@ func _ready() -> void:
 	else:
 		print("No saved map found, generating new one")
 		generate_and_display_map()
+	
+	# Update gold display
+	_update_gold_display()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Cheat key: Press G to add 1000 gold
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_G:
+			GameState.add_gold(10000)
+			print("Cheat activated: +10000 gold (Total: %d)" % GameState.player_gold)
+			get_viewport().set_input_as_handled()
 
 
 func generate_and_display_map() -> void:
@@ -169,12 +183,22 @@ func _draw_connection(from_node: MapNode, to_node: MapNode) -> void:
 	line.add_point(from_pos)
 	line.add_point(to_pos)
 	
-	# Set line appearance
+	# Set line appearance with rounded ends
 	line.width = line_width
+	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line.end_cap_mode = Line2D.LINE_CAP_ROUND
+	line.antialiased = true
 	
-	# Determine if this path is available
-	var is_available: bool = from_node.is_reachable and not from_node.is_visited
-	line.default_color = active_line_color if is_available else inactive_line_color
+	# Determine line color based on state
+	var line_color: Color
+	if from_node.is_visited:
+		line_color = visited_line_color  # Blue for completed paths
+	elif from_node.is_reachable and not from_node.is_visited:
+		line_color = active_line_color  # Golden for active paths
+	else:
+		line_color = inactive_line_color  # Gray for locked paths
+	
+	line.default_color = line_color
 	
 	# Store reference for later updates
 	line.set_meta("from_node", from_node)
@@ -235,8 +259,17 @@ func _update_line_colors() -> void:
 	for line in lines_layer.get_children():
 		if line is Line2D:
 			var from_node: MapNode = line.get_meta("from_node")
-			var is_available: bool = from_node.is_reachable and not from_node.is_visited
-			line.default_color = active_line_color if is_available else inactive_line_color
+			
+			# Determine line color based on state
+			var line_color: Color
+			if from_node.is_visited:
+				line_color = visited_line_color  # Blue for completed paths
+			elif from_node.is_reachable and not from_node.is_visited:
+				line_color = active_line_color  # Golden for active paths
+			else:
+				line_color = inactive_line_color  # Gray for locked paths
+			
+			line.default_color = line_color
 
 
 func _lock_alternative_paths(selected_node: MapNode) -> void:
@@ -275,7 +308,7 @@ func _handle_node_type(node: MapNode) -> void:
 			get_tree().change_scene_to_file("res://scenes/fightscene/combat_scene.tscn")
 		MapNode.NodeType.SHOP:
 			print("Entering shop...")
-			# TODO: Load shop scene
+			get_tree().change_scene_to_file("res://scenes/shop/shop_screen.tscn")
 		MapNode.NodeType.TREASURE:
 			print("Opening treasure...")
 			get_tree().change_scene_to_file("res://scenes/treasure/treasure_screen.tscn")
@@ -301,7 +334,28 @@ func _on_back_button_pressed() -> void:
 		scroll_container.scroll_vertical
 	)
 	GameState.save_map_state(all_nodes, current_node, scroll_pos)
-	get_tree().change_scene_to_file("res://scenes/playermenu/player_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
+
+
+func _on_deck_editor_button_pressed() -> void:
+	"""Open the deck editor"""
+	# Save current scroll position before leaving
+	var scroll_pos: Vector2 = Vector2(
+		scroll_container.scroll_horizontal,
+		scroll_container.scroll_vertical
+	)
+	GameState.save_map_state(all_nodes, current_node, scroll_pos)
+	
+	# Set return scene so deck editor knows where to go back
+	GameState.return_scene = "res://scenes/map_system/map_screen.tscn"
+	
+	get_tree().change_scene_to_file("res://scenes/deck_editor/deck_editor.tscn")
+
+
+func _update_gold_display() -> void:
+	"""Update the gold label"""
+	if gold_label:
+		gold_label.text = "Gold: %d" % GameState.player_gold
 
 
 func load_saved_map() -> void:

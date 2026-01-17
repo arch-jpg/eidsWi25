@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkybrm2ewjcad"
-path="res://.godot/imported/main_char_damage.png-98bb35328f4feea24078fa28a10501b9.ctex"
+uid="uid://grpvahxrlgjr"
+path="res://.godot/imported/milk_and_sword_icon_256.png-7165546574ecde2447750d0984290e16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/assets/main_char_damage.png"
-dest_files=["res://.godot/imported/main_char_damage.png-98bb35328f4feea24078fa28a10501b9.ctex"]
+source_file="res://data/assets/icon/milk_and_sword_icon_256.png"
+dest_files=["res://.godot/imported/milk_and_sword_icon_256.png-7165546574ecde2447750d0984290e16.ctex"]
 
 [params]
 
