@@ -84,7 +84,7 @@
 	{
 	  "id": "frost_nova",
 	  "name": "Frost Nova",
-	  "description": "Deal 3 Ice damage to all enemies. Apply Chill for 2 turns.",
+	  "description": "Deal 25 Ice damage to all enemies.",
 	  "type": "attack",
 	  "rarity": "uncommon",
 	  "energy_cost": 2,
@@ -93,17 +93,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 3,
-		  "target": "all_enemies"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "chill",
-		  "duration": 2,
+		  "value": 25,
 		  "target": "all_enemies"
 		}
 	  ],
-	  "keywords": ["ice", "chill", "aoe"],
+	  "keywords": ["ice", "aoe"],
 	  "upgrade_path": "frost_nova_plus"
 	},
 	{
@@ -158,7 +152,7 @@
 	{
 	  "id": "inferno",
 	  "name": "Inferno",
-	  "description": "Deal 15 Fire damage to all enemies. Apply Burn for 3 turns.",
+	  "description": "Deal 30 Fire damage to all enemies.",
 	  "type": "attack",
 	  "rarity": "rare",
 	  "energy_cost": 3,
@@ -167,18 +161,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 15,
-		  "target": "all_enemies"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "burn",
-		  "value": 3,
-		  "duration": 3,
+		  "value": 30,
 		  "target": "all_enemies"
 		}
 	  ],
-	  "keywords": ["fire", "burn", "aoe"],
+	  "keywords": ["fire", "aoe"],
 	  "upgrade_path": "inferno_plus"
 	},
 	{
@@ -318,7 +305,7 @@
 	{
 	  "id": "poison_dagger",
 	  "name": "Poison Dagger",
-	  "description": "Deal 5 damage. Apply Weaken for 2 turns.",
+	  "description": "Deal 5 damage.",
 	  "type": "attack",
 	  "rarity": "common",
 	  "energy_cost": 1,
@@ -329,15 +316,9 @@
 		  "element": "standard",
 		  "value": 5,
 		  "target": "selected_enemy"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "weaken",
-		  "duration": 2,
-		  "target": "selected_enemy"
 		}
 	  ],
-	  "keywords": ["poison", "weaken"],
+	  "keywords": ["poison"],
 	  "upgrade_path": "poison_dagger_plus"
 	},
 	{
@@ -474,7 +455,7 @@
 	{
 	  "id": "flame_barrier",
 	  "name": "Flame Barrier",
-	  "description": "Gain 12 Block. Apply Burn to all enemies for 1 turn.",
+	  "description": "Gain 16 Block.",
 	  "type": "defense",
 	  "rarity": "uncommon",
 	  "energy_cost": 2,
@@ -482,18 +463,11 @@
 	  "effects": [
 		{
 		  "type": "block",
-		  "value": 12,
+		  "value": 16,
 		  "target": "self"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "burn",
-		  "value": 1,
-		  "duration": 1,
-		  "target": "all_enemies"
 		}
 	  ],
-	  "keywords": ["block", "fire", "burn"],
+	  "keywords": ["block", "fire"],
 	  "upgrade_path": "flame_barrier_plus"
 	},
 	{
@@ -547,7 +521,7 @@
 	{
 	  "id": "meteor_strike",
 	  "name": "Meteor Strike",
-	  "description": "Deal 18 damage to random enemy. Apply Vulnerable for 2 turns.",
+	  "description": "Deal 25 damage to random enemy.",
 	  "type": "attack",
 	  "rarity": "rare",
 	  "energy_cost": 3,
@@ -556,17 +530,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 18,
-		  "target": "random_enemy"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "vulnerable",
-		  "duration": 2,
+		  "value": 25,
 		  "target": "random_enemy"
 		}
 	  ],
-	  "keywords": ["meteor", "vulnerable", "random"],
+	  "keywords": ["meteor", "random"],
 	  "upgrade_path": "meteor_strike_plus"
 	},
 	{
@@ -595,7 +563,7 @@
 	{
 	  "id": "soul_reaper",
 	  "name": "Soul Reaper",
-	  "description": "Deal 30 damage to weakest enemy.",
+	  "description": "Deal 50 damage to weakest enemy.",
 	  "type": "attack",
 	  "rarity": "legendary",
 	  "energy_cost": 4,
@@ -604,7 +572,7 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 30,
+		  "value": 50,
 		  "target": "weakest_enemy"
 		}
 	  ],
@@ -614,7 +582,7 @@
 	{
 	  "id": "aegis_shield",
 	  "name": "Aegis Shield",
-	  "description": "Gain 30 Block. Gain 1 Energy.",
+	  "description": "Gain 40 Block. Gain 1 Energy.",
 	  "type": "defense",
 	  "rarity": "legendary",
 	  "energy_cost": 3,
@@ -622,7 +590,7 @@
 	  "effects": [
 		{
 		  "type": "block",
-		  "value": 30,
+		  "value": 40,
 		  "target": "self"
 		},
 		{
@@ -893,7 +861,7 @@
 	{
 	  "id": "shockwave",
 	  "name": "Shockwave",
-	  "description": "Deal 5 damage to all enemies. Apply Weaken for 1 turn.",
+	  "description": "Deal 5 damage to all enemies.",
 	  "type": "attack",
 	  "rarity": "uncommon",
 	  "energy_cost": 2,
@@ -904,15 +872,9 @@
 		  "element": "standard",
 		  "value": 5,
 		  "target": "all_enemies"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "weaken",
-		  "duration": 1,
-		  "target": "all_enemies"
 		}
 	  ],
-	  "keywords": ["aoe", "weaken"]
+	  "keywords": ["aoe"]
 	},
 	{
 	  "id": "rally",
@@ -992,7 +954,7 @@
 	{
 	  "id": "fireball",
 	  "name": "Fireball",
-	  "description": "Deal 12 damage. Apply Burn for 2 turns.",
+	  "description": "Deal 16 damage.",
 	  "type": "attack",
 	  "rarity": "uncommon",
 	  "energy_cost": 2,
@@ -1001,18 +963,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 12,
-		  "target": "selected_enemy"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "burn",
-		  "value": 2,
-		  "duration": 2,
+		  "value": 16,
 		  "target": "selected_enemy"
 		}
 	  ],
-	  "keywords": ["fire", "burn"]
+	  "keywords": ["fire"]
 	},
 	{
 	  "id": "refresh",
@@ -1142,7 +1097,7 @@
 	{
 	  "id": "venom_strike",
 	  "name": "Venom Strike",
-	  "description": "Deal 7 damage. Apply Weaken for 2 turns.",
+	  "description": "Deal 12 damage.",
 	  "type": "attack",
 	  "rarity": "uncommon",
 	  "energy_cost": 2,
@@ -1151,17 +1106,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 7,
-		  "target": "selected_enemy"
-		},
-		{
-		  "type": "status_effect",
-		  "effect_name": "weaken",
-		  "duration": 2,
+		  "value": 12,
 		  "target": "selected_enemy"
 		}
 	  ],
-	  "keywords": ["poison", "weaken"]
+	  "keywords": ["poison"]
 	},
 	{
 	  "id": "shield_charge",
@@ -1224,7 +1173,7 @@
 	{
 	  "id": "infinity_blade",
 	  "name": "Infinity Blade",
-	  "description": "Deal 40 damage.",
+	  "description": "Deal 60 damage.",
 	  "type": "attack",
 	  "rarity": "legendary",
 	  "energy_cost": 5,
@@ -1233,7 +1182,7 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 40,
+		  "value": 60,
 		  "target": "selected_enemy"
 		}
 	  ],

@@ -1,8 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbesgtcfk251s"]
+[gd_scene load_steps=10 format=3 uid="uid://dbesgtcfk251s"]
 
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_jq2ib"]
-[ext_resource type="Script" path="res://scenes/fightscene/rewards_screen.gd" id="1_x0mi1"]
+[ext_resource type="Script" uid="uid://bkug6yd26jbh5" path="res://scenes/fightscene/rewards_screen.gd" id="1_x0mi1"]
 [ext_resource type="Script" path="res://scenes/fightscene/reaward_gold_counter.gd" id="2_x0mi1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.1, 0.15, 0.2, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.7, 0.3, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goldpanel"]
+bg_color = Color(0.2, 0.25, 0.15, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.85, 0.1, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6gao"]
 
@@ -41,39 +70,123 @@ offset_right = 1921.0
 offset_bottom = 1083.0
 color = Color(0.0823529, 0.133333, 0.129412, 1)
 
-[node name="exit" type="Button" parent="."]
-custom_minimum_size = Vector2(0, 60)
-offset_left = 742.0
-offset_top = 668.0
-offset_right = 1038.0
-offset_bottom = 771.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MainPanel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="VictoryLabel" type="Label" parent="CenterContainer/MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0.1, 0.4, 0.2, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_jq2ib")
+theme_override_font_sizes/font_size = 72
+text = "VICTORY!"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="RewardLabel" type="Label" parent="CenterContainer/MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_jq2ib")
+theme_override_font_sizes/font_size = 36
+text = "Battle Rewards"
+horizontal_alignment = 1
+
+[node name="GoldPanel" type="Panel" parent="CenterContainer/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_goldpanel")
+
+[node name="GoldContainer" type="HBoxContainer" parent="CenterContainer/MainPanel/VBoxContainer/GoldPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GoldIcon" type="Label" parent="CenterContainer/MainPanel/VBoxContainer/GoldPanel/GoldContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.5, 0.4, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_jq2ib")
+theme_override_font_sizes/font_size = 80
+text = "+"
+
+[node name="gold amount" type="Label" parent="CenterContainer/MainPanel/VBoxContainer/GoldPanel/GoldContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85098, 0.101961, 1)
+theme_override_colors/font_outline_color = Color(0.5, 0.4, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_jq2ib")
+theme_override_font_sizes/font_size = 80
+text = "25"
+script = ExtResource("2_x0mi1")
+
+[node name="GoldText" type="Label" parent="CenterContainer/MainPanel/VBoxContainer/GoldPanel/GoldContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.5, 0.4, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_jq2ib")
+theme_override_font_sizes/font_size = 60
+text = "Gold"
+vertical_alignment = 2
+
+[node name="Spacer2" type="Control" parent="CenterContainer/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="exit" type="Button" parent="CenterContainer/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
 theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_jq2ib")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_e6gao")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2677v")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yr55s")
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4ggw")
-text = "Back to map"
+text = "Continue"
 
-[node name="reward" type="Label" parent="."]
-offset_left = 357.0
-offset_top = 419.0
-offset_right = 1402.0
-offset_bottom = 534.0
-theme_override_colors/font_color = Color(1, 0.85098, 0.101961, 1)
-theme_override_font_sizes/font_size = 106
-text = "Reward: 	      Gold"
-
-[node name="gold amount" type="Label" parent="."]
-offset_left = 885.0
-offset_top = 376.0
-offset_right = 1090.0
-offset_bottom = 570.0
-theme_override_colors/font_color = Color(1, 0.85098, 0.101961, 1)
-theme_override_font_sizes/font_size = 181
-script = ExtResource("2_x0mi1")
-
-[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/VBoxContainer/exit" to="." method="_on_exit_pressed"]
