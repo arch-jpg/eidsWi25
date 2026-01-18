@@ -361,7 +361,7 @@
 	{
 	  "id": "berserker_rage",
 	  "name": "Berserker Rage",
-	  "description": "Deal 20 damage. Discard 1 card.",
+	  "description": "Deal 30 damage.",
 	  "type": "attack",
 	  "rarity": "rare",
 	  "energy_cost": 2,
@@ -370,16 +370,11 @@
 		{
 		  "type": "damage",
 		  "element": "standard",
-		  "value": 20,
+		  "value": 30,
 		  "target": "selected_enemy"
-		},
-		{
-		  "type": "discard_cards",
-		  "value": 1,
-		  "target": "self"
 		}
 	  ],
-	  "keywords": ["berserker", "discard"],
+	  "keywords": ["berserker"],
 	  "upgrade_path": "berserker_rage_plus"
 	},
 	{
@@ -647,7 +642,7 @@
 	{
 	  "id": "rage",
 	  "name": "Rage",
-	  "description": "Deal 8 damage. Discard 1 card.",
+	  "description": "Deal 8 damage.",
 	  "type": "attack",
 	  "rarity": "common",
 	  "energy_cost": 1,
@@ -658,14 +653,9 @@
 		  "element": "standard",
 		  "value": 8,
 		  "target": "selected_enemy"
-		},
-		{
-		  "type": "discard_cards",
-		  "value": 1,
-		  "target": "self"
 		}
 	  ],
-	  "keywords": ["rage", "discard"]
+	  "keywords": ["rage"]
 	},
 	{
 	  "id": "focus",
@@ -1152,23 +1142,6 @@
 		}
 	  ],
 	  "keywords": ["doom"]
-	},
-	{
-	  "id": "second_wind",
-	  "name": "Second Wind",
-	  "description": "Discard all cards. Gain 5 Block for each card discarded.",
-	  "type": "defense",
-	  "rarity": "rare",
-	  "energy_cost": 1,
-	  "target": "self",
-	  "effects": [
-		{
-		  "type": "block",
-		  "value": 5,
-		  "target": "self"
-		}
-	  ],
-	  "keywords": ["block", "discard"]
 	},
 	{
 	  "id": "infinity_blade",
