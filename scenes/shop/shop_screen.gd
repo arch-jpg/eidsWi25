@@ -130,7 +130,7 @@ func _display_shop_cards() -> void:
 		buy_button.pressed.connect(_on_buy_card.bind(i))
 
 
-func _setup_card_hover_effect(container: Control, card_ui: CardUI) -> void:
+func _setup_card_hover_effect(container: Control, _card_ui: CardUI) -> void:
 	"""Setup hover effect for shop cards"""
 	container.mouse_entered.connect(func():
 		if not card_purchased:
@@ -151,7 +151,7 @@ func _setup_card_hover_effect(container: Control, card_ui: CardUI) -> void:
 	)
 
 
-func _on_card_clicked(card_ui: CardUI, card_index: int) -> void:
+func _on_card_clicked(_card_ui: CardUI, card_index: int) -> void:
 	"""Handle card click to purchase"""
 	_on_buy_card(card_index)
 

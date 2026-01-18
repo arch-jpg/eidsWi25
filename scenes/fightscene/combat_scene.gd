@@ -107,7 +107,7 @@ func build_deck():
 func add_to_discard(card):
 	discard_pile.append(card)
 
-func draw_hand(start):
+func draw_hand(_start):
 	# Start deck animation for all cards at once
 
 	$DeckAnimations.draw_cards(HAND_SIZE)
@@ -199,9 +199,8 @@ func _on_dragging(b):
 	
 func _take_enemy_turn(id: String):
 	var currenemy = EnemiesDatabase.get_enemy_by_id(id)
-	var attacks = EnemiesDatabase.get_enemy_attacks(id)
-	var randf = randf()
-	if currenemy["aggro"] >= randf:
+	var random_value = randf()
+	if currenemy["aggro"] >= random_value:
 		var attackrandf = randf()
 		var cumulative = 0
 		for i in currenemy["attacks"]:
