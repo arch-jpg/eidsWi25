@@ -1,12 +1,15 @@
 extends Area2D
-# Reference to the label you want to update
-@onready var output_label: Label = get_parent().get_node("enemyhp")
-@export var hp = 20
+
+@export var enemyid: String
+var hp = EnemiesDatabase.get_enemy_health(enemyid)
+var block =5
 signal sg_dropped_attack(bool)
 
 func _ready() -> void:
-	output_label.text = str(hp)
-
+	get_parent().get_child(4).text = str(hp)
+	hp=EnemiesDatabase.get_enemy_health(enemyid)
+	print(hp)
+	
 func _apply_damage(effect):
 	var damage = effect.value
 	if effect.conditional != null:
@@ -27,8 +30,20 @@ func resolve_effects(effects: Array):
 				_apply_damage(effect)
 func take_damage(amount):
 	get_parent().get_child(0).play("damage")
+	if block != 0 and amount >0:
+		if block>=amount:
+			block-=amount
+			amount=0
+			get_parent().get_child(2).text = str(block)
+		else:
+			amount -= block
+			block =0
+			get_parent().get_child(2).text = str(block)
 	hp -= amount
 	if hp<=0:
+		var hpbar = get_parent().get_child(3)
+		if hpbar:
+			hpbar.text = "0"
 		get_parent().get_child(0).play("death")
 		await get_tree().create_timer(3.0).timeout
 		
@@ -39,6 +54,7 @@ func take_damage(amount):
 			GameState.is_boss_fight = false
 		
 		get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
-	var hpbar = get_parent().get_node_or_null("enemyhp")
+	var hpbar = get_parent().get_child(3)
+	print(hpbar)
 	if hpbar:
 		hpbar.text = str(hp)

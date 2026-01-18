@@ -4,15 +4,101 @@ var deck: Array = []
 var discard_pile: Array = []
 const HAND_SIZE := 5
 var frontpointer = 0
+@export var energy_count: int = 4
+
+var allEnemies: Array = []
+var double_combat: bool=false
+var enemy
+var fightEnemies: Array =[]
+
 const CARD_UI_SCENE := preload("res://scenes/cards/card_ui.tscn")
 const drag_script = preload("res://scenes/fightscene/draggablearea2d.gd")
+var enemyHitbox = preload("res://scenes/fightscene/enemyHitbox.gd")
+const enemyscene = preload("res://scenes/character/milk_boy.tscn")
+const enemyv2scene = preload("res://scenes/character/Bernd_Brotmann.tscn")
 
 func _ready() -> void:
+	$Label.text=str(energy_count)
 	build_deck()
 	draw_hand(frontpointer)
-	$enemy_char.get_child(1).sg_dropped_attack.connect(_dropped_attack)
+	get_enemies()
+	draw_enemies(enemy)
 	pass
 
+func get_enemies():
+	allEnemies=EnemiesDatabase.get_all_enemies()
+	var randfenemies = randf()
+	if randfenemies<=0.4:
+		enemy=allEnemies[0]
+		fightEnemies.append(enemy)
+		return
+	elif randfenemies <=0.9:
+		enemy=allEnemies[1]
+		fightEnemies.append(enemy)
+		return
+	else:
+		double_combat=true
+		enemy=allEnemies[0]
+		fightEnemies.append(enemy)
+		print("double combat")
+
+
+func draw_enemies(id: String):
+	#enemyscene
+	if id=="Bernd_Brotmann":
+		enemy= enemyv2scene.instantiate()
+	else:
+		enemy= enemyscene.instantiate()	
+	add_child(enemy)
+	enemy.apply_scale(Vector2(2,2))
+	
+	#hitbox
+	var enemyhitbox = Area2D.new()
+	
+	enemy.add_child(enemyhitbox)
+	var shapebox = CollisionShape2D.new()
+	shapebox.shape = RectangleShape2D.new()
+	shapebox.shape.size = Vector2(40,140)
+	
+	enemyhitbox.global_position+=Vector2(0,-140)
+	enemyhitbox.add_child(shapebox)
+	enemyhitbox.set_script(enemyHitbox)
+	enemyhitbox.enemyid=id
+	enemyhitbox.hp = EnemiesDatabase.get_enemy_health(id)
+	
+	print(enemyhitbox.hp)
+	
+	var enemyhp = Label.new()
+	var enemyblock= Label.new()
+	
+	enemy.add_child(enemyblock)
+	enemy.add_child(enemyhp)
+	
+	enemyblock.text="5"
+	enemyhp.text=str(int(EnemiesDatabase.get_enemy_by_id(id)["health"]))
+	
+	enemyhp.global_position+=Vector2(-20,0)
+	enemyblock.global_position+=Vector2(-20,30)
+	
+	#enemyname (for test reasons)
+	var enemyname = Label.new()
+	enemy.add_child(enemyname)
+	if id=="Mc_Milky_Man":
+		enemyname.text="Milk Boy"
+		enemyname.global_position+=Vector2(-40,-300)
+	elif id=="Bernd_Brotmann":
+		enemyname.text="Bernd Brotman"
+		enemyname.global_position+=Vector2(-70,-300)
+	enemyname.scale=Vector2(0.6,0.6)
+	
+	#skin
+	#if id=="Bernd_Brotmann":
+		#var animatedsprite = enemy.get_child(1) as AnimatedSprite2D
+	
+	enemy.global_position=Vector2(1351,470)
+	enemyhitbox.add_to_group("enemies")
+	enemy.get_child(1).sg_dropped_attack.connect(_dropped_attack)
+	
 func build_deck():
 	deck.clear()
 	deck=DeckManager.current_deck.duplicate()
@@ -26,6 +112,7 @@ func draw_hand(start):
 
 	$DeckAnimations.draw_cards(HAND_SIZE)
 	var draw_delay = $DeckAnimations.card_delay_between_draws + 0.1
+	
 	await get_tree().create_timer(draw_delay).timeout
 
 	for i in HAND_SIZE:
@@ -110,13 +197,42 @@ func _on_dragging(b):
 	else:
 		$main_char/AnimatedSprite2D.play("idle")
 	
-func _take_enemy_turn():
+func _take_enemy_turn(id: String):
+	var currenemy = EnemiesDatabase.get_enemy_by_id(id)
+	var attacks = EnemiesDatabase.get_enemy_attacks(id)
+	var randf = randf()
+	if currenemy["aggro"] >= randf:
+		var attackrandf = randf()
+		var cumulative = 0
+		for i in currenemy["attacks"]:
+			cumulative += i["probability"]
+			if attackrandf <= cumulative:
+				animate_enemy_attack()
+				$main_char/Area2D.take_damage(i["value"])
+				print(i)
+				return
+	else:
+		var defenserandf = randf()
+		var cumulative = 0
+		for i in currenemy["defenses"]:
+			cumulative += i["probability"]
+			if defenserandf <= cumulative:
+				enemy.get_child(2).text = str(int(enemy.get_child(2).text) + int(i["value"]))
+			enemy.get_child(1).block = int(enemy.get_child(2).text)
+		print("defended")
 	pass
 
 func _on_end_turn_btn_pressed() -> void:
-	_take_enemy_turn()
+	energy_count +=4
+	if energy_count >9:
+		energy_count=9
+	$Label.text=str(energy_count)
 	$handcontainer.end_turn()
 	draw_hand(frontpointer)
+	for i in fightEnemies:
+		print(i)
+		_take_enemy_turn(i)
+
 	pass # Replace with function body.
 	
 func _dropped_attack(b):
@@ -132,4 +248,8 @@ func _on_battle_won():
 
 # Call this function when the player loses
 func _on_battle_lost():
+	pass
+	
+func animate_enemy_attack():
+	enemy.get_child(0).play("attack")
 	pass

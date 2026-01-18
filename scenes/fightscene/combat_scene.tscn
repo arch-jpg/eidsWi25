@@ -1,19 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://pwo5v4x2c6tc"]
+[gd_scene load_steps=9 format=3 uid="uid://pwo5v4x2c6tc"]
 
 [ext_resource type="Script" uid="uid://iv756j53l0no" path="res://scenes/fightscene/combat_scene.gd" id="1_3a06o"]
 [ext_resource type="Texture2D" uid="uid://cknrqgpkm3v2v" path="res://data/assets/locations/marketplace.png" id="2_3a06o"]
 [ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="2_nngcu"]
-[ext_resource type="PackedScene" uid="uid://chw4fnjtesy7r" path="res://scenes/character/milk_boy.tscn" id="4_merom"]
 [ext_resource type="Script" uid="uid://dopolwqy74i8i" path="res://scenes/fightscene/playerHitbox.gd" id="5_merom"]
-[ext_resource type="Script" uid="uid://b23wgl6hk5f5e" path="res://scenes/fightscene/enemyHitbox.gd" id="7_3a06o"]
+[ext_resource type="Texture2D" uid="uid://d3t8cvk36l14s" path="res://data/assets/icon/energy_icon.png" id="7_merom"]
 [ext_resource type="Script" uid="uid://d0b1dn1w4vm2n" path="res://scenes/fightscene/handcontainer.gd" id="7_ul0wa"]
 [ext_resource type="PackedScene" uid="uid://b88n4s5yw0eow" path="res://scenes/cards/deck_animations.tscn" id="8_3a06o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ul0wa"]
 size = Vector2(38, 152)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewa0t"]
-size = Vector2(40, 139.75)
 
 [node name="CombatScene" type="Node2D"]
 script = ExtResource("1_3a06o")
@@ -22,6 +18,19 @@ script = ExtResource("1_3a06o")
 offset_right = 1922.0
 offset_bottom = 1080.0
 texture = ExtResource("2_3a06o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(140, 439)
+texture = ExtResource("7_merom")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 113.0
+offset_top = 445.0
+offset_right = 160.0
+offset_bottom = 516.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "4"
 
 [node name="main_char" parent="." instance=ExtResource("2_nngcu")]
 position = Vector2(630, 470)
@@ -39,25 +48,19 @@ offset_left = -16.0
 offset_top = 3.0
 offset_right = 24.0
 offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="enemy_char" parent="." instance=ExtResource("4_merom")]
-position = Vector2(1351, 470)
-scale = Vector2(2, 2)
-
-[node name="Area2D" type="Area2D" parent="enemy_char" groups=["enemy"]]
-script = ExtResource("7_3a06o")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_char/Area2D"]
-position = Vector2(1, -71.5)
-shape = SubResource("RectangleShape2D_ewa0t")
-
-[node name="enemyhp" type="Label" parent="enemy_char"]
-offset_left = -19.5
-offset_top = 1.0
-offset_right = 20.5
-offset_bottom = 24.0
-metadata/_edit_use_anchors_ = true
+[node name="block_bar" type="Label" parent="main_char"]
+offset_left = -17.5
+offset_top = 24.0
+offset_right = 22.5
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(5.0056e-06, 0, 0.971487, 1)
+theme_override_font_sizes/font_size = 23
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="handcontainer" type="Node2D" parent="."]
 position = Vector2(743, 767)
