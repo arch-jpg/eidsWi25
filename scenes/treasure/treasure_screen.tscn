@@ -1,0 +1,226 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr10cjateg6l"]
+
+[ext_resource type="Script" uid="uid://bawfyp8h0fsk2" path="res://scenes/treasure/treasure_screen.gd" id="1_treasure"]
+[ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01"]
+bg_color = Color(0.11689, 0.134855, 0.216135, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02"]
+bg_color = Color(0.0352319, 0.0445863, 0.0875517, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03"]
+bg_color = Color(0.15182, 0.173343, 0.270545, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 1
+shadow_offset = Vector2(1, 3)
+
+[node name="TreasureScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_treasure")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.12, 1)
+
+[node name="GradientOverlay" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.25, 0.05, 0.15)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0.4, 0.25, 0.05, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 56
+text = "Opening Treasure..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -200.0
+offset_right = 640.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardScrollArea" type="ScrollContainer" parent="CenterContainer"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="CardContainer" type="HBoxContainer" parent="CenterContainer/CardScrollArea"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CenterMarker" type="Control" parent="CenterContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftLine" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -250.0
+offset_right = 3.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.9)
+
+[node name="LeftLineShadow" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -252.0
+offset_right = 5.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.2)
+
+[node name="RightLine" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = 50.0
+offset_right = 3.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.9)
+
+[node name="RightLineShadow" type="ColorRect" parent="CenterContainer/CenterMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = 48.0
+offset_right = 5.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.85, 0.1, 0.2)
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -120.0
+offset_right = 150.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_03")
+text = "Continue"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.615686, 0.396078, 0.215686, 1)
+theme_override_colors/font_color = Color(0.615133, 0.397776, 0.217245, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_03")
+text = "Open Treasure"

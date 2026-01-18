@@ -1,0 +1,162 @@
+[gd_scene load_steps=4 format=3 uid="uid://3g4um632negx"]
+
+[ext_resource type="Texture2D" uid="uid://dvldctg0tisb" path="res://data/assets/maps/map_01.png" id="1_bepxa"]
+[ext_resource type="Script" uid="uid://d1iy62j446sxg" path="res://scenes/maps/level_selector.gd" id="2_bepxa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bepxa"]
+radius = 13.1724
+
+[node name="Map01" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1049, 580)
+scale = Vector2(2.00635, 1.6377)
+texture = ExtResource("1_bepxa")
+
+[node name="Lvl100" type="Area2D" parent="Sprite2D"]
+position = Vector2(-240.736, 21.3715)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl100"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl111" type="Area2D" parent="Sprite2D"]
+position = Vector2(-157.5, -72.6631)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl100"])
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Mc_Milky_Man"
+enemy_3_id = "Mc_Milky_Man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl111"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl112" type="Area2D" parent="Sprite2D"]
+position = Vector2(-159.992, 69.61)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl100"])
+enemy_1_id = "Mc_Milky_Man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl112"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl121" type="Area2D" parent="Sprite2D"]
+position = Vector2(-58.3148, -139.831)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl111"])
+enemy_1_id = "Mc_Milky_Man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl121"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl122" type="Area2D" parent="Sprite2D"]
+position = Vector2(-52.8322, 62.8933)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl112"])
+enemy_1_id = "Mc_Milky_Man"
+enemy_2_id = "Mc_Milky_Man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl122"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl123" type="Area2D" parent="Sprite2D"]
+position = Vector2(-73.7658, 161.813)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl112"])
+enemy_1_id = "Mc_Milky_Man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl123"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl131" type="Area2D" parent="Sprite2D"]
+position = Vector2(72.2708, -144.716)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl121"])
+enemy_1_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl131"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl132" type="Area2D" parent="Sprite2D"]
+position = Vector2(52.334, -14.0441)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl122", "Lvl131"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl132"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl133" type="Area2D" parent="Sprite2D"]
+position = Vector2(87.2232, 147.158)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl123"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl133"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl141" type="Area2D" parent="Sprite2D"]
+position = Vector2(146.535, 74.4949)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl133"])
+enemy_1_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl141"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Lvl1XX" type="Area2D" parent="Sprite2D"]
+position = Vector2(207.84, -19.5396)
+scale = Vector2(1.25, -2)
+script = ExtResource("2_bepxa")
+required_levels = Array[String](["Lvl131", "Lvl132", "Lvl141"])
+enemy_1_id = "Bernd_Brotmann"
+enemy_2_id = "Bernd_Brotmann"
+enemy_3_id = "Bernd_Brotmann"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Lvl1XX"]
+scale = Vector2(1, 0.819048)
+shape = SubResource("CircleShape2D_bepxa")
+
+[node name="Back" type="Button" parent="Sprite2D"]
+offset_left = -425.649
+offset_top = -170.971
+offset_right = -364.649
+offset_bottom = -125.971
+text = "Back"
+
+[connection signal="input_event" from="Sprite2D/Lvl100" to="Sprite2D/Lvl100" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl111" to="Sprite2D/Lvl111" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl112" to="Sprite2D/Lvl112" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl121" to="Sprite2D/Lvl121" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl122" to="Sprite2D/Lvl122" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl123" to="Sprite2D/Lvl123" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl131" to="Sprite2D/Lvl131" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl132" to="Sprite2D/Lvl132" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl133" to="Sprite2D/Lvl133" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl141" to="Sprite2D/Lvl141" method="_on_input_event"]
+[connection signal="input_event" from="Sprite2D/Lvl1XX" to="Sprite2D/Lvl1XX" method="_on_input_event"]
+[connection signal="pressed" from="Sprite2D/Back" to="Sprite2D/Lvl100" method="_on_back_pressed"]

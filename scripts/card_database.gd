@@ -71,6 +71,17 @@ func get_all_cards() -> Array:
 		result.append(card.duplicate_card())
 	return result
 
+func get_unlocked_cards() -> Array:
+	"""Get only unlocked cards based on GameState card collection."""
+	var result = []
+	var collection = GameState.get_card_collection()
+	
+	for card_id in collection.keys():
+		if card_id in _cards and collection[card_id] > 0:
+			result.append(_cards[card_id].duplicate_card())
+	
+	return result
+
 func get_cards_by_type(card_type: String) -> Array:
 	var result = []
 	for card in _cards.values():
@@ -97,6 +108,22 @@ func get_cards_by_energy_cost(cost: int) -> Array:
 	for card in _cards.values():
 		if card.energy_cost == cost:
 			result.append(card.duplicate_card())
+	return result
+
+func get_cards_by_effect_type(effect_type: String, unlocked_only: bool = false) -> Array:
+	"""Get all cards that have at least one effect of the specified type"""
+	var result = []
+	var collection = GameState.get_card_collection() if unlocked_only else {}
+	
+	for card in _cards.values():
+		if unlocked_only:
+			if not card.id in collection or collection[card.id] <= 0:
+				continue
+			
+		for effect in card.effects:
+			if effect.type == effect_type:
+				result.append(card.duplicate_card())
+				break
 	return result
 
 func get_random_card() -> Card:

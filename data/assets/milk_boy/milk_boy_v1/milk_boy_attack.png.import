@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chu1vpakdw0g5"
-path="res://.godot/imported/MainChar.png-b30e632aa5027e1aaa81c26c47e4864a.ctex"
+uid="uid://biolom87lmf7f"
+path="res://.godot/imported/milk_boy_attack.png-c40db875864ad343008b6903aa35d10d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/assets/MainChar.png"
-dest_files=["res://.godot/imported/MainChar.png-b30e632aa5027e1aaa81c26c47e4864a.ctex"]
+source_file="res://data/assets/milk_boy/milk_boy_v1/milk_boy_attack.png"
+dest_files=["res://.godot/imported/milk_boy_attack.png-c40db875864ad343008b6903aa35d10d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkybrm2ewjcad"
-path="res://.godot/imported/main_char_damage.png-98bb35328f4feea24078fa28a10501b9.ctex"
+uid="uid://duie8if37lfxa"
+path="res://.godot/imported/milk_boy_death.png-72a0c0f1647afbc1469677256bb5c4c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/assets/main_char_damage.png"
-dest_files=["res://.godot/imported/main_char_damage.png-98bb35328f4feea24078fa28a10501b9.ctex"]
+source_file="res://data/assets/milk_boy/milk_boy_v1/milk_boy_death.png"
+dest_files=["res://.godot/imported/milk_boy_death.png-72a0c0f1647afbc1469677256bb5c4c0.ctex"]
 
 [params]
 

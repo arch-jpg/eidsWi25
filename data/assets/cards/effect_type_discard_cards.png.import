@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmjl2a2xbxuh4"
-path="res://.godot/imported/main_char_death.png-89dac9f99a5bcbe5abd60aaa4847b3b9.ctex"
+uid="uid://oahx66j8rtq1"
+path="res://.godot/imported/effect_type_discard_cards.png-7dd8ba3e0d306b5c9111d1a4e60da5cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/assets/main_char_death.png"
-dest_files=["res://.godot/imported/main_char_death.png-89dac9f99a5bcbe5abd60aaa4847b3b9.ctex"]
+source_file="res://data/assets/cards/effect_type_discard_cards.png"
+dest_files=["res://.godot/imported/effect_type_discard_cards.png-7dd8ba3e0d306b5c9111d1a4e60da5cf.ctex"]
 
 [params]
 
