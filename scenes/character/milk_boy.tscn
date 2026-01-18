@@ -8,7 +8,6 @@
 
 [sub_resource type="GDScript" id="GDScript_a6vxr"]
 script/source = "extends Sprite2D
-
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6vxr"]
@@ -236,7 +235,7 @@ script = SubResource("GDScript_a6vxr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -72)
 sprite_frames = SubResource("SpriteFrames_yis3l")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 script = ExtResource("1_bt15b")
 

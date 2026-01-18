@@ -13,6 +13,8 @@ var current_level_id: String = ""  # Which level the player is fighting in
 var player_health: int = 100
 var player_max_health: int = 100
 var player_gold: int = 0
+var player_energy_rec: int = 4  # Energy regained per turn
+var player_bonus_energy: int = 0  # Temporary energy boosts
 
 # Progression state
 var current_map: String = "map_system"
@@ -110,7 +112,9 @@ func clear_map_state() -> void:
 func set_player_health(health: int):
 	"""Set player health, clamped to max."""
 	player_health = clampi(health, 0, player_max_health)
-
+func get_player_health():
+	var i = player_health
+	return i
 func heal_player(amount: int):
 	"""Heal player by amount."""
 	set_player_health(player_health + amount)

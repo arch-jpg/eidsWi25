@@ -17,8 +17,9 @@ var card_back_texture = preload("res://data/assets/cards/card_back.png")
 # Draw multiple cards with animation
 func draw_cards(count: int) -> void:
 	for i in range(count):
+		if (get_tree() != null):
 		# Stagger the animation for each card
-		await get_tree().create_timer(card_delay_between_draws).timeout
+			await get_tree().create_timer(card_delay_between_draws).timeout
 		_spawn_draw_animation()
 
 # Spawn and animate a single card being drawn

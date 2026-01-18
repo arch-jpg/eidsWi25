@@ -7,6 +7,7 @@ var base_lift := -20
 var fan_lift := 10
 var max_rotation := deg_to_rad(6)
 var stagger_delay := 0.03
+var dragging
 
 func _on_card_played(card: Node2D):
 	if hand_cards.has(card):
@@ -70,17 +71,17 @@ func _relayout_hand():
 
 		# Create tween
 		var tween := create_tween()
-		var rotation 
+		var card_rotation: float
 		card.set_meta("hand_tween", tween)
 
 		tween.set_trans(Tween.TRANS_CUBIC)
 		tween.set_ease(Tween.EASE_OUT)
 		if center == 0:
-			rotation = 0.0 
+			card_rotation = 0.0 
 		else: 
-			rotation = offset / center * max_rotation
+			card_rotation = offset / center * max_rotation
 		tween.tween_property(card, "global_position", target_pos, 0.35)
-		tween.tween_property(card, "rotation", rotation, 0.4)
+		tween.tween_property(card, "rotation", card_rotation, 0.4)
 		tween.tween_property(card, "scale", Vector2.ONE, 0.35)
 
 		# Ensure proper z-index for overlapping visuals

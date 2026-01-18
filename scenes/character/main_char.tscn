@@ -461,7 +461,7 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -72)
 sprite_frames = SubResource("SpriteFrames_urhpq")
-animation = &"attack_wait_end"
+animation = &"damage"
 autoplay = "idle"
 script = ExtResource("8_tnkco")
 
