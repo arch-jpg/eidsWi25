@@ -19,10 +19,10 @@ const enemyv2scene = preload("res://scenes/character/Bernd_Brotmann.tscn")
 
 func _ready() -> void:
 	$Label.text=str(energy_count)
-	build_deck()
-	draw_hand(frontpointer)
 	get_enemies()
 	draw_enemies(enemy)
+	build_deck()
+	draw_hand(frontpointer)
 	pass
 
 func get_enemies():
@@ -125,7 +125,7 @@ func draw_hand(_start):
 		if i > 0:
 			await get_tree().create_timer(draw_delay).timeout
 		
-		var card = CardDatabase.get_card_by_id(deck[i])
+		var card = CardDatabase.get_card_by_id(deck[frontpointer])
 		var ca = Area2D.new()
 		var colCa = CollisionShape2D.new()
 		
