@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dopdlfcbfvky1"]
+[gd_scene load_steps=8 format=3 uid="uid://dbesgtcfk251s"]
 
 [ext_resource type="FontFile" uid="uid://beym5dfo74cv0" path="res://scenes/mainmenu/VCR_OSD_MONO_1.001.ttf" id="1_jq2ib"]
-[ext_resource type="Script" uid="uid://bkug6yd26jbh5" path="res://scenes/fightscene/rewards_screen.gd" id="1_x0mi1"]
-[ext_resource type="Script" uid="uid://c7yqeenwq6lxo" path="res://scenes/fightscene/reaward_gold_counter.gd" id="2_x0mi1"]
+[ext_resource type="Script" path="res://scenes/fightscene/rewards_screen.gd" id="1_x0mi1"]
+[ext_resource type="Script" path="res://scenes/fightscene/reaward_gold_counter.gd" id="2_x0mi1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6gao"]
 
@@ -37,9 +37,9 @@ shadow_offset = Vector2(1, 3)
 script = ExtResource("1_x0mi1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1897.0
-offset_bottom = 1136.0
-color = Color(0, 0, 0, 0.690196)
+offset_right = 1921.0
+offset_bottom = 1083.0
+color = Color(0.0823529, 0.133333, 0.129412, 1)
 
 [node name="exit" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 60)
@@ -56,7 +56,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_e6gao")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2677v")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yr55s")
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4ggw")
-text = "Back to menu"
+text = "Back to map"
 
 [node name="reward" type="Label" parent="."]
 offset_left = 357.0
