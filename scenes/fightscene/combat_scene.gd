@@ -2,7 +2,7 @@ extends Node2D
 
 var deck: Array = []
 var discard_pile: Array = []
-const HAND_SIZE := 5
+@export var HAND_SIZE := 5
 var frontpointer = 0
 @export var energy_count: int = 4
 
@@ -89,6 +89,10 @@ func draw_enemies(id: String):
 	elif id=="Bernd_Brotmann":
 		enemyname.text="Bernd Brotman"
 		enemyname.global_position+=Vector2(-70,-300)
+	elif id=="Boss_McBossman":
+		enemyname.text="Boss_McBossman"
+		enemyname.global_position+=Vector2(-70,-300)
+		enemy.apply_scale(Vector2(2.5,2.5))
 	enemyname.scale=Vector2(0.6,0.6)
 	
 	#skin
@@ -157,6 +161,7 @@ func draw_hand(start):
 		$handcontainer.add_card_to_hand(ca)
 		card_ui.scale = Vector2(1,1)
 		#_animate_card_to_hand(colCa,i)
+		HAND_SIZE=5
 		
 func _animate_card_to_hand(card, index: int):
 	var spacing := 180

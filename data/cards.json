@@ -133,7 +133,7 @@
 	{
 	  "id": "meditation",
 	  "name": "Meditation",
-	  "description": "Draw 2 cards. Gain 1 Energy next turn.",
+	  "description": "Draw 2 cards next turn. Gain 1 Energy next turn.",
 	  "type": "cantrip",
 	  "rarity": "uncommon",
 	  "energy_cost": 1,

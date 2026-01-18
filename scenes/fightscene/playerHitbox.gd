@@ -37,7 +37,7 @@ func resolve_effects(effects: Array):
 				_apply_heal(effect)
 			"energy":
 				_apply_energy(effect)
-			"draw":
+			"draw_cards":
 				_apply_draw(effect)
 			"discard_cards":
 				pass
@@ -64,7 +64,8 @@ func take_damage(amount):
 	if hp <= 0:
 		# Player died - clear map and reset game
 		get_parent().get_child(0).play("death")
-		GameState.clear_map_state()
+		await get_tree().create_timer(1.5).timeout
+		GameState.reset_game_state()
 		print("Player died - map cleared")
 		# TODO: Show game over screen
 		get_tree().change_scene_to_file("res://scenes/mainmenu/main_menu.tscn")
@@ -85,5 +86,7 @@ func _apply_energy(effect):
 	
 func _apply_draw(effect):
 	#TODO: APPLY DRAW EFFECT
+	print(effect.value)
+	get_parent().get_parent().HAND_SIZE+=effect.value
 	pass
 	

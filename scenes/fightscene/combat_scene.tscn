@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cknrqgpkm3v2v" path="res://data/assets/locations/marketplace.png" id="2_3a06o"]
 [ext_resource type="PackedScene" uid="uid://ba0881agk0fr5" path="res://scenes/character/main_char.tscn" id="2_nngcu"]
 [ext_resource type="Script" uid="uid://dopolwqy74i8i" path="res://scenes/fightscene/playerHitbox.gd" id="5_merom"]
-[ext_resource type="Texture2D" uid="uid://d3t8cvk36l14s" path="res://data/assets/icon/energy_icon.png" id="7_merom"]
+[ext_resource type="Texture2D" uid="uid://bb8vfhwfms6r0" path="res://data/assets/icon/energy_icon.png" id="7_merom"]
 [ext_resource type="Script" uid="uid://d0b1dn1w4vm2n" path="res://scenes/fightscene/handcontainer.gd" id="7_ul0wa"]
 [ext_resource type="PackedScene" uid="uid://b88n4s5yw0eow" path="res://scenes/cards/deck_animations.tscn" id="8_3a06o"]
 

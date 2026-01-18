@@ -3,6 +3,7 @@ extends Area2D
 @export var enemyid: String
 var hp = EnemiesDatabase.get_enemy_health(enemyid)
 var block =5
+var rewardsscreen = preload("res://scenes/fightscene/rewards_screen.tscn")
 signal sg_dropped_attack(bool)
 
 func _ready() -> void:
@@ -28,6 +29,8 @@ func resolve_effects(effects: Array):
 		match effect.type:
 			"damage":
 				_apply_damage(effect)
+			"block":
+				get_parent().get_parent().get_child(3).get_child(1)._apply_block(effect)
 func take_damage(amount):
 	get_parent().get_child(0).play("damage")
 	if block != 0 and amount >0:
@@ -46,14 +49,12 @@ func take_damage(amount):
 			hpbar.text = "0"
 		get_parent().get_child(0).play("death")
 		await get_tree().create_timer(3.0).timeout
-		
 		# Check if this was a boss fight
 		if GameState.is_boss_fight:
 			print("Boss defeated! Clearing map for new one...")
 			GameState.clear_map_state()
 			GameState.is_boss_fight = false
-		
-		get_tree().change_scene_to_file("res://scenes/map_system/map_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/fightscene/rewards_screen.tscn")
 	var hpbar = get_parent().get_child(3)
 	print(hpbar)
 	if hpbar:

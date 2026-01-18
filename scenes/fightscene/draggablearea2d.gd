@@ -37,7 +37,6 @@ func try_drop():
 			if target.dropped_on(card_data):
 				root.energy_count-=card_data["energy_cost"]
 				root.get_child(2).text=str(root.energy_count)
-				get_parent
 				card_used.emit(self)
 				hide()
 				global_position= Vector2(0,0)
