@@ -13,6 +13,8 @@ var current_level_id: String = ""  # Which level the player is fighting in
 var player_health: int = 100
 var player_max_health: int = 100
 var player_gold: int = 0
+var player_energy_rec: int = 4  # Energy regained per turn
+var player_bonus_energy: int = 0  # Temporary energy boosts
 
 # Progression state
 var current_map: String = "map_system"

@@ -80,6 +80,7 @@ func _apply_heal(effect):
 	
 func _apply_energy(effect):
 	tokens.append("energy")
+	GameState.player_bonus_energy += effect.value
 	pass
 	
 func _apply_draw(effect):

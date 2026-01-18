@@ -223,7 +223,8 @@ func _take_enemy_turn(id: String):
 	pass
 
 func _on_end_turn_btn_pressed() -> void:
-	energy_count +=4
+	energy_count +=GameState.player_energy_rec + GameState.player_bonus_energy
+	GameState.player_bonus_energy =0
 	if energy_count >9:
 		energy_count=9
 	$Label.text=str(energy_count)
