@@ -153,6 +153,18 @@ func save_deck():
 	else:
 		push_error("Could not save deck to " + deck_save_path)
 
+func delete_save_file():
+	"""Delete the save file completely"""
+	if FileAccess.file_exists(deck_save_path):
+		var dir = DirAccess.open("user://")
+		if dir:
+			dir.remove("player.save")
+			print("Save file deleted")
+		else:
+			push_error("Could not access user directory to delete save file")
+	else:
+		print("No save file to delete")
+
 func load_deck():
 	"""Load the deck and card collection from disk"""
 	if not FileAccess.file_exists(deck_save_path):

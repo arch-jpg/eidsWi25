@@ -198,6 +198,20 @@ text = "Exit"
 position = Vector2(550, 900)
 scale = Vector2(3.5, 3.5)
 
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 634.0
+offset_top = 892.0
+offset_right = 1103.0
+offset_bottom = 1045.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+text = "r = reset game state
+g = gold
+t = random card (in deck editor)
+m = map reset (in level selection)"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Play" to="." method="_on_PLAY_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsVBox/Options" to="." method="_on_OPTIONS_pressed"]

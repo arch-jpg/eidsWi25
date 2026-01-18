@@ -1,5 +1,29 @@
 extends Control
 
+@onready var cheat_label = $Label
+
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_focus_next"):  
+		toggle_cheat_label()
+
+
+func toggle_cheat_label():
+	if cheat_label:
+		cheat_label.visible = not cheat_label.visible
+
+
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_R:
+			GameState.reset_game_state()
+			print("Game progress has been reset!")
+		if event.keycode == KEY_G:
+			GameState.player_gold += 10000
+			print("Added 10000 gold! Current gold: %d" % GameState.player_gold)
+		
+
+	
+
 
 func _on_PLAY_pressed() -> void:
 	print("start pressed") 

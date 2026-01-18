@@ -291,17 +291,33 @@ func load_save_data(data: Dictionary):
 
 func reset_game_state():
 	"""Reset all game state to defaults (new game)."""
+	# Combat state
 	current_encounter.clear()
 	current_level_id = ""
-	#combat_modifiers.clear()
-	#completed_levels.clear()
-	player_health = 100
-	#player_max_health = 100
-	#player_gold = 0
-	current_map = "map_system"
 	last_combat_won = false
 	combat_rewards.clear()
+	is_boss_fight = false
+	
+	# Player state
+	player_health = 100
+	player_max_health = 100
+	player_gold = 0
+	
+	# Progression state
+	current_map = "map_system"
 	card_collection.clear()
-	clear_map_state()  # Clear saved map
-	unlock_starter_cards()  # Unlock starter cards for new game
-	print("Game state reset")
+	return_scene = "res://scenes/mainmenu/main_menu.tscn"
+	
+	# Map system state
+	clear_map_state()
+	
+	# Unlock starter cards
+	unlock_starter_cards()
+	
+	# Delete save file and create new one
+	if DeckManager:
+		DeckManager.delete_save_file()
+		DeckManager.current_deck.clear()
+		DeckManager.create_default_deck()
+	
+	print("Game state reset to defaults")
